@@ -4,7 +4,7 @@ const ROLES=require('./Roles')
 // TODO fill with other data
 const adminSchema=new Schema({
   name:{type:String,required:true},
-  role:ROLES.ADMIN
+  role:{type:Number,required:true},
 },{
     timestamps:true,
     versionKey:false
