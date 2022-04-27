@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootswatch/dist/lux/bootstrap.min.css";
+
+
+.bg-primary {
+  background-color: #5c2d91 !important;
+}
+.btn-primary {
+  color: #fff !important;
+  background-color: #ff615a !important;
+  border-color: #ff615a !important;
+}
+.btn-primary:hover {
+  color: #fff !important;
+  background-color: #f8544c !important;
+  border-color: #c34113 !important;
+}
+
