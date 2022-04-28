@@ -1,0 +1,15 @@
+.login-button{
+    background-color: transparent;
+    border: 0;
+    color: #979797;
+}
+.login-button:hover{
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+    color: white;
+}
+.bg-primary{
+    color: red !important;
+    background-color: #a2cb83 !important;
+}
