@@ -8,7 +8,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 
 const routes: Routes=[
-  {path: 'Home', component:HomeComponent},
+  {path: 'Home', component:HomeComponent, 
+    data:{  title: 'Home'
+    }
+  },
   {path: 'Login', component:LoginPageComponent},
   {path: 'Sign_up', component:RegisterPageComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},

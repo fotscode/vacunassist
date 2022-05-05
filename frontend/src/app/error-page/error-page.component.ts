@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-error-page',
   templateUrl: './error-page.component.html',
@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorPageComponent implements OnInit {
 
-  constructor() { }
-
+  public constructor(private titleService: Title){
+    this.titleService.setTitle("ERROR 404");  
+  }
   ngOnInit(): void {
   }
 
