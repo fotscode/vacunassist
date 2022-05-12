@@ -15,6 +15,7 @@ exports.signUp = (req, res, next) => {
         email: req.body.email,
         cuil: req.body.cuil,
         riesgo: req.body.riesgo,
+        sede: req.body.sede,
         hash: hash,
         salt: salt,
       })
