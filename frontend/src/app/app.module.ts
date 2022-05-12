@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { AuthGuard } from './auth.guard'
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     RegisterPageComponent,
     LoginPageComponent,
     ErrorPageComponent,
+    PasswordRecoveryPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,11 @@
   border-color: #c34113 !important;
 }
 
+.card{
+  background-color: #a2cb83 !important;
+}
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
