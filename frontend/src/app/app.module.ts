@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HomeComponent,
     RegisterPageComponent,
     LoginPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [Title],
   bootstrap: [AppComponent]
