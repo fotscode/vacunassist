@@ -1,12 +1,14 @@
+const crypto=require('crypto')
 const User = require('../models/User')
 const utils=require('../lib/utils')
 //TODO CRUD operations
 // async/await for db operations
 exports.signUp = (req, res, next) => {
-  User.findOne({ email: req.body.cuil }).then((user) => {
+  User.findOne({ cuil: req.body.cuil }).then((user) => {
     if (!user) {
       // if user not found, create user, else inform error
-      const saltHash = utils.genPassword(req.body.password)
+      const pwd=crypto.randomBytes(16).toString('hex')
+      const saltHash = utils.genPassword(pwd)
       const hash = saltHash.hash
       const salt = saltHash.salt
       const newUser = new User({
@@ -16,9 +18,12 @@ exports.signUp = (req, res, next) => {
         cuil: req.body.cuil,
         riesgo: req.body.riesgo,
         sede: req.body.sede,
+        role:req.body.role,
         hash: hash,
         salt: salt,
       })
+      //TODO ELIMINAR ESTO cuando se mande el mail con la password
+      console.log("Contrasenia: "+ pwd)
       newUser
         .save()
         .then((user) => {
