@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from './services/auth.service'
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,5 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public constructor(private titleService: Title){
-    this.titleService.setTitle("Home");  }
+  public constructor(public authService: AuthService){}
 }
