@@ -4,9 +4,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 
-.bg-primary {
-  background-color: #5c2d91 !important;
-}
 .btn-primary {
   color: #fff !important;
   background-color: #ff615a !important;
@@ -21,8 +18,6 @@
 .card{
   background-color: #a2cb83 !important;
 }
-
-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

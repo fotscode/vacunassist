@@ -20,6 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { AuthGuard } from './auth.guard'
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
+import { PasswordRecoveryMessageComponent } from './components/password-recovery-message/password-recovery-message.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { PasswordRecoveryPageComponent } from './components/password-recovery-pa
     LoginPageComponent,
     ErrorPageComponent,
     PasswordRecoveryPageComponent,
+    PasswordRecoveryMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { PasswordRecoveryPageComponent } from './components/password-recovery-pa
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [
     AuthGuard,
@@ -46,6 +50,10 @@ import { PasswordRecoveryPageComponent } from './components/password-recovery-pa
       useClass: TokenInterceptorService,
       multi: true,
     },
+    {provide:MatDialogRef , useValue:{} },
+
+    { provide: MAT_DIALOG_DATA, useValue: {} }
+    
   ],
   bootstrap: [AppComponent]
 })
