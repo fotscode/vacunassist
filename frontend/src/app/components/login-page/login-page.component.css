@@ -1,0 +1,10 @@
+.card {
+    padding: 2rem;
+    width: 40rem;
+    margin: 0 auto;
+    line-height: 2rem;
+  }
+  
+  .register-buttons {
+    line-height: 6rem;
+  }
