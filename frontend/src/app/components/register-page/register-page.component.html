@@ -1,31 +1,69 @@
-<div class="card">
-  <h4 class="card-header">Registrar nuevo usuario</h4>
-  <div class="card-body">
-    <div class="form-group">
-        <label for="firstName">Nombre</label>
-        <input type="text" formControlName="firstName" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Apellido</label>
-        <input type="text" formControlName="lastName" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="username">E-mail</label>
-        <input type="text" formControlName="username" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="password">CUIL</label>
-        <input type="password" formControlName="cuil" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="password">Sede</label>
-        <input type="password" formControlName="sede" class="form-control"/>
-    </div>
-    <div class="register-buttons">
-        <button class="btn btn-primary">
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <h4 class="card-header">Registrar nuevo usuario</h4>
+    <div class="card-body">
+      <form (submit)="signUp()">
+        <div class="form-group">
+          <label for="firstName">Nombre</label>
+          <input
+            type="text"
+            [(ngModel)]="user.firstName"
+            name="firstName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Apellido</label>
+          <input
+            type="text"
+            [(ngModel)]="user.lastName"
+            name="lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            type="text"
+            [(ngModel)]="user.email"
+            name="email"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="cuil">CUIL</label>
+          <input
+            type="text"
+            [(ngModel)]="user.cuil"
+            name="cuil"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="riesgo">Riesgo</label>
+          <input
+            type="text"
+            [(ngModel)]="user.riesgo"
+            name="riesgo"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="sede">Sede</label>
+          <input
+            type="text"
+            [(ngModel)]="user.sede"
+            name="sede"
+            class="form-control"
+          />
+        </div>
+        <div class="register-buttons">
+          <button type="submit" class="btn btn-primary btn-block">
             Registrarse
-        </button>
-        <a routerLink="../login" class="btn btn-link">Cancelar</a>
+          </button>
+          <a routerLink="/Login" class="btn btn-link">Cancelar</a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
