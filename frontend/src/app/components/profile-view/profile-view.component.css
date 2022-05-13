@@ -1,0 +1,47 @@
+.planilla {
+  width: 400px;
+  background-color: #83e3c5;
+  justify-content: center;
+}
+
+.subtitulo{
+  margin: 0rem;
+  margin-bottom: 2rem;
+}
+
+.holder {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 500px;
+  line-height: 2rem;
+}
+
+.opciones {
+  margin-left: 2rem;
+}
+
+.boton {
+  margin: 1rem;
+}
+
+.formulario {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.formulario-ancho {
+  width: 100%;
+}
+
+.campo {
+  border-bottom: 2rem;
+  background-color: red;
+}
+
+.inputTexto {
+  background-color: white;
+  padding: 5px;
+}

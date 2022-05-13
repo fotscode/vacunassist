@@ -21,7 +21,9 @@ import { AuthGuard } from './auth.guard'
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
 import { PasswordRecoveryMessageComponent } from './components/password-recovery-message/password-recovery-message.component';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProfileViewComponent } from './components/profile-view/profile-view.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     ErrorPageComponent,
     PasswordRecoveryPageComponent,
     PasswordRecoveryMessageComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatDialogModule,
+    MaterialModule,
   ],
   providers: [
     AuthGuard,
