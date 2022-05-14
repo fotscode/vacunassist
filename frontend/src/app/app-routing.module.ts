@@ -8,12 +8,14 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
   {path: 'Login', component:LoginPageComponent},
   {path: 'Register', component:RegisterPageComponent},
   {path: 'Perfil', component:ProfileViewComponent},
+  {path: 'EditarPerfil', component:ProfileEditComponent},
   {path: 'Recover', component:PasswordRecoveryPageComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}

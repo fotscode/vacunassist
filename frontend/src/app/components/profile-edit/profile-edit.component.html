@@ -2,7 +2,7 @@
 <div class="holder">
   <mat-card class="planilla">
     <mat-card-header>
-      <mat-card-title class="titulo">Datos Personales</mat-card-title>
+      <mat-card-title class="titulo"><i>Datos Personales (edición)</i></mat-card-title>
       <mat-card-subtitle class="subtitulo">{{ nivel }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -11,36 +11,35 @@
     <form class="formulario">
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Nombre</b></mat-label>
-        <input matInput value="{{ nombre }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ nombre }}" class="inputTexto">
       </mat-form-field>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Apellido</b></mat-label>
-        <input matInput value="{{ apellido }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ apellido }}" class="inputTexto">
       </mat-form-field>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>E-mail</b></mat-label>
-        <input matInput value="{{ email }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ email }}" class="inputTexto">
       </mat-form-field>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>CUIL</b></mat-label>
-        <input matInput value="{{ cuil }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ cuil }}" class="inputTexto">
       </mat-form-field>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Riesgo</b></mat-label>
-        <input matInput value="{{ riesgo }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ riesgo }}" class="inputTexto">
       </mat-form-field>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Sede</b></mat-label>
-        <input matInput value="{{ sede }}" disabled="true" class="inputTexto">
+        <input matInput value="{{ sede }}" class="inputTexto">
       </mat-form-field>
     </form>
 
 
     </mat-card-content>
     <mat-card-actions class="opciones">
-      <button mat-button class="boton" routerLink="/EditarPerfil">Editar</button>
-      <button mat-button class="boton" routerLink="/Home">Regresar</button>
+      <button mat-button class="boton" routerLink="/Home">Guardar</button>
+      <button mat-button class="boton" routerLink="/Perfil">Cancelar</button>
       </mat-card-actions>
   </mat-card>
 </div>
-

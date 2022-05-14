@@ -24,6 +24,7 @@ import { PasswordRecoveryMessageComponent } from './components/password-recovery
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { MaterialModule } from './material/material.module';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MaterialModule } from './material/material.module';
     PasswordRecoveryPageComponent,
     PasswordRecoveryMessageComponent,
     ProfileViewComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
