@@ -11,13 +11,17 @@ export class ProfileEditComponent implements OnInit {
   apellido = "Perez"
   email = "juan.perez@gmail.com"
   cuil = "20-385672453-5"
-  riesgo = "Sí"
+  riesgo : boolean = false
   sede = "Bosque"
   dosis = ["Gripe: 1", "COVID: 2"]
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  switch(){
+    this.riesgo = !this.riesgo
+  }
 }

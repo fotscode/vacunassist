@@ -58,7 +58,7 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
     {provide:MatDialogRef , useValue:{} },
 
     { provide: MAT_DIALOG_DATA, useValue: {} }
-    
+
   ],
   bootstrap: [AppComponent]
 })

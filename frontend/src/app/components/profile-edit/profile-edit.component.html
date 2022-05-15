@@ -25,10 +25,9 @@
         <mat-label><b>CUIL</b></mat-label>
         <input matInput value="{{ cuil }}" class="inputTexto">
       </mat-form-field>
-      <mat-form-field class="formulario-ancho" appearance="fill">
-        <mat-label><b>Riesgo</b></mat-label>
-        <input matInput value="{{ riesgo }}" class="inputTexto">
-      </mat-form-field>
+      <mat-checkbox labelPosition="after" class="riesgo-check" [checked]="riesgo" (change)="switch()">
+        Paciente de riesgo
+      </mat-checkbox>
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Sede</b></mat-label>
         <input matInput value="{{ sede }}" class="inputTexto">
