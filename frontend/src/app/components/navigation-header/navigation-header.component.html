@@ -23,10 +23,12 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="#">About</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav" *If="isLogged()">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" routerLink="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" routerLink="/Home" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" routerLink="#">Action</a>
+                        <a class="dropdown-item" routerLink="/Perfil">Perfil</a>
                         <a class="dropdown-item" routerLink="#">Another action</a>
                         <a class="dropdown-item" routerLink="#">Something else here</a>
                         <div class="dropdown-divider"></div>
@@ -34,8 +36,7 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <a mat-button class="nav-link" routerLink="/Perfil">Perfil</a>
+            <ul class="navbar-nav" *ngIf="isLogged()">
                 <a mat-button class="nav-link" routerLink="/Login">Iniciar Sesión</a>
                 <a mat-button class="nav-link" routerLink="/Register">Registrarse</a>
             </ul>

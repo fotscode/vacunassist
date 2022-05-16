@@ -9,12 +9,13 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
   {path: 'Login', component:LoginPageComponent},
   {path: 'Register', component:RegisterPageComponent},
-  {path: 'Perfil', component:ProfileViewComponent},
+  {path: 'Perfil', component:ProfileViewComponent, canActivate: [AuthGuard]},
   {path: 'EditarPerfil', component:ProfileEditComponent},
   {path: 'Recover', component:PasswordRecoveryPageComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
