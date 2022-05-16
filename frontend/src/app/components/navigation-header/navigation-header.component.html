@@ -24,7 +24,7 @@
                     <a class="nav-link" routerLink="#">About</a>
                 </li>
             </ul>
-            <ul class="navbar-nav" *If="isLogged()">
+            <ul class="navbar-nav" *ngIf="isLogged()">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" routerLink="/Home" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
@@ -36,7 +36,7 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav" *ngIf="isLogged()">
+            <ul class="navbar-nav" *ngIf="!isLogged()">
                 <a mat-button class="nav-link" routerLink="/Login">Iniciar Sesión</a>
                 <a mat-button class="nav-link" routerLink="/Register">Registrarse</a>
             </ul>

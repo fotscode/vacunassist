@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AuthGuard } from 'src/app/auth.guard';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navigation-header',
@@ -9,10 +10,11 @@ import { AuthGuard } from 'src/app/auth.guard';
 })
 export class NavigationHeaderComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private authservice: AuthService) {}
 
   isLogged(){
-    return AuthGuard;
+    return this.authservice.loggedIn();
   }
 
   ngOnInit(): void {
