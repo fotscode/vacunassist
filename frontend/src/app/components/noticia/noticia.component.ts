@@ -25,4 +25,7 @@ export class NoticiaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  delete(): void {
+  }
+
 }

@@ -1,7 +1,7 @@
 .noticias {
   padding-top: 1rem;
   width: 80%;
-  background-color: rgb(96, 162, 31);
+  background-color: #689f77;
   border-radius: 10px;
 }
 
@@ -17,4 +17,10 @@
   text-justify: center;
   height: 225px;
   width: 300px;
+}
+
+.icono {
+  width: fit-content;
+  float: right;
+  margin-right: 1rem;
 }
