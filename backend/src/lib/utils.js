@@ -52,9 +52,9 @@ function issueJWT(user) {
   const _id = user._id;
 
   const expiresIn = '1d';
-
   const payload = {
     sub: _id,
+    role:user.role,
     iat: Date.now()
   };
 

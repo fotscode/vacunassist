@@ -18,8 +18,7 @@ export class AuthService {
     return this.http.post<any>(this.URL + '/login', user)
   }
 
-  public loggedIn(): Boolean {
-    //return moment().isBefore(this.getExpiration(),"second")
+  loggedIn(): Boolean {
     return !!(localStorage.getItem("token")) 
   }
   
@@ -31,6 +30,19 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  private getPayload(){
+    let x= this.getToken()?.split(" ")[1].split(".")[1];
+    return (x) ? JSON.parse(atob(x)) : null
+  }
+
+  getRol(){
+    return (this.getPayload()) ? this.getPayload().role : -1
+  }
+
+  getId(){
+    return (this.getPayload()) ? this.getPayload().sub : -1
+  }
+
   getExpiration() {
     const expiration = localStorage.getItem('expires')
     return expiration ? moment(JSON.parse(expiration)) : moment()
@@ -39,6 +51,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('expires')
-    this.router.navigate(['/signin'])
+    this.router.navigate(['/Login'])
   }
 }
