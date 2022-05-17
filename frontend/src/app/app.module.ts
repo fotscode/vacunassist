@@ -25,6 +25,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { MaterialModule } from './material/material.module';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
+import { CertificadoComponent } from './components/certificado/certificado.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
     PasswordRecoveryMessageComponent,
     ProfileViewComponent,
     ProfileEditComponent,
+    CertificadoComponent,
   ],
   imports: [
     BrowserModule,

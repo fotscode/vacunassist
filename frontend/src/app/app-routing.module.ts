@@ -10,6 +10,7 @@ import { PasswordRecoveryPageComponent } from './components/password-recovery-pa
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { AuthGuard } from './auth.guard';
+import { CertificadoComponent } from './components/certificado/certificado.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes=[
   {path: 'Perfil', component:ProfileViewComponent, canActivate: [AuthGuard]},
   {path: 'EditarPerfil', component:ProfileEditComponent},
   {path: 'Recover', component:PasswordRecoveryPageComponent},
+  {path: 'Certificado', component:CertificadoComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]
