@@ -34,6 +34,7 @@ export class RegisterPageComponent implements OnInit {
         this.router.navigate(["/Home"])
       },
       (err) => {
+        // TODO error mas adecuado
         console.log(err)
       }
     )
