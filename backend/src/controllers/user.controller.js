@@ -26,7 +26,7 @@ exports.signUp = (req, res, next) => {
       newUser
         .save()
         .then((user) => {
-          sendEmail(req.body.email,pwd)
+          sendEmail(req.body.email, pwd)
           const jwt = utils.issueJWT(user)
           res.status(200).json({
             success: true,
@@ -63,7 +63,7 @@ const sendEmail = (email, pwd) => {
   })
 }
 
-exports.logIn= (req,res,next)=>{
+exports.logIn = (req, res, next) => {
   User.findOne({ cuil: req.body.cuil })
     .then((user) => {
       if (!user) {
@@ -89,6 +89,29 @@ exports.logIn= (req,res,next)=>{
           .status(401)
           .json({ success: false, msg: 'you entered the wrong password' })
       }
+    })
+    .catch((err) => {
+      next(err)
+    })
+}
+
+exports.recover = (req, res, next) => {
+  const pwd = crypto.randomBytes(16).toString('hex')
+  const saltHash = utils.genPassword(pwd)
+  User.findOne({ cuil: req.body.cuil })
+    .then((user) => {
+      user.hash = saltHash.hash
+      user.salt = saltHash.salt
+      User.findOneAndUpdate(
+        { cuil: req.body.cuil },
+        user,
+        { upsert: true },
+        (err, doc) => {
+          if (err) return res.send(500, { error: err })
+          sendEmail(user.email,pwd)
+          return res.status(200).json({ success: true, msg: 'user updated' })
+        }
+      )
     })
     .catch((err) => {
       next(err)
