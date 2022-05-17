@@ -1,0 +1,14 @@
+<div class="col-md-8" id="htmlData">
+    <table class="table table-bordered">
+        <tr class="table-primary">
+            <th>Id</th>
+            <th>Vacuna</th>
+            <th>Fecha</th>
+        </tr>
+        <tr *ngFor="let turno of turnos">
+            <th>{{turno.id}}</th>
+            <th>{{turno.vacuna}}</th>
+            <th>{{turno.fecha}}</th>
+        </tr>
+    </table>
+</div>

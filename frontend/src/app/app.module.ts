@@ -26,6 +26,7 @@ import { ProfileViewComponent } from './components/profile-view/profile-view.com
 import { MaterialModule } from './material/material.module';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { CertificadoComponent } from './components/certificado/certificado.component';
+import { MisturnosComponent } from './components/misturnos/misturnos.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CertificadoComponent } from './components/certificado/certificado.compo
     ProfileViewComponent,
     ProfileEditComponent,
     CertificadoComponent,
+    MisturnosComponent,
   ],
   imports: [
     BrowserModule,
