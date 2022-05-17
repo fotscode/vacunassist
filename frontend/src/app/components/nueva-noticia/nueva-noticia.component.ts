@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevaNoticiaComponent implements OnInit {
 
+  titulo:String = ""
+  cuerpo:String = ""
+
   constructor() { }
 
   ngOnInit(): void {

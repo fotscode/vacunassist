@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { CertificadoComponent } from './components/certificado/certificado.component';
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
+import { NoticiaComponent } from './components/noticia/noticia.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes=[
   {path: 'Certificado', component:CertificadoComponent, canActivate:[AuthGuard]},
   {path: 'Turnos', component:MisturnosComponent},
   {path: 'NuevaNoticia', component:NuevaNoticiaComponent},
+  {path: 'Noticia', component:NoticiaComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]
