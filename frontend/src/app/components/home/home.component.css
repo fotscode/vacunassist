@@ -1,9 +1,11 @@
-body{
-    background-color: greenyellow;
-}
 .noticiasContainer{
+    margin: 2rem;
+    width: 60%;
     float: left;
 }
 .turnosContainer{
+    margin: 2rem;
+    background-color: "#689f77";
     float: right;
+    width: 25%;
 }

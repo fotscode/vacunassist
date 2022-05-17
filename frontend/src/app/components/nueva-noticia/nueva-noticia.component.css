@@ -49,3 +49,8 @@ input:placeholder-shown {
 textarea:placeholder-shown {
   font-style: italic;
 }
+
+.boton {
+  margin: 1rem;
+  width: 100px;
+}

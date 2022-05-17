@@ -28,6 +28,7 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
 import { CertificadoComponent } from './components/certificado/certificado.component';
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
+import { NoticiaComponent } from './components/noticia/noticia.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.
     CertificadoComponent,
     MisturnosComponent,
     NuevaNoticiaComponent,
+    NoticiaComponent,
   ],
   imports: [
     BrowserModule,

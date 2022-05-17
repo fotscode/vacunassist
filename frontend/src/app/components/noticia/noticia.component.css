@@ -1,0 +1,26 @@
+.noticias {
+  padding-top: 1rem;
+  width: 80%;
+  background-color: #689f77;
+  border-radius: 10px;
+}
+
+.noticia {
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.foto {
+  margin: 1rem;
+  background-color: #6c7275;
+  text-justify: center;
+  height: 225px;
+  width: 300px;
+}
+
+.icono {
+  width: fit-content;
+  float: right;
+  margin-right: 1rem;
+}
