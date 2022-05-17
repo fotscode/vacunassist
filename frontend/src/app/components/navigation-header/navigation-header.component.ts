@@ -11,10 +11,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavigationHeaderComponent implements OnInit {
 
 
-  constructor(private authservice: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   isLogged(){
-    return this.authservice.loggedIn();
+    return this.authService.loggedIn();
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 
   ngOnInit(): void {
