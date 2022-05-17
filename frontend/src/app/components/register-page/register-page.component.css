@@ -8,3 +8,7 @@
 .register-buttons {
   line-height: 6rem;
 }
+
+.form-group {
+  margin-bottom: 1rem;
+}

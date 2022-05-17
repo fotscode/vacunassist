@@ -41,22 +41,19 @@
           />
         </div>
         <div class="form-group">
-          <label for="riesgo">Riesgo</label>
-          <input
-            type="text"
-            [(ngModel)]="user.riesgo"
-            name="riesgo"
-            class="form-control"
-          />
+          <mat-checkbox style="font-size:16px" labelPosition="after" class="riesgo-check" name="riesgo" [(ngModel)]="user.riesgo">
+            Paciente de riesgo
+          </mat-checkbox>
         </div>
         <div class="form-group">
-          <label for="sede">Sede</label>
-          <input
-            type="text"
-            [(ngModel)]="user.sede"
-            name="sede"
-            class="form-control"
-          />
+          <mat-form-field appearance="fill" class="sede-dropdown" [(ngModel)]="user.sede" name="sede">
+            <mat-label>Sede</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let sede of sedes" [value]="user.sede.id" (onSelectionChange)="setSede(sede)">
+                {{sede.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="register-buttons">
           <button type="submit" class="btn btn-primary btn-block">
