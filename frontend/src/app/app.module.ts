@@ -27,6 +27,7 @@ import { MaterialModule } from './material/material.module';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { CertificadoComponent } from './components/certificado/certificado.component';
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
+import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MisturnosComponent } from './components/misturnos/misturnos.component';
     ProfileEditComponent,
     CertificadoComponent,
     MisturnosComponent,
+    NuevaNoticiaComponent,
   ],
   imports: [
     BrowserModule,

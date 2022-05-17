@@ -1,0 +1,14 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+  <h4 class="categoria" style="font-size:30px; color:white"> Agregar noticia</h4>
+  <mat-card class="noticia">
+    <mat-card-header class="titulo-holder" inputmode="true" style="font-size:30px" [contentEditable]="true">
+      <input class="titulo-texto" contenteditable="true" placeholder="Título">
+    </mat-card-header>
+    <p style="font-size:20px; color: #263238"><i>Fotos</i></p>
+    <input type="file" class="upload">
+    <mat-card-content class="cuerpo" inputmode="true" style="font-size:16px" [contentEditable]="true">
+      <textarea class="cuerpo" contenteditable="true" placeholder="Cuerpo de noticia" rows="10"></textarea>
+    </mat-card-content>
+  </mat-card>
+</div>

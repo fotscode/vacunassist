@@ -12,6 +12,7 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
 import { AuthGuard } from './auth.guard';
 import { CertificadoComponent } from './components/certificado/certificado.component';
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
+import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes=[
   {path: 'Recover', component:PasswordRecoveryPageComponent},
   {path: 'Certificado', component:CertificadoComponent, canActivate:[AuthGuard]},
   {path: 'Turnos', component:MisturnosComponent},
+  {path: 'NuevaNoticia', component:NuevaNoticiaComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]
