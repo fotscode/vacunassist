@@ -49,7 +49,7 @@ const sendEmail = (email, pwd) => {
     },
   })
   const mailOptions = {
-    from: 'vacunassistG26@gmail.com',
+    from: process.env.EMAIL_ACCOUNT,
     to: email,
     subject: 'Vacunassist - Contraseña',
     text: 'Contraseña: ' + pwd,
@@ -93,7 +93,7 @@ exports.logIn = (req, res, next) => {
       }
     })
     .catch((err) => {
-      next(err)
+      return res.send(409, { error: err, msg:"user not found" })
     })
 }
 
@@ -109,14 +109,14 @@ exports.recover = (req, res, next) => {
         user,
         { upsert: true },
         (err, doc) => {
-          if (err) return res.send(500, { error: err })
+          if (err) return res.send(409, { error: err,msg:"user not found" })
           sendEmail(user.email, pwd)
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
     })
     .catch((err) => {
-      next(err)
+      return res.send(409, { error: err, msg:"user not found" })
     })
 }
 
@@ -143,12 +143,12 @@ exports.updateUser = (req, res, next) => {
         user,
         { upsert: true },
         (err, doc) => {
-          if (err) return res.send(500, { error: err })
+          if (err) return res.send(409, { error: err, msg:"user not found" })
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
     })
     .catch((err) => {
-      next(err)
+      return res.send(409, { error: err, msg:"user not found" })
     })
 }
