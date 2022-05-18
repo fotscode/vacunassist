@@ -15,7 +15,7 @@ interface Sede {
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
-  
+
 
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
