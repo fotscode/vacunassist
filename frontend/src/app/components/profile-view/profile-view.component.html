@@ -7,7 +7,6 @@
     </mat-card-header>
     <mat-card-content>
 
-
     <form class="formulario">
       <mat-form-field class="formulario-ancho" appearance="fill">
         <mat-label><b>Nombre</b></mat-label>
@@ -26,7 +25,7 @@
         <input matInput value="{{ cuil }}" disabled="true" class="inputTexto">
       </mat-form-field>
       <div>
-        <mat-checkbox labelPosition="after" disabled="true" class="riesgo-check">
+        <mat-checkbox labelPosition="after" disabled="true" class="riesgo-check" checked="{{riesgo}}">
           Paciente de riesgo
         </mat-checkbox>
       </div>

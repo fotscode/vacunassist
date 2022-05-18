@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from 'src/app/services/auth.service'
+import { environment } from 'src/environments/environment'
 
-interface Sede{
+interface Sede {
   id: number
   nombre: String
 }
@@ -8,34 +11,55 @@ interface Sede{
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
-  styleUrls: ['./profile-edit.component.css']
+  styleUrls: ['./profile-edit.component.css'],
 })
-
 export class ProfileEditComponent implements OnInit {
-  nivel = "Paciente"
-  nombre = "Juan"
-  apellido = "Perez"
-  email = "juan.perez@gmail.com"
-  cuil = "20-385672453-5"
-  riesgo : boolean = false
+  nivel = ''
+  nombre = ''
+  apellido = ''
+  email = ''
+  cuil = ''
+  riesgo: boolean = false
   sedes: Sede[] = [
-    {id: 1, nombre: "Bosque"},
-    {id: 2, nombre: "Centro"},
-    {id: 3, nombre: "Estadio"},
+    { id: 1, nombre: 'Bosque' },
+    { id: 2, nombre: 'Centro' },
+    { id: 3, nombre: 'Estadio' },
   ]
   sede: Sede = this.sedes[1]
-  dosis = ["Gripe: 1", "COVID: 2"]
+  dosis = ['Gripe: 1', 'COVID: 2']
 
-  constructor() { }
-
-  ngOnInit(): void {
+  private URL = environment.apiUrl
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
+      (res) => {
+        this.nivel = this.getNivel()
+        this.nombre = res.firstName
+        this.apellido = res.lastName
+        this.email = res.email
+        this.cuil = res.cuil
+        this.riesgo = res.riesgo == 'true' ? true : false
+        let sede = this.sedes.find((s) => s.nombre == res.sede)
+        // si no encuentra la sede guardada pone la primera
+        this.sede = sede ? sede : this.sedes[1]
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
   }
 
-  switch(){
+  ngOnInit(): void {}
+
+  switch() {
     this.riesgo = !this.riesgo
   }
 
-  setSede(s: Sede){
-    this.sede = s;
+  setSede(s: Sede) {
+    this.sede = s
+  }
+
+  private getNivel(): string {
+    let rol = this.authService.getRol()
+    return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
   }
 }

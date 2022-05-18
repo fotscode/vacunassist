@@ -26,12 +26,12 @@
         <input matInput value="{{ cuil }}" class="inputTexto">
       </mat-form-field>
       <div>
-        <mat-checkbox labelPosition="after" class="riesgo-check" (change)="switch()">
+          <mat-checkbox checked="{{riesgo}}" labelPosition="after" class="riesgo-check" (change)="switch()">
           Paciente de riesgo
         </mat-checkbox>
       </div>
       <mat-form-field appearance="fill">
-        <mat-label>Sede</mat-label>
+          <mat-label>{{sede.nombre}}</mat-label>
         <mat-select>
           <mat-option *ngFor="let sede of sedes" [value]="sede.id" (onSelectionChange)="setSede(sede)">
             {{sede.nombre}}

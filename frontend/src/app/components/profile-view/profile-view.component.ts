@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from 'src/app/services/auth.service'
+import { environment } from 'src/environments/environment'
 
-interface Sede{
+interface Sede {
   id: number
   nombre: String
 }
@@ -8,30 +11,48 @@ interface Sede{
 @Component({
   selector: 'app-profile-view',
   templateUrl: './profile-view.component.html',
-  styleUrls: ['./profile-view.component.css']
+  styleUrls: ['./profile-view.component.css'],
 })
 export class ProfileViewComponent implements OnInit {
-  nivel = "Paciente"
-  nombre = "Juan"
-  apellido = "Perez"
-  email = "juan.perez@gmail.com"
-  cuil = "20-385672453-5"
-  riesgo = "Sí"
+  nivel = ''
+  nombre = ''
+  apellido = ''
+  email = ''
+  cuil = ''
+  riesgo = false
   sedes: Sede[] = [
-    {id: 1, nombre: "Bosque"},
-    {id: 2, nombre: "Centro"},
-    {id: 3, nombre: "Estadio"},
+    { id: 1, nombre: 'Bosque' },
+    { id: 2, nombre: 'Centro' },
+    { id: 3, nombre: 'Estadio' },
   ]
   sede: Sede = this.sedes[1]
-  dosis = ["Gripe: 1", "COVID: 2"]
+  dosis = ['Gripe: 1', 'COVID: 2']
 
-  constructor() { }
-
-  ngOnInit(): void {
+  private URL: string = environment.apiUrl
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
+      (res) => {
+        this.nivel = this.getNivel()
+        this.nombre = res.firstName
+        this.apellido = res.lastName
+        this.email = res.email
+        this.cuil = res.cuil
+        this.riesgo = res.riesgo ? true : false
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
   }
 
-  setSede(s: Sede){
-    this.sede = s;
+  ngOnInit(): void {}
+
+  setSede(s: Sede) {
+    this.sede = s
   }
 
+  private getNivel(): string {
+    let rol = this.authService.getRol()
+    return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
+  }
 }
