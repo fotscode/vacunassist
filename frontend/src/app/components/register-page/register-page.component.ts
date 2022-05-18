@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
 
-interface Sede{
+interface Sede {
   id: number
   nombre: String
 }
@@ -11,13 +11,13 @@ interface Sede{
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
   sedes: Sede[] = [
-    {id: 1, nombre: "Bosque"},
-    {id: 2, nombre: "Centro"},
-    {id: 3, nombre: "Estadio"},
+    { id: 1, nombre: 'Bosque' },
+    { id: 2, nombre: 'Centro' },
+    { id: 3, nombre: 'Estadio' },
   ]
 
   user = {
@@ -28,9 +28,7 @@ export class RegisterPageComponent implements OnInit {
     riesgo: '',
     sede: this.sedes[1],
     password: '',
-    role:1,
-
-
+    role: 1,
   } // 1 paciente, 2 vacunador, 3 admin
   // TODO cambiar esto para generar los primeros admins
 
@@ -38,8 +36,8 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setSede(s: Sede){
-    this.user.sede = s;
+  setSede(s: Sede) {
+    this.user.sede = s
   }
   signUp() {
     this.authService.signUp(this.user).subscribe(
@@ -47,7 +45,7 @@ export class RegisterPageComponent implements OnInit {
         const expires = moment().add(res.expiresIn)
         localStorage.setItem('token', res.token)
         localStorage.setItem('expires', JSON.stringify(expires.valueOf()))
-        this.router.navigate(["/Home"])
+        this.router.navigate(['/Home'])
       },
       (err) => {
         // TODO error mas adecuado
