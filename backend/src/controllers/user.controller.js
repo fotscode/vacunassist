@@ -18,7 +18,7 @@ exports.signUp = (req, res, next) => {
         email: req.body.email,
         cuil: req.body.cuil,
         riesgo: req.body.riesgo,
-        sede: req.body.sede,
+        sede: req.body.sede.nombre,
         role: req.body.role,
         hash: hash,
         salt: salt,
@@ -44,8 +44,8 @@ const sendEmail = (email, pwd) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'vacunassistG26@gmail.com',
-      pass: 'vacunassistG26pwd',
+      user: process.env.EMAIL_ACCOUNT,
+      pass: process.env.EMAIL_PWD,
     },
   })
   const mailOptions = {
@@ -67,7 +67,7 @@ exports.logIn = (req, res, next) => {
   User.findOne({ cuil: req.body.cuil })
     .then((user) => {
       if (!user) {
-        res.status(401).json({ success: false, msg: 'could not find user' })
+        return res.status(401).json({ success: false, msg: 'could not find user' })
       }
       const isValid = utils.validPassword(
         req.body.password,
@@ -85,7 +85,7 @@ exports.logIn = (req, res, next) => {
           expiresIn: jwt.expires,
         })
       } else {
-        res
+        return res
           .status(401)
           .json({ success: false, msg: 'you entered the wrong password' })
       }
