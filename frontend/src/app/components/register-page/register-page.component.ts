@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 interface Sede {
   id: number
@@ -14,6 +15,8 @@ interface Sede {
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
+  
+
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -32,9 +35,15 @@ export class RegisterPageComponent implements OnInit {
   } // 1 paciente, 2 vacunador, 3 admin
   // TODO cambiar esto para generar los primeros admins
 
-  constructor(private authService: AuthService, private router: Router) {}
+  errorMsg="";
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService, private router: Router) {
+  }
+
+
+  ngOnInit() {
+
+  }
 
   setSede(s: Sede) {
     this.user.sede = s
@@ -48,7 +57,7 @@ export class RegisterPageComponent implements OnInit {
         this.router.navigate(['/Home'])
       },
       (err) => {
-        // TODO error mas adecuado
+        this.errorMsg="El cuil ya se encuentra registrado"
         console.log(err)
       }
     )
