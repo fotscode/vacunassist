@@ -3,7 +3,7 @@
     <mat-card-header style="font-size:24px">
       {{ noticia.titulo }}
     </mat-card-header>
-      <mat-icon class="icono" (click)="delete()">delete</mat-icon>
+      <mat-icon class="icono" *ngIf="isAdmin()" (click)="delete()">delete</mat-icon>
     <mat-card-content class="foto">
       <h3>Placeholder fotooooo</h3>
     </mat-card-content>

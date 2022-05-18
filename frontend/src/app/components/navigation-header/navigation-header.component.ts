@@ -17,6 +17,10 @@ export class NavigationHeaderComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
+  isAdmin(){
+    return this.authService.getRol()==3;
+  }
+
   logOut(){
     this.authService.logout();
   }

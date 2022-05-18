@@ -15,13 +15,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a style="font-size:18px" class="nav-link" routerLink="#">Mis turnos</a>
-                </li>
-                <li class="nav-item">
-                    <a style="font-size:18px" class="nav-link" routerLink="#">Mis vacunas</a>
-                </li>
-                <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" href="NuevaNoticia">Agregar Noticia</a>
+                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/NuevaNoticia">Agregar Noticia</a>
                 </li>
             </ul>
 
