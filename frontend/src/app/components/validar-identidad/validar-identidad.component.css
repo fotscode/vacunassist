@@ -44,11 +44,11 @@ textarea:placeholder-shown {
 
 .opciones {
   margin:auto;
-  width: 50%;
+  width: fit-content;
 }
 
 .boton {
-  margin: 1rem;
+  margin: auto;
   width: 130px;
 }
 

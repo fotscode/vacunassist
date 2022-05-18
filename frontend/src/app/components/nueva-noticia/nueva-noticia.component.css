@@ -50,7 +50,13 @@ textarea:placeholder-shown {
   font-style: italic;
 }
 
-.boton {
+.opciones {
   margin: 1rem;
-  width: 100px;
+  margin-bottom: 2rem;
+}
+
+.boton {
+  width: 120px;
+  font-size:15px;
+  background-color: #c0eacc;
 }

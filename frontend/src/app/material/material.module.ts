@@ -12,8 +12,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 
 const MaterialComponents = [
   MatCardModule,
@@ -31,6 +32,7 @@ const MaterialComponents = [
   MatSelectModule,
   MatIconModule,
   MatGridListModule,
+  MatButtonModule,
 ]
 
 @NgModule({

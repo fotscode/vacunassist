@@ -3,7 +3,6 @@
 /*style.css*/
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-
 .btn-primary {
   color: #fff !important;
   background-color: #ff615a !important;

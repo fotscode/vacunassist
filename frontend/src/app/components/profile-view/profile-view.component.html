@@ -1,4 +1,7 @@
 <app-navigation-header></app-navigation-header>
+<div class="noticiasContainer">
+  <app-noticia></app-noticia>
+</div>
 <div class="holder">
   <mat-card class="planilla">
     <mat-card-header>
@@ -29,7 +32,7 @@
           Paciente de riesgo
         </mat-checkbox>
       </div>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill"  class="sede">
         <mat-label>{{sede.nombre}}</mat-label>
         <mat-select disabled="true">
           <mat-option disabled="true" [value]="sede.id">
@@ -39,10 +42,9 @@
       </mat-form-field>
     </form>
 
-
     </mat-card-content>
     <mat-card-actions class="opciones">
-      <button mat-button class="boton" routerLink="/EditarPerfil">Editar</button>
+      <button mat-button class="boton" routerLink="/EditarPerfil" color="primary">Editar</button>
       <button mat-button class="boton" routerLink="/Home">Regresar</button>
       </mat-card-actions>
   </mat-card>
