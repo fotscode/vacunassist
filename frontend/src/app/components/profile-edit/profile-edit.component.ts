@@ -14,52 +14,66 @@ interface Sede {
   styleUrls: ['./profile-edit.component.css'],
 })
 export class ProfileEditComponent implements OnInit {
-  nivel = ''
-  nombre = ''
-  apellido = ''
-  email = ''
-  cuil = ''
-  riesgo: boolean = false
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
     { id: 3, nombre: 'Estadio' },
   ]
-  sede: Sede = this.sedes[1]
   dosis = ['Gripe: 1', 'COVID: 2']
+
+  nivel = ''
+  user = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    cuil: '',
+    riesgo: false,
+    sede: this.sedes[1],
+  }
 
   private URL = environment.apiUrl
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
-      (res) => {
-        this.nivel = this.getNivel()
-        this.nombre = res.firstName
-        this.apellido = res.lastName
-        this.email = res.email
-        this.cuil = res.cuil
-        this.riesgo = res.riesgo == 'true' ? true : false
-        let sede = this.sedes.find((s) => s.nombre == res.sede)
-        // si no encuentra la sede guardada pone la primera
-        this.sede = sede ? sede : this.sedes[1]
-      },
-      (err) => {
-        console.log(err)
-      }
-    )
+    this.http
+      .get<any>(this.URL + '/user/' + this.authService.getId())
+      .subscribe(
+        (res) => {
+          this.nivel = this.getNivel()
+          this.user.firstName = res.firstName
+          this.user.lastName = res.lastName
+          this.user.email = res.email
+          this.user.cuil = res.cuil
+          this.user.riesgo = res.riesgo==='true' ? true : false
+          let sede = this.sedes.find((s) => s.nombre == res.sede)
+          // si no encuentra la sede guardada pone la primera
+          this.user.sede = sede ? sede : this.sedes[1]
+        },
+        (err) => {
+          console.log(err)
+        }
+      )
   }
 
   ngOnInit(): void {}
 
-  switch() {
-    this.riesgo = !this.riesgo
-  }
-
   setSede(s: Sede) {
-    this.sede = s
+    this.user.sede = s
   }
 
   private getNivel(): string {
     let rol = this.authService.getRol()
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
+  }
+
+  updateUser() {
+    this.http
+      .put<any>(this.URL + '/user/' + this.authService.getId(), this.user)
+      .subscribe(
+        (res) => {
+          console.log(res)
+        },
+        (err) => {
+          console.log(err)
+        }
+      )
   }
 }

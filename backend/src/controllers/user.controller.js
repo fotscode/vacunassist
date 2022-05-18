@@ -67,7 +67,9 @@ exports.logIn = (req, res, next) => {
   User.findOne({ cuil: req.body.cuil })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ success: false, msg: 'could not find user' })
+        return res
+          .status(401)
+          .json({ success: false, msg: 'could not find user' })
       }
       const isValid = utils.validPassword(
         req.body.password,
@@ -108,7 +110,7 @@ exports.recover = (req, res, next) => {
         { upsert: true },
         (err, doc) => {
           if (err) return res.send(500, { error: err })
-          sendEmail(user.email,pwd)
+          sendEmail(user.email, pwd)
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
@@ -118,11 +120,35 @@ exports.recover = (req, res, next) => {
     })
 }
 
-exports.showUser=(req,res,next)=>{
-  User.findOne({_id:req.params.user_id}).then((user)=>{
-    if(!user){
-      return res.status(401).json({ success: false, msg: 'could not find user' })
+exports.showUser = (req, res, next) => {
+  User.findOne({ _id: req.params.user_id }).then((user) => {
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, msg: 'could not find user' })
     }
     return res.status(200).json(user)
   })
+}
+exports.updateUser = (req, res, next) => {
+  User.findOne({ _id: req.params.user_id })
+    .then((user) => {
+      user.firstName = req.body.firstName
+      user.lastName = req.body.lastName
+      user.email = req.body.email
+      user.riesgo = req.body.riesgo
+      user.sede = req.body.sede.nombre
+      User.findOneAndUpdate(
+        { _id: req.params.user_id },
+        user,
+        { upsert: true },
+        (err, doc) => {
+          if (err) return res.send(500, { error: err })
+          return res.status(200).json({ success: true, msg: 'user updated' })
+        }
+      )
+    })
+    .catch((err) => {
+      next(err)
+    })
 }
