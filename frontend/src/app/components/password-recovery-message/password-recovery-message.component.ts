@@ -33,7 +33,8 @@ export class PasswordRecoveryMessageComponent {
         },
         (err) => {
           // TODO error mas amigable
-          console.log(err)
+          console.log(err.error.msg)
+          this.closeMe()
         }
       )
   }
