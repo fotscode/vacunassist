@@ -13,6 +13,9 @@
             <label for="password"> Contraseña </label>
             <input type="password" [(ngModel)]="user.password" name="password" class="form-control" />
           </div>
+          <div>
+            <span style="color:red;">{{errorMsg}}</span>
+          </div>
           <div class="register-buttons">
             <button type="submit" class="btn btn-primary btn-block">
               Iniciar Sesion

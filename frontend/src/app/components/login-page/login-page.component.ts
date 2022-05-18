@@ -20,6 +20,8 @@ export class LoginPageComponent implements OnInit {
     role: 1,
   }
 
+  errorMsg="";
+
   public constructor(
     private authService: AuthService,
     private titleService: Title,
@@ -35,7 +37,7 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(["/Home"])
       },
       (err) => {
-        console.log(err)
+        this.errorMsg="El cuil o contraseña es invalido";
       }
     )
   }
