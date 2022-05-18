@@ -117,3 +117,12 @@ exports.recover = (req, res, next) => {
       next(err)
     })
 }
+
+exports.showUser=(req,res,next)=>{
+  User.findOne({_id:req.params.user_id}).then((user)=>{
+    if(!user){
+      return res.status(401).json({ success: false, msg: 'could not find user' })
+    }
+    return res.status(200).json(user)
+  })
+}
