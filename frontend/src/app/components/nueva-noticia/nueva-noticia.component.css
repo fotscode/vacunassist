@@ -24,7 +24,7 @@
 }
 
 .titulo-texto {
-  width: 40rem;
+  width: 90%;
   margin-bottom: 3rem;
 }
 
@@ -40,6 +40,10 @@
 
 .upload {
   margin-bottom: 2rem;
+}
+
+.fotoHint {
+  padding-left: 1rem;
 }
 
 input:placeholder-shown {
