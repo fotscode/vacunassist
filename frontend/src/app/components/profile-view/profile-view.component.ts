@@ -37,7 +37,11 @@ export class ProfileViewComponent implements OnInit {
         this.apellido = res.lastName
         this.email = res.email
         this.cuil = res.cuil
-        this.riesgo = res.riesgo ? true : false
+        this.riesgo = res.riesgo==='true' ? true : false
+        let sede = this.sedes.find((s) => s.nombre == res.sede)
+        // si no encuentra la sede guardada pone la primera
+        this.sede = sede ? sede : this.sedes[1]
+
       },
       (err) => {
         console.log(err)
