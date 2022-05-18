@@ -13,6 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const MaterialComponents = [
   MatCardModule,
@@ -29,6 +30,7 @@ const MaterialComponents = [
   MatCheckboxModule,
   MatSelectModule,
   MatIconModule,
+  MatGridListModule,
 ]
 
 @NgModule({

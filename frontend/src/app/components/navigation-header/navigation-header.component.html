@@ -26,7 +26,10 @@
                         <a class="dropdown-item" routerLink="/Perfil">Perfil</a>
                         <a class="dropdown-item" routerLink="#">Turnos</a>
                         <a class="dropdown-item" routerLink="#">Vacunas</a>
+                        <a class="dropdown-item" routerLink="/ValidarIdentidad">Validar Identidad</a>
                         <a class="dropdown-item" routerLink="/Certificado" target="_blank">Certificado de vacunación</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="deleteAccount()">Eliminar cuenta</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" (click)="logOut()" routerLink="#">Cerrar sesión</a>
                     </div>

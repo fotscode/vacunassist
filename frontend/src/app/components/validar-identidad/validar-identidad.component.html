@@ -1,0 +1,25 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+  <h4 class="categoria" style="font-size:30px; color:white">Validar Identidad</h4>
+  <mat-card class="cuerpo">
+    <p class="hintText" style="font-size:14px; color: #263238; text-align:center">Ingresá fotos del frente y dorso de tu DNI para que nuestro sistema valide los datos de tu persona y, de esta forma, puedas acceder a solicitar turnos para tus vacunas.</p>
+    <mat-grid-list cols="2" rowHeight="fit" style="height: 100px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <p class="textoFoto" style="font-size:20px; color: #263238">Frente</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="textoFoto" style="font-size:20px; color: #263238">Dorso</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="file" class="upload" name="frente">
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="file" class="upload" name="dorso">
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-card-actions class="opciones">
+      <button mat-button class="boton" routerLink="/Home">Enviar</button>
+      <button mat-button class="boton" routerLink="/Home">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -25,6 +25,9 @@ export class NavigationHeaderComponent implements OnInit {
     this.authService.logout();
   }
 
+  deleteAccount(){
+  }
+
   ngOnInit(): void {
   }
 

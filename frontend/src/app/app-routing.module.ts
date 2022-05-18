@@ -14,6 +14,7 @@ import { CertificadoComponent } from './components/certificado/certificado.compo
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
+import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -26,6 +27,7 @@ const routes: Routes=[
   {path: 'Turnos', component:MisturnosComponent},
   {path: 'NuevaNoticia', component:NuevaNoticiaComponent},
   {path: 'Noticia', component:NoticiaComponent},
+  {path: 'ValidarIdentidad', component:ValidarIdentidadComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

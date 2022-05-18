@@ -29,6 +29,7 @@ import { CertificadoComponent } from './components/certificado/certificado.compo
 import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
+import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
     MisturnosComponent,
     NuevaNoticiaComponent,
     NoticiaComponent,
+    ValidarIdentidadComponent,
   ],
   imports: [
     BrowserModule,
