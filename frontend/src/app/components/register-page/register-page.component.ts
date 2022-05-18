@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 interface Sede {
   id: number
@@ -28,8 +27,8 @@ export class RegisterPageComponent implements OnInit {
     lastName: '',
     email: '',
     cuil: '',
-    riesgo: '',
-    sede: this.sedes[1],
+    riesgo: false,
+    sede: this.sedes[0],
     password: '',
     role: 1,
   } // 1 paciente, 2 vacunador, 3 admin
@@ -48,6 +47,7 @@ export class RegisterPageComponent implements OnInit {
   setSede(s: Sede) {
     this.user.sede = s
   }
+
   signUp() {
     this.authService.signUp(this.user).subscribe(
       (res) => {
