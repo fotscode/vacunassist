@@ -2,12 +2,12 @@
 <div class="contenedor">
   <h4 class="categoria" style="font-size:30px; color:white"> Agregar noticia</h4>
   <mat-card class="noticia">
-    <mat-card-header class="titulo-holder" inputmode="true" style="font-size:30px" [contentEditable]="true">
+    <mat-card-header class="titulo-holder" style="font-size:30px">
       <input class="titulo-texto" contenteditable="true" placeholder="Título">
     </mat-card-header>
-    <p style="font-size:20px; color: #263238"><i>Foto</i></p>
+    <p class="fotoHint" style="font-size:20px; color: #263238"><i>Foto ilustrativa</i></p>
     <input type="file" class="upload">
-    <mat-card-content class="cuerpo" inputmode="true" style="font-size:16px" [contentEditable]="true">
+    <mat-card-content class="cuerpo" style="font-size:16px">
       <textarea class="cuerpo" contenteditable="true" placeholder="Cuerpo de noticia" rows="10"></textarea>
     </mat-card-content>
     <mat-card-actions class="opciones">
