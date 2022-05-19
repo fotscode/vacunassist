@@ -24,10 +24,8 @@ export class LoginPageComponent implements OnInit {
 
   public constructor(
     private authService: AuthService,
-    private titleService: Title,
     private router:Router
   ) {
-    this.titleService.setTitle('Log-In')
   }
 
   logIn() {

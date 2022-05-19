@@ -7,8 +7,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ErrorPageComponent implements OnInit {
 
-  public constructor(private titleService: Title){
-    this.titleService.setTitle("ERROR 404");  
+  public constructor(){
   }
   ngOnInit(): void {
   }

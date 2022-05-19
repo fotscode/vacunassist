@@ -8,5 +8,7 @@ import { AuthService } from './services/auth.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public constructor(public authService: AuthService){}
+  public constructor(public authService: AuthService, private title:Title){
+    title.setTitle("Vacunassist")
+  }
 }
