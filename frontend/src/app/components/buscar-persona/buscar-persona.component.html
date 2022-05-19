@@ -1,0 +1,58 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+  <h4 class="categoria" style="font-size: 30px; color: white">
+    Buscar Persona
+  </h4>
+    <mat-card class="buscador">
+      <mat-card-header class="titulo-holder" style="font-size: 30px">
+        <input
+          class="titulo-texto"
+          name="title"
+          contenteditable="true"
+          placeholder="Ingrese un dato a buscar"
+        />
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button class="boton" type="submit">
+          Buscar
+        </button>
+      </mat-card-actions>
+
+
+      <table mat-table [dataSource]="datos">
+
+        <ng-container matColumnDef="cuil">
+          <th mat-header-cell *matHeaderCellDef> CUIL. </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.cuil}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="apellido">
+          <th mat-header-cell *matHeaderCellDef> Apellido </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.apellido}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-Mail </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fNacim">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.fNacim}} </td>
+        </ng-container>
+        <ng-container matColumnDef="pacRiesgo">
+          <th mat-header-cell *matHeaderCellDef> De Riesgo </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.pacRiesgo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="sede">
+          <th mat-header-cell *matHeaderCellDef> Sede </th>
+          <td mat-cell *matCellDef="let persona"> {{persona.sede}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+        <tr mat-row (click)="abrirPerfil(row)" *matRowDef="let row; columns: columnasMostradas;"></tr>
+      </table>
+
+    </mat-card>
+</div>

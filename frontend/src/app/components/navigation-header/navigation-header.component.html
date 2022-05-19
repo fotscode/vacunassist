@@ -17,6 +17,9 @@
                 <li class="nav-item">
                   <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/NuevaNoticia">Agregar Noticia</a>
                 </li>
+                <li class="nav-item">
+                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/BuscarPersona">Buscar Persona</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav" *ngIf="isLogged()">

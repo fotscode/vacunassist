@@ -30,9 +30,12 @@ import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
 import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
+import { ProfileEditBoxComponent } from './components/profile-edit-box/profile-edit-box.component';
+import { ProfileViewBoxComponent } from './components/profile-view-box/profile-view-box.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     NuevaNoticiaComponent,
     NoticiaComponent,
     ValidarIdentidadComponent,
+    BuscarPersonaComponent,
+    ProfileEditBoxComponent,
+    ProfileViewBoxComponent,
   ],
   imports: [
     BrowserModule,

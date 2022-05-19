@@ -1,0 +1,64 @@
+.contenedor {
+  margin: auto;
+  min-height: 50%;
+  width: 70%;
+  margin-top: 3rem;
+  background-color: #689f77;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.buscador {
+  background-color: #92e3a9;
+  min-height: 20rem;
+}
+
+.titulo-texto {
+  width: 90%;
+  margin-bottom: 1rem;
+}
+
+.titulo-holder {
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.cuerpo {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.upload {
+  margin-bottom: 2rem;
+}
+
+input:placeholder-shown {
+  font-style: italic;
+}
+
+.mat-card-actions {
+  margin: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.boton {
+  width: 120px;
+  font-size:15px;
+  background-color: #c0eacc;
+}
+
+table {
+  width: 100%;
+}
+
