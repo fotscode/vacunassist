@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -28,11 +29,12 @@ export class ProfileEditComponent implements OnInit {
     email: '',
     cuil: '',
     riesgo: false,
+    fechaNac:this.formatDate(new Date()),
     sede: this.sedes[1],
   }
 
   private URL = environment.apiUrl
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, private router:Router) {
     this.http
       .get<any>(this.URL + '/user/' + this.authService.getId())
       .subscribe(
@@ -43,6 +45,7 @@ export class ProfileEditComponent implements OnInit {
           this.user.email = res.email
           this.user.cuil = res.cuil
           this.user.riesgo = res.riesgo==='true' ? true : false
+          this.user.fechaNac=this.formatDate(new Date(res.fechaNac))
           let sede = this.sedes.find((s) => s.nombre == res.sede)
           // si no encuentra la sede guardada pone la primera
           this.user.sede = sede ? sede : this.sedes[1]
@@ -64,12 +67,19 @@ export class ProfileEditComponent implements OnInit {
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
   }
 
+  private formatDate(d: Date): string{
+    let y=d.getFullYear()
+    let m=d.getMonth()
+    let day=d.getDate()
+    return `${day}/${m}/${y}`
+  }
+
   updateUser() {
     this.http
       .put<any>(this.URL + '/user/' + this.authService.getId(), this.user)
       .subscribe(
         (res) => {
-          console.log(res)
+          this.router.navigate(["/Perfil"])
         },
         (err) => {
           console.log(err)

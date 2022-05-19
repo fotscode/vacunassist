@@ -30,6 +30,9 @@ import { MisturnosComponent } from './components/misturnos/misturnos.component';
 import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
 import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatNativeDateModule} from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import { ValidarIdentidadComponent } from './components/validar-identidad/valida
     FormsModule,
     HttpClientModule,
     MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AuthGuard,
@@ -67,7 +72,8 @@ import { ValidarIdentidadComponent } from './components/validar-identidad/valida
     },
     {provide:MatDialogRef , useValue:{} },
 
-    { provide: MAT_DIALOG_DATA, useValue: {} }
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-AR' }
 
   ],
   bootstrap: [AppComponent]

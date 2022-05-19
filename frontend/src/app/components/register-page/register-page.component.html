@@ -46,6 +46,17 @@
           />
           <span style="color: red"> {{ errorMsg }}</span>
         </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="user.fecha" name="fecha" required/>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <div class="form-group">
           <mat-checkbox
             style="font-size: 16px"
@@ -64,7 +75,7 @@
             [(ngModel)]="user.sede"
             name="sede"
           >
-            <mat-label>{{user.sede.nombre}}</mat-label>
+            <mat-label>{{ user.sede.nombre }}</mat-label>
             <mat-select>
               <mat-option
                 *ngFor="let sede of sedes"

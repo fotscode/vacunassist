@@ -27,6 +27,16 @@
         <mat-label><b>CUIL</b></mat-label>
         <input matInput value="{{ cuil }}" disabled="true" class="inputTexto">
       </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Fecha de Nacimiento</b></mat-label>
+          <input
+            matInput
+            value="{{ fechaNac }}"
+            class="inputTexto"
+            disabled="true"
+          />
+        </mat-form-field>
+
       <div>
         <mat-checkbox labelPosition="after" disabled="true" class="riesgo-check" checked="{{riesgo}}">
           Paciente de riesgo

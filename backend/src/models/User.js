@@ -8,6 +8,7 @@ const userSchema=new Schema({
   riesgo:{type:String,required:true},
   sede:{type:String,required:true},
   role:{type:Number,required:true},
+  fechaNac:{type:Number,required:true},
   hash:{type:String,required:true},
   salt:{type:String,required:true},
 },{

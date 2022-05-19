@@ -48,6 +48,17 @@
             disabled="true"
           />
         </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Fecha de Nacimiento</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.fechaNac"
+            name="fechaNac"
+            class="inputTexto"
+            disabled="true"
+          />
+        </mat-form-field>
+
         <div>
           <mat-checkbox
             [(ngModel)]="user.riesgo"

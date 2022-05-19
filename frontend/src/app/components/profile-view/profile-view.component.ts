@@ -20,6 +20,7 @@ export class ProfileViewComponent implements OnInit {
   email = ''
   cuil = ''
   riesgo = false
+  fechaNac=this.formatDate(new Date())
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -37,6 +38,7 @@ export class ProfileViewComponent implements OnInit {
         this.apellido = res.lastName
         this.email = res.email
         this.cuil = res.cuil
+        this.fechaNac=this.formatDate(new Date(res.fechaNac))
         this.riesgo = res.riesgo==='true' ? true : false
         let sede = this.sedes.find((s) => s.nombre == res.sede)
         // si no encuentra la sede guardada pone la primera
@@ -55,6 +57,12 @@ export class ProfileViewComponent implements OnInit {
     this.sede = s
   }
 
+  private formatDate(d: Date): string{
+    let y=d.getFullYear()
+    let m=d.getMonth()
+    let day=d.getDate()
+    return `${day}/${m}/${y}`
+  }
   private getNivel(): string {
     let rol = this.authService.getRol()
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'

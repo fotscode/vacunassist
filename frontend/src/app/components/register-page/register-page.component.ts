@@ -31,6 +31,7 @@ export class RegisterPageComponent implements OnInit {
     sede: this.sedes[0],
     password: '',
     role: 3,
+    fecha: new Date(),
   } // 1 paciente, 2 vacunador, 3 admin
   // TODO cambiar esto para generar los primeros admins
 
