@@ -33,6 +33,6 @@ export class BuscarPersonaComponent implements OnInit {
   }
 
   abrirPerfil(persona: Persona){
-    this.router.navigate(['AdminProfileView'])
+    this.router.navigate(['AdminProfileEdit'])
   }
 }
