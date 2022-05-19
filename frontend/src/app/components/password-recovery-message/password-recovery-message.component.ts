@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment'
   styleUrls: ['./password-recovery-message.component.css'],
 })
 export class PasswordRecoveryMessageComponent {
-  private URL = environment.apiUrl
+  private URL = environment.baseApiUrl +"/users"
   constructor(
     private http: HttpClient,
     @Optional()

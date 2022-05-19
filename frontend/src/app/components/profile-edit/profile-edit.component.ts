@@ -33,7 +33,7 @@ export class ProfileEditComponent implements OnInit {
     sede: this.sedes[1],
   }
 
-  private URL = environment.apiUrl
+  private URL = environment.baseApiUrl +"/users"
   constructor(private http: HttpClient, private authService: AuthService, private router:Router) {
     this.http
       .get<any>(this.URL + '/user/' + this.authService.getId())

@@ -29,7 +29,7 @@ export class ProfileViewComponent implements OnInit {
   sede: Sede = this.sedes[1]
   dosis = ['Gripe: 1', 'COVID: 2']
 
-  private URL: string = environment.apiUrl
+  private URL = environment.baseApiUrl +"/users"
   constructor(private http: HttpClient, private authService: AuthService) {
     this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
       (res) => {

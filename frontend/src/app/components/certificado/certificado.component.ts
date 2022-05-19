@@ -24,7 +24,7 @@ export class CertificadoComponent implements OnInit {
     vacunas:['covid 2 dosis', 'gripe 1 dosis', 'No tiene fiebre amarilla']
   }
 
-  private URL: string = environment.apiUrl
+  private URL = environment.baseApiUrl +"/users"
   
   constructor(private http: HttpClient, private authService: AuthService) {
     this.http.get<any>(this.URL + '/user/' + this.authService.getId()).subscribe(
