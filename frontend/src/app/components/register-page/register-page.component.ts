@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { Inject } from '@angular/core';
 
 interface Sede {
   id: number
@@ -37,13 +39,10 @@ export class RegisterPageComponent implements OnInit {
 
   errorMsg="";
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, @Inject(MatSnackBar) private snackBar: MatSnackBar) {
   }
 
-
-  ngOnInit() {
-
-  }
+  ngOnInit() {  }
 
   setSede(s: Sede) {
     this.user.sede = s
@@ -56,6 +55,7 @@ export class RegisterPageComponent implements OnInit {
         localStorage.setItem('token', res.token)
         localStorage.setItem('expires', JSON.stringify(expires.valueOf()))
         this.router.navigate(['/Home'])
+        this.snackBar.open("Usuario registrado", void 0, {duration: 3000});
       },
       (err) => {
         this.errorMsg="El cuil ya se encuentra registrado"
