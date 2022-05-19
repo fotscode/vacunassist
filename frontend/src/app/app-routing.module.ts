@@ -16,6 +16,7 @@ import { NuevaNoticiaComponent } from './components/nueva-noticia/nueva-noticia.
 import { NoticiaComponent } from './components/noticia/noticia.component';
 import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
+import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes=[
   {path: 'Noticia', component:NoticiaComponent},
   {path: 'ValidarIdentidad', component:ValidarIdentidadComponent},
   {path: 'BuscarPersona', component:BuscarPersonaComponent},
+  {path: 'AdminProfileEdit', component:AdminProfileEditComponent},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

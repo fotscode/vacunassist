@@ -1,0 +1,90 @@
+<app-navigation-header></app-navigation-header>
+<div class="holder">
+  <mat-card class="planilla">
+    <mat-card-header>
+      <mat-card-title class="titulo"
+        ><i>Datos del Paciente</i></mat-card-title>
+      <mat-card-subtitle class="subtitulo">({{ nivel }})</mat-card-subtitle>
+    </mat-card-header>
+    <form (submit)="updateUser()" class="formulario">
+      <mat-card-content>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Nombre</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.firstName"
+            name="firstName"
+            class="inputTexto"
+          />
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Apellido</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.lastName"
+            name="lastName"
+            class="inputTexto"
+          />
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>E-mail</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.email"
+            name="email"
+            class="inputTexto"
+          />
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>CUIL</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.cuil"
+            name="cuil"
+            class="inputTexto"
+          />
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Fecha de Nacimiento</b></mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.fechaNac"
+            name="fechaNac"
+            class="inputTexto"
+          />
+        </mat-form-field>
+
+        <div>
+          <mat-checkbox
+            [(ngModel)]="user.riesgo"
+            name="riesgo"
+            labelPosition="after"
+            class="riesgo-check"
+          >
+            Paciente de riesgo
+          </mat-checkbox>
+        </div>
+        <mat-form-field appearance="fill" class="sede">
+          <mat-label>{{ user.sede.nombre }}</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let sede of sedes"
+              [value]="sede.id"
+              (onSelectionChange)="setSede(sede)"
+            >
+              {{ sede.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions class="opciones">
+        <button mat-button class="btn btn-block btn-primary" type="submit" color="primary" class="boton">
+          Guardar
+        </button>
+        <button mat-button class="btn btn-block" routerLink="/Perfil" class="boton">
+          Cancelar
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

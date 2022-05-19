@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface Persona {
   cuil: string;
@@ -27,11 +28,11 @@ export class BuscarPersonaComponent implements OnInit {
   columnasMostradas: string[] = ['cuil', 'nombre', 'apellido', 'email', 'fNacim', 'pacRiesgo', 'sede'];
   datos = DATOS_PERSONAS;
 
-  constructor() { }
+  constructor(private router: Router) { }
   ngOnInit(): void {
   }
 
   abrirPerfil(persona: Persona){
-
+    this.router.navigate(['AdminProfileView'])
   }
 }

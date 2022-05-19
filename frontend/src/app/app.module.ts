@@ -34,8 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
-import { ProfileEditBoxComponent } from './components/profile-edit-box/profile-edit-box.component';
-import { ProfileViewBoxComponent } from './components/profile-view-box/profile-view-box.component';
+import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +54,7 @@ import { ProfileViewBoxComponent } from './components/profile-view-box/profile-v
     NoticiaComponent,
     ValidarIdentidadComponent,
     BuscarPersonaComponent,
-    ProfileEditBoxComponent,
-    ProfileViewBoxComponent,
+    AdminProfileEditComponent,
   ],
   imports: [
     BrowserModule,

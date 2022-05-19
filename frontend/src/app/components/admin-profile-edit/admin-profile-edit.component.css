@@ -1,0 +1,70 @@
+.holder {
+  padding: 2rem;
+  margin: auto;
+  width: 100%;
+  line-height: 2rem;
+}
+
+.planilla {
+  width: 400px;
+  background-color: #a2cb83;
+  margin: auto;
+}
+
+.mat-card-header {
+  background-color: aliceblue;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.subtitulo{
+  margin: 0rem;
+  margin-bottom: 2rem;
+}
+
+.opciones {
+  margin-left: 2rem;
+}
+
+.boton {
+  margin: 1rem;
+  width: 120px;
+  font-size:15px;
+  background-color: #c0eacc;
+}
+
+.formulario {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.formulario-ancho {
+  width: 100%;
+}
+
+.campo {
+  border-bottom: 2rem;
+  background-color: red;
+}
+
+.inputTexto {
+  background-color: white;
+  padding: 5px;
+}
+
+.riesgo-check {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 1rem;
+}
+
+.sede {
+  padding-left: 1rem;
+}
+
+.noticiasContainer{
+  margin: 2rem;
+  width: 60%;
+  float: left;
+}
