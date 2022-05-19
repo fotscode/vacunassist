@@ -1,18 +1,48 @@
 <app-navigation-header></app-navigation-header>
 <div class="contenedor">
-  <h4 class="categoria" style="font-size:30px; color:white"> Agregar noticia</h4>
-  <mat-card class="noticia">
-    <mat-card-header class="titulo-holder" style="font-size:30px">
-      <input class="titulo-texto" contenteditable="true" placeholder="Título">
-    </mat-card-header>
-    <p class="fotoHint" style="font-size:20px; color: #263238"><i>Foto ilustrativa</i></p>
-    <input type="file" class="upload">
-    <mat-card-content class="cuerpo" style="font-size:16px">
-      <textarea class="cuerpo" contenteditable="true" placeholder="Cuerpo de noticia" rows="10"></textarea>
-    </mat-card-content>
-    <mat-card-actions class="opciones">
-      <button mat-raised-button class="boton" routerLink="/Home">Publicar</button>
-      <button mat-raised-button class="boton" routerLink="/Home">Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
+  <h4 class="categoria" style="font-size: 30px; color: white">
+    Agregar noticia
+  </h4>
+  <
+  <form (submit)="uploadArticle()">
+    <mat-card class="noticia">
+      <mat-card-header class="titulo-holder" style="font-size: 30px">
+        <input
+          class="titulo-texto"
+          [(ngModel)]="article.title"
+          name="title"
+          contenteditable="true"
+          placeholder="Título"
+        />
+      </mat-card-header>
+      <p class="fotoHint" style="font-size: 20px; color: #263238">
+        <i>Foto ilustrativa</i>
+      </p>
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        name="image"
+        id="file"
+        class="upload"
+      />
+      <mat-card-content class="cuerpo" style="font-size: 16px">
+        <textarea
+          class="cuerpo"
+          [(ngModel)]="article.body"
+          contenteditable="true"
+          name="body"
+          placeholder="Cuerpo de noticia"
+          rows="10"
+        ></textarea>
+      </mat-card-content>
+      <mat-card-actions class="opciones">
+        <button mat-raised-button class="boton" type="submit">
+          Publicar
+        </button>
+        <button mat-raised-button class="boton" routerLink="/Home">
+          Cancelar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </div>

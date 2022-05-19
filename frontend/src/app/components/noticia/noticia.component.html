@@ -1,14 +1,14 @@
 <div class="noticias">
-  <mat-card *ngFor="let noticia of noticias" class="noticia">
+  <mat-card *ngFor="let article of articles" class="noticia">
     <mat-card-header style="font-size:24px">
-      {{ noticia.titulo }}
+      {{ article.title }}
     </mat-card-header>
-      <mat-icon class="icono" *ngIf="isAdmin()" (click)="delete()">delete</mat-icon>
+    <mat-icon class="icono" *ngIf="isAdmin()" (click)="delete(article.title)">delete</mat-icon>
     <mat-card-content class="foto">
-      <h3>Placeholder fotooooo</h3>
+      <img src="{{article.img}}" alt=""/>
     </mat-card-content>
     <mat-card-content>
-      {{ noticia.cuerpo }}
+      {{ article.body }}
     </mat-card-content>
   </mat-card>
 
