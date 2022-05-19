@@ -20,13 +20,14 @@ exports.signUp = (req, res, next) => {
         riesgo: req.body.riesgo,
         sede: req.body.sede.nombre,
         role: req.body.role,
+        fechaNac:new Date(req.body.fecha).getTime(),
         hash: hash,
         salt: salt,
       })
       newUser
         .save()
         .then((user) => {
-          sendEmail(req.body.email, pwd)
+          sendEmail(req.body.email, pwd,user.cuil)
           const jwt = utils.issueJWT(user)
           res.status(200).json({
             success: true,
@@ -40,7 +41,7 @@ exports.signUp = (req, res, next) => {
   })
 }
 
-const sendEmail = (email, pwd) => {
+const sendEmail = (email, pwd,cuil) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -52,13 +53,13 @@ const sendEmail = (email, pwd) => {
     from: process.env.EMAIL_ACCOUNT,
     to: email,
     subject: 'Vacunassist - Contraseña',
-    text: 'Contraseña: ' + pwd,
+    text: `CUIL: ${cuil}, Contraseña: ${pwd}`,
   }
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
       console.log(err)
     } else {
-      console.log('Email enviado' + info.response)
+      console.log('Email enviado ' + info.response)
     }
   })
 }
@@ -110,7 +111,7 @@ exports.recover = (req, res, next) => {
         { upsert: true },
         (err, doc) => {
           if (err) return res.send(409, { error: err,msg:"user not found" })
-          sendEmail(user.email, pwd)
+          sendEmail(user.email, pwd,user.cuil)
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
