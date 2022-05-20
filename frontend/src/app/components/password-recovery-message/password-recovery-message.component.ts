@@ -34,13 +34,13 @@ export class PasswordRecoveryMessageComponent {
           this.closeMe()
         },
         (err) => {
-          // TODO error mas amigable
           this.errorMsg=err.error.msg;
+          this.closeMe()
         }
       )
   }
 
   public closeMe() {
-    this.dialogRef.close()
+    this.dialogRef.close(this.errorMsg)
   }
 }
