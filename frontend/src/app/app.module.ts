@@ -35,6 +35,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
+import { DialogDeleteAccountComponent } from './components/dialog-delete-account/dialog-delete-account.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AdminProfileEditComponent } from './components/admin-profile-edit/admin
     ValidarIdentidadComponent,
     BuscarPersonaComponent,
     AdminProfileEditComponent,
+    DialogDeleteAccountComponent,
   ],
   imports: [
     BrowserModule,

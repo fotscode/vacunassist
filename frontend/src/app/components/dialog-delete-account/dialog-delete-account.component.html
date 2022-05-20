@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Eliminar cuenta</h2>
+<mat-dialog-content class="contenido">
+  <h3>Atención!</h3>
+  <p>Usted posee turnos pendientes. Si eliminar su cuenta, los mismos quedarán cancelados.</p>
+  <p>¿Desea continuar?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Eliminar</button>
+</mat-dialog-actions>
