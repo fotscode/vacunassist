@@ -5,10 +5,11 @@ const userSchema=new Schema({
   lastName:{type:String,required:true},
   email:{type:String,required:true},
   cuil:{type:String,required:true},
-  riesgo:{type:String,required:true},
+  riesgo:{type:Boolean,required:true},
   sede:{type:String,required:true},
   role:{type:Number,required:true},
   fechaNac:{type:Number,required:true},
+  validated:{type:Boolean,required:true},
   hash:{type:String,required:true},
   salt:{type:String,required:true},
 },{

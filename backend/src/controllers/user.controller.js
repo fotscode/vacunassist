@@ -21,6 +21,7 @@ exports.signUp = (req, res, next) => {
         sede: req.body.sede.nombre,
         role: req.body.role,
         fechaNac: new Date(req.body.fecha).getTime(),
+        validated: req.body.validated,
         hash: hash,
         salt: salt,
       })
@@ -169,4 +170,30 @@ exports.getUsers = (req, res, next) => {
       console.log(err)
       return res.status(500).json({ success: false, msg: 'error inesperado' })
     })
+}
+
+exports.validateUser = (req, res, next) => {
+  if (Math.random() > 0.1) {
+    User.find({ _id: req.params.user_id })
+      .then((user) => {
+        user=user[0]
+        user.validated=true
+        User.findOneAndUpdate(
+          { _id: req.params.user_id },
+          user,
+          { upsert: true },
+          (err, doc) => {
+            if (err) return res.send(409, { error: err, msg: 'user not found' })
+            return res.status(200).json({ success: true, msg: 'user updated' })
+          }
+        )
+      })
+      .catch((err) => {
+        return res.send(409, { error: err, msg: 'user not found' })
+      })
+  } else {
+    res
+      .status(406)
+      .send({ success: false, msg: 'no se pudo validar el usuario' })
+  }
 }
