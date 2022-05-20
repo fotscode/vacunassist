@@ -44,7 +44,7 @@ export class ProfileEditComponent implements OnInit {
           this.user.lastName = res.lastName
           this.user.email = res.email
           this.user.cuil = res.cuil
-          this.user.riesgo = res.riesgo==='true' ? true : false
+          this.user.riesgo = res.riesgo
           this.user.fechaNac=this.formatDate(new Date(res.fechaNac))
           let sede = this.sedes.find((s) => s.nombre == res.sede)
           // si no encuentra la sede guardada pone la primera
@@ -69,7 +69,7 @@ export class ProfileEditComponent implements OnInit {
 
   private formatDate(d: Date): string{
     let y=d.getFullYear()
-    let m=d.getMonth()
+    let m=d.getMonth()+1
     let day=d.getDate()
     return `${day}/${m}/${y}`
   }
