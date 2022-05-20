@@ -1,38 +1,65 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'
+import { Component, Injectable, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { environment } from 'src/environments/environment'
 
 export interface Persona {
-  cuil: string;
-  nombre: string;
-  apellido: string;
-  email: string;
-  fNacim: string;
-  pacRiesgo: boolean;
-  sede: string;
+  cuil: string
+  firstName: string
+  lastName: string
+  email: string
+  fechaNac: string
+  riesgo: string
+  sede: string
 }
-
-const DATOS_PERSONAS: Persona[] = [
-  {cuil: '1',  nombre: 'Pedro',       apellido: 'Gutierrez',  email: 'p.guti@gmail.com',    fNacim: '12/05/1964', pacRiesgo: false, sede: 'Bosque'},
-  {cuil: '2',  nombre: 'Candelaria',  apellido: 'Villegas',   email: 'cande99gmail.com',    fNacim: '07/04/1999', pacRiesgo: true,  sede: 'Centro'},
-  {cuil: '3',  nombre: 'María',       apellido: 'Menendez',   email: 'm.m.654gmail.com',    fNacim: '12/09/2002', pacRiesgo: true,  sede: 'Estadio'},
-  {cuil: '4',  nombre: 'Guillermo',   apellido: 'Cáseres',    email: 'gui_villagmail.com',  fNacim: '28/11/1975', pacRiesgo: false, sede: 'Bosque'},
-  {cuil: '5',  nombre: 'Bruno',       apellido: 'Vázquez',    email: 'bvazquez1gmail.com',  fNacim: '13/01/1994', pacRiesgo: false, sede: 'Centro'},
-];
 
 @Component({
   selector: 'app-buscar-persona',
   templateUrl: './buscar-persona.component.html',
-  styleUrls: ['./buscar-persona.component.css']
+  styleUrls: ['./buscar-persona.component.css'],
 })
 export class BuscarPersonaComponent implements OnInit {
-  columnasMostradas: string[] = ['cuil', 'nombre', 'apellido', 'email', 'fNacim', 'pacRiesgo', 'sede'];
-  datos = DATOS_PERSONAS;
-
-  constructor(private router: Router) { }
-  ngOnInit(): void {
+  personas: Persona[] = []
+  private URL: string = environment.baseApiUrl + '/users'
+  cuilToSearch:string=''
+  columnasMostradas: string[] = [
+    'cuil',
+    'firstName',
+    'lastName',
+    'email',
+    'fechaNac',
+    'riesgo',
+    'sede',
+  ]
+  data: any
+  constructor(private router: Router, private http: HttpClient) {
+    this.http.get<any>(this.URL + '/user').subscribe(
+      (res) => {
+        res.forEach((element: any) => {
+          element.fechaNac=this.formatDate(new Date(element.fechaNac))
+          element.riesgo=(element.riesgo) ? 'Si' : 'No'
+          this.personas.push(element)
+        })
+        this.data=this.personas
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+  }
+  ngOnInit(): void {}
+  searchPerson(){
+    this.data=this.personas.filter((e)=>e.cuil.startsWith(this.cuilToSearch))
   }
 
-  abrirPerfil(persona: Persona){
+  abrirPerfil(persona: Persona) {
     this.router.navigate(['AdminProfileEdit'])
   }
+  private formatDate(d: Date): string{
+    let y=d.getFullYear()
+    let m=d.getMonth()+1
+    let day=d.getDate()
+    return `${day}/${m}/${y}`
+  }
+
 }
