@@ -18,9 +18,10 @@ export class PasswordRecoveryPageComponent implements OnInit{
   
   ngOnInit(): void {}
 
- 
+  errorMsg="";
   recoverPassword(){
     this.dialog.open(PasswordRecoveryMessageComponent,{data: { message: "Confirmación requerida", cuil: this.user.cuil}});
+    
   }
  
 

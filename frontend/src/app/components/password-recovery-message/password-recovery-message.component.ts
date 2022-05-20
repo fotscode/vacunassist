@@ -24,7 +24,9 @@ export class PasswordRecoveryMessageComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  public acceptRecover() {
+  errorMsg="";
+
+  public acceptRecover(){
     this.http
       .put<any>(this.URL + '/recover', { cuil: this.data.cuil })
       .subscribe(
@@ -33,8 +35,7 @@ export class PasswordRecoveryMessageComponent {
         },
         (err) => {
           // TODO error mas amigable
-          console.log(err.error.msg)
-          this.closeMe()
+          this.errorMsg=err.error.msg;
         }
       )
   }
