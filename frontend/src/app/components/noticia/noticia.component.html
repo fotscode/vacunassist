@@ -1,4 +1,10 @@
 <div class="noticias">
+
+  <div *ngIf="!articles.length" class="vacio">
+    <div>
+      No hay noticias para mostrar
+    </div>
+  </div>
   <mat-card *ngFor="let article of articles" class="noticia">
     <mat-card-header style="font-size:24px">
       {{ article.title }}
@@ -11,5 +17,4 @@
       {{ article.body }}
     </mat-card-content>
   </mat-card>
-
 </div>
