@@ -110,14 +110,14 @@ exports.recover = (req, res, next) => {
         user,
         { upsert: true },
         (err, doc) => {
-          if (err) return res.send(409, { error: err,msg:"user not found" })
+          if (err) return res.send(409, { error: err,msg:"CUIL no encontrado" })
           sendEmail(user.email, pwd,user.cuil)
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
     })
     .catch((err) => {
-      return res.send(409, { error: err, msg:"user not found" })
+      return res.send(409, { error: err, msg:"CUIL no encontrado" })
     })
 }
 
