@@ -20,14 +20,14 @@ exports.signUp = (req, res, next) => {
         riesgo: req.body.riesgo,
         sede: req.body.sede.nombre,
         role: req.body.role,
-        fechaNac:new Date(req.body.fecha).getTime(),
+        fechaNac: new Date(req.body.fecha).getTime(),
         hash: hash,
         salt: salt,
       })
       newUser
         .save()
         .then((user) => {
-          sendEmail(req.body.email, pwd,user.cuil)
+          sendEmail(req.body.email, pwd, user.cuil)
           const jwt = utils.issueJWT(user)
           res.status(200).json({
             success: true,
@@ -41,7 +41,7 @@ exports.signUp = (req, res, next) => {
   })
 }
 
-const sendEmail = (email, pwd,cuil) => {
+const sendEmail = (email, pwd, cuil) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -94,7 +94,7 @@ exports.logIn = (req, res, next) => {
       }
     })
     .catch((err) => {
-      return res.send(409, { error: err, msg:"user not found" })
+      return res.send(409, { error: err, msg: 'user not found' })
     })
 }
 
@@ -110,14 +110,15 @@ exports.recover = (req, res, next) => {
         user,
         { upsert: true },
         (err, doc) => {
-          if (err) return res.send(409, { error: err,msg:"CUIL no encontrado" })
-          sendEmail(user.email, pwd,user.cuil)
+          if (err)
+            return res.send(409, { error: err, msg: 'CUIL no encontrado' })
+          sendEmail(user.email, pwd, user.cuil)
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
     })
     .catch((err) => {
-      return res.send(409, { error: err, msg:"CUIL no encontrado" })
+      return res.send(409, { error: err, msg: 'CUIL no encontrado' })
     })
 }
 
@@ -144,12 +145,28 @@ exports.updateUser = (req, res, next) => {
         user,
         { upsert: true },
         (err, doc) => {
-          if (err) return res.send(409, { error: err, msg:"user not found" })
+          if (err) return res.send(409, { error: err, msg: 'user not found' })
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
     })
     .catch((err) => {
-      return res.send(409, { error: err, msg:"user not found" })
+      return res.send(409, { error: err, msg: 'user not found' })
+    })
+}
+
+exports.getUsers = (req, res, next) => {
+  User.find({})
+    .then((users) => {
+      if (users) {
+        res.status(200).json(users)
+      } else
+        return res
+          .status(401)
+          .json({ success: false, msg: 'no se encontraron usuarios' })
+    })
+    .catch((err) => {
+      console.log(err)
+      return res.status(500).json({ success: false, msg: 'error inesperado' })
     })
 }
