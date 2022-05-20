@@ -39,7 +39,7 @@ export class ProfileViewComponent implements OnInit {
         this.email = res.email
         this.cuil = res.cuil
         this.fechaNac=this.formatDate(new Date(res.fechaNac))
-        this.riesgo = res.riesgo==='true' ? true : false
+        this.riesgo = res.riesgo
         let sede = this.sedes.find((s) => s.nombre == res.sede)
         // si no encuentra la sede guardada pone la primera
         this.sede = sede ? sede : this.sedes[1]
@@ -59,7 +59,7 @@ export class ProfileViewComponent implements OnInit {
 
   private formatDate(d: Date): string{
     let y=d.getFullYear()
-    let m=d.getMonth()
+    let m=d.getMonth()+1
     let day=d.getDate()
     return `${day}/${m}/${y}`
   }

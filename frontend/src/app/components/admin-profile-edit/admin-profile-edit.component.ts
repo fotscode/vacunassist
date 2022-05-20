@@ -69,7 +69,7 @@ export class AdminProfileEditComponent implements OnInit {
 
   private formatDate(d: Date): string{
     let y=d.getFullYear()
-    let m=d.getMonth()
+    let m=d.getMonth()+1
     let day=d.getDate()
     return `${day}/${m}/${y}`
   }

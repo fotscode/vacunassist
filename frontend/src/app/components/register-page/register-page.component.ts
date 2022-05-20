@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { Inject } from '@angular/core';
+import { Inject } from '@angular/core'
 
 interface Sede {
   id: number
@@ -16,8 +16,6 @@ interface Sede {
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
-
-
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -32,17 +30,21 @@ export class RegisterPageComponent implements OnInit {
     riesgo: false,
     sede: this.sedes[0],
     password: '',
-    role: 3,
+    role: 1,
     fecha: new Date(),
+    validated: false,
   } // 1 paciente, 2 vacunador, 3 admin
   // TODO cambiar esto para generar los primeros admins
 
-  errorMsg="";
+  errorMsg = ''
 
-  constructor(private authService: AuthService, private router: Router, @Inject(MatSnackBar) private snackBar: MatSnackBar) {
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit() {  }
+  ngOnInit() {}
 
   setSede(s: Sede) {
     this.user.sede = s
@@ -55,10 +57,10 @@ export class RegisterPageComponent implements OnInit {
         localStorage.setItem('token', res.token)
         localStorage.setItem('expires', JSON.stringify(expires.valueOf()))
         this.router.navigate(['/Home'])
-        this.snackBar.open("Usuario registrado", void 0, {duration: 3000});
+        this.snackBar.open('Usuario registrado', void 0, { duration: 3000 })
       },
       (err) => {
-        this.errorMsg="El cuil ya se encuentra registrado"
+        this.errorMsg = 'El cuil ya se encuentra registrado'
         console.log(err)
       }
     )
