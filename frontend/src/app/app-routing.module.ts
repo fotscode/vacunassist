@@ -17,21 +17,23 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
 import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
+import { AdminGuard } from './admin.guard';
+import { LoggedInGuard } from './logged-in.guard';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
-  {path: 'Login', component:LoginPageComponent},
-  {path: 'Register', component:RegisterPageComponent},
+  {path: 'Login', component:LoginPageComponent,canActivate:[LoggedInGuard]},
+  {path: 'Register', component:RegisterPageComponent,canActivate:[LoggedInGuard]},
   {path: 'Perfil', component:ProfileViewComponent, canActivate: [AuthGuard]},
-  {path: 'EditarPerfil', component:ProfileEditComponent},
-  {path: 'Recover', component:PasswordRecoveryPageComponent},
+  {path: 'EditarPerfil', component:ProfileEditComponent, canActivate:[AuthGuard]},
+  {path: 'Recover', component:PasswordRecoveryPageComponent,canActivate:[LoggedInGuard]},
   {path: 'Certificado', component:CertificadoComponent, canActivate:[AuthGuard]},
   {path: 'Turnos', component:MisturnosComponent},
-  {path: 'NuevaNoticia', component:NuevaNoticiaComponent},
+  {path: 'NuevaNoticia', component:NuevaNoticiaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'Noticia', component:NoticiaComponent},
-  {path: 'ValidarIdentidad', component:ValidarIdentidadComponent},
-  {path: 'BuscarPersona', component:BuscarPersonaComponent},
-  {path: 'AdminProfileEdit', component:AdminProfileEditComponent},
+  {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard]},
+  {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'AdminProfileEdit', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]
