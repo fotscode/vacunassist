@@ -23,7 +23,6 @@ export class VacunasComponent implements OnInit {
       fecha: new Date(),
     },
   }
-  hoy = new Date()
   private URL = environment.baseApiUrl + '/usersVaccines'
   constructor(private http: HttpClient, private authService: AuthService) {
     this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
