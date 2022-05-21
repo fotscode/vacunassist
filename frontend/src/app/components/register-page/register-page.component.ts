@@ -37,17 +37,17 @@ export class RegisterPageComponent implements OnInit {
     validated: false,
     vacunas: {
       covid: {
-        nombre:'covid',
+        nombre: 'covid',
         dosis: 0,
         fecha: new Date(),
       },
       gripe: {
-        nombre:'gripe',
+        nombre: 'gripe',
         dosis: 0,
         fecha: new Date(),
       },
       fiebreA: {
-        nombre:'fiebreA',
+        nombre: 'fiebreA',
         dosis: 0,
         fecha: new Date(),
       },
@@ -71,18 +71,26 @@ export class RegisterPageComponent implements OnInit {
   }
 
   signUp() {
-    this.authService.signUp(this.user).subscribe(
-      (res) => {
-        const expires = moment().add(res.expiresIn)
-        localStorage.setItem('token', res.token)
-        localStorage.setItem('expires', JSON.stringify(expires.valueOf()))
-        this.router.navigate(['/Home'])
-        this.snackBar.open('Usuario registrado', void 0, { duration: 3000 })
-      },
-      (err) => {
-        this.errorMsg = 'El cuil ya se encuentra registrado'
-        console.log(err)
-      }
-    )
+    if (this.isValidCuil()) {
+      this.authService.signUp(this.user).subscribe(
+        (res) => {
+          const expires = moment().add(res.expiresIn)
+          localStorage.setItem('token', res.token)
+          localStorage.setItem('expires', JSON.stringify(expires.valueOf()))
+          this.router.navigate(['/Home'])
+          this.snackBar.open('Usuario registrado', void 0, { duration: 3000 })
+        },
+        (err) => {
+          this.errorMsg = 'El cuil ya se encuentra registrado'
+          console.log(err)
+        }
+      )
+    }
+    else
+          this.errorMsg = 'El cuil no posee un formato correcto. CUIL: xx-xxxxxxxx-x'
+  }
+  private isValidCuil(): Boolean{
+    const regex= /^(20|23|24|27)[-]?\d{8}[-]?\d{1}$/
+    return regex.test(this.user.cuil)
   }
 }
