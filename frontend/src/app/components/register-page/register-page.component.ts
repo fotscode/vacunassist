@@ -21,6 +21,9 @@ export class RegisterPageComponent implements OnInit {
     { id: 2, nombre: 'Centro' },
     { id: 3, nombre: 'Estadio' },
   ]
+  dosisCovid:number=1;
+  dosisGripe:number=0;
+  dosisFiebre:number=0;
 
   user = {
     firstName: '',

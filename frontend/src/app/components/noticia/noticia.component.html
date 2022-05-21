@@ -6,15 +6,15 @@
     </div>
   </div>
   <mat-card *ngFor="let article of articles" class="noticia">
-    <mat-card-header style="font-size:24px">
-      {{ article.title }}
+    <mat-card-header class="titulo" style="font-size:24px">
+      <p>{{ article.title }}</p>
     </mat-card-header>
     <mat-icon class="icono" *ngIf="isAdmin()" (click)="delete(article.title)">delete</mat-icon>
-    <mat-card-content class="foto">
-      <img src="{{article.img}}" alt=""/>
+    <mat-card-content class="fotoHolder">
+      <img class="foto" src="{{article.img}}" alt=""/>
     </mat-card-content>
-    <mat-card-content>
-      {{ article.body }}
+    <mat-card-content class="cuerpo">
+      <p>{{ article.body }}</p>
     </mat-card-content>
   </mat-card>
 </div>

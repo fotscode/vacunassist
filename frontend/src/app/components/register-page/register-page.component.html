@@ -5,7 +5,7 @@
     <div class="card-body">
       <form (submit)="signUp()" ngNativeValidate>
         <div class="form-group">
-          <label for="firstName">Nombre</label>
+          <label for="firstName"><b>Nombre</b></label>
           <input
             type="text"
             [(ngModel)]="user.firstName"
@@ -15,7 +15,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="lastName">Apellido</label>
+          <label for="lastName"><b>Apellido</b></label>
           <input
             type="text"
             [(ngModel)]="user.lastName"
@@ -25,7 +25,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="email">E-mail</label>
+          <label for="email"><b>E-mail</b></label>
           <input
             type="text"
             [(ngModel)]="user.email"
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-          <label for="cuil">CUIL</label>
+          <label for="cuil"><b>CUIL</b></label>
           <input
             type="text"
             [(ngModel)]="user.cuil"
@@ -47,17 +47,17 @@
           <span style="color: red"> {{ errorMsg }}</span>
         </div>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Fecha de nacimiento</mat-label>
+        <mat-form-field class="fechaNac" appearance="fill">
+          <mat-label><b>Fecha de nacimiento</b></mat-label>
           <input matInput [matDatepicker]="picker" [(ngModel)]="user.fecha" name="fecha" required/>
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker startView="year"></mat-datepicker>
         </mat-form-field>
-        <div class="form-group">
+        <div class="riesgo">
           <mat-checkbox
             style="font-size: 16px"
             labelPosition="after"
@@ -65,13 +65,13 @@
             name="riesgo"
             [(ngModel)]="user.riesgo"
           >
-            Paciente de riesgo
+          <b>Paciente de riesgo</b>
           </mat-checkbox>
         </div>
-        <div class="form-group">
+        <div>
           <mat-form-field
             appearance="fill"
-            class="sede-dropdown"
+            class="sede"
             [(ngModel)]="user.sede"
             name="sede"
           >
@@ -87,6 +87,85 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <div class="vacunasBlock">
+          <div class="headerVacunas">
+            <p class="tituloVacunas"><b>Vacunas aplicadas</b></p>
+            <p class="subtituloVacunas"><i>Cantidad de dosis</i></p>
+          </div>
+
+          <mat-grid-list class="grid" cols="5" rows="6" rowHeight="fit" style="height: 500px">
+            <mat-grid-tile [colspan]="2">
+              <label class="covid"><b>Covid-19:</b></label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+              <mat-radio-group class="columnaDerecha" aria-label="dosisCovid">
+                <div>
+                  <mat-radio-button value="0">0</mat-radio-button>
+                  <mat-radio-button value="1">1</mat-radio-button>
+                  <mat-radio-button value="2">2</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="5">
+              <mat-form-field appearance="fill">
+                <mat-label><b>Última dosis de covid aplicada</b></mat-label>
+                <input matInput [matDatepicker]="picker" [disabled]="dosisCovid==0" [(ngModel)]="user.fecha" name="ultimaCovid" required/>
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year"></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2">
+              <label class="gripe"><b>Gripe:</b></label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+              <mat-radio-group class="columnaDerecha" aria-label="dosisGripe">
+                <mat-radio-button value="0">0</mat-radio-button>
+                <mat-radio-button value="1">1</mat-radio-button>
+              </mat-radio-group>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="5">
+              <mat-form-field appearance="fill">
+                <mat-label><b>Última dosis de gripe aplicada</b></mat-label>
+                <input matInput [matDatepicker]="picker" [disabled]="dosisGripe==0" [(ngModel)]="user.fecha" name="ultimaGripe" required/>
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year"></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2">
+              <label class="fiebreAmarilla"><b>Fiebre amarilla:</b></label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+              <mat-radio-group class="columnaDerecha" aria-label="dosisFiebreA">
+                <mat-radio-button value="0">0</mat-radio-button>
+                <mat-radio-button value="1">1</mat-radio-button>
+              </mat-radio-group>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="5">
+              <mat-form-field appearance="fill">
+                <mat-label><b>Última dosis de fiebre a. aplicada</b></mat-label>
+                <input matInput [matDatepicker]="picker" [disabled]="dosisFiebre==0" [(ngModel)]="user.fecha" name="ultimaFiebre" required/>
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year"></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+        </div>
+
         <div class="register-buttons">
           <button type="submit" class="btn btn-primary btn-block">
             Registrarse

@@ -1,8 +1,19 @@
 .card {
   padding: 2rem;
-  width: 40rem;
-  margin: 0 auto;
+  width: 35rem;
+  margin: auto;
   line-height: 2rem;
+}
+
+.card-header {
+  background-color: #689f77;
+  color: white;
+  width: 94%;
+  margin:auto;
+}
+
+input {
+  width: 100%;
 }
 
 .register-buttons {
@@ -11,4 +22,82 @@
 
 .form-group {
   margin-bottom: 1rem;
+}
+
+.fechaNac {
+  margin-top: 1rem;
+}
+
+.riesgo {
+  margin-top: 1rem;
+}
+
+.sede {
+  margin-top: 1rem;
+}
+
+.vacunasBlock {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerVacunas {
+  margin-top: 1rem;
+  padding-left: 2rem;
+  line-height: 10px;
+  padding-bottom: 1rem;
+}
+
+.tituloVacunas {
+  font-size: 18px;
+}
+
+.subtituloVacunas {
+  padding-left: 1rem;
+}
+
+.covid {
+  margin-right: 2rem;
+  width: 100%;
+  font-size: 16px;
+  background-color: #689f77;
+  color:#263238;
+  padding-left: 1rem;
+}
+
+.gripe {
+  margin-right: 2rem;
+  width: 100%;
+  font-size: 16px;
+  background-color: #689f77;
+  color:#263238;
+  padding-left: 1rem;
+}
+
+.fiebreAmarilla {
+  margin-right: 2rem;
+  width: 100%;
+  font-size: 16px;
+  background-color: #689f77;
+  color:#263238;
+  padding-left: 1rem;
+}
+
+.mat-radio-button {
+  margin-right: 1rem;
+}
+
+.columnaDerecha {
+  width: 100%;
+  float: right;
+  padding-left: 1rem;
+}
+
+.grid {
+  width: 100%;
+}
+
+.register-buttons {
+  width: 100%;
+  padding-left: 6rem;
 }

@@ -44,12 +44,14 @@ textarea:placeholder-shown {
 
 .opciones {
   margin:auto;
-  width: fit-content;
+  width: 38%;
 }
 
 .boton {
-  margin: auto;
+  margin: 2rem;
   width: 130px;
+  margin:auto;
+
 }
 
 .mat-grid-list {

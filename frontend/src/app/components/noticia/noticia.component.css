@@ -10,14 +10,29 @@
   margin-bottom: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  background-color: red;
+}
+
+.fotoHolder {
+  max-height: 300px;
+  max-width: 87%;
+  margin: 1rem;
+  display: flex;
 }
 
 .foto {
-  margin: 1rem;
-  background-color: #6c7275;
-  text-justify: center;
-  height: 225px;
-  width: 300px;
+  background-color: red;
+  margin:auto;
+  max-width: 400px;
+  max-height: 300px;
+}
+
+.titulo {
+  width: 90%;
+}
+
+.cuerpo {
+  width: 90%;
 }
 
 .icono {
@@ -27,7 +42,6 @@
 }
 
 .vacio  {
-  /*background:#a2d8b0;*/
   background:#92e3a9;
   width: 70%;
   font-size:x-large;
