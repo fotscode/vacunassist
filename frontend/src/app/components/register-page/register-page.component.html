@@ -72,15 +72,13 @@
           <mat-form-field
             appearance="fill"
             class="sede"
-            [(ngModel)]="user.sede"
-            name="sede"
           >
             <mat-label>{{ user.sede.nombre }}</mat-label>
             <mat-select>
               <mat-option
                 *ngFor="let sede of sedes"
-                [value]="user.sede.id"
-                (onSelectionChange)="setSede(sede)"
+                [value]="sede.id"
+                (click)="setSede(sede)"
               >
                 {{ sede.nombre }}
               </mat-option>
@@ -98,24 +96,24 @@
               <label class="covid"><b>Covid-19:</b></label>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3">
-              <mat-radio-group class="columnaDerecha" aria-label="dosisCovid">
+              <mat-radio-group [(ngModel)]="user.vacunas.covid.dosis" class="columnaDerecha" name="dosisCovid" aria-label="dosisCovid">
                 <div>
-                  <mat-radio-button value="0">0</mat-radio-button>
-                  <mat-radio-button value="1">1</mat-radio-button>
-                  <mat-radio-button value="2">2</mat-radio-button>
+                  <mat-radio-button [value]="0">0</mat-radio-button>
+                  <mat-radio-button [value]="1">1</mat-radio-button>
+                  <mat-radio-button [value]="2">2</mat-radio-button>
                 </div>
               </mat-radio-group>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="5">
               <mat-form-field appearance="fill">
                 <mat-label><b>Última dosis de covid aplicada</b></mat-label>
-                <input matInput [matDatepicker]="picker" [disabled]="dosisCovid==0" [(ngModel)]="user.fecha" name="ultimaCovid" required/>
+                <input matInput [matDatepicker]="picker2" [disabled]="user.vacunas.covid.dosis==0" [(ngModel)]="user.vacunas.covid.fecha" name="ultimaCovid" required/>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle
                   matSuffix
-                  [for]="picker"
+                  [for]="picker2"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #picker startView="year"></mat-datepicker>
+                <mat-datepicker #picker2 startView="year"></mat-datepicker>
               </mat-form-field>
             </mat-grid-tile>
 
@@ -123,21 +121,21 @@
               <label class="gripe"><b>Gripe:</b></label>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3">
-              <mat-radio-group class="columnaDerecha" aria-label="dosisGripe">
-                <mat-radio-button value="0">0</mat-radio-button>
-                <mat-radio-button value="1">1</mat-radio-button>
+              <mat-radio-group [(ngModel)]="user.vacunas.gripe.dosis" name="dosisGripe" class="columnaDerecha" aria-label="dosisGripe">
+                <mat-radio-button [value]="0">0</mat-radio-button>
+                <mat-radio-button [value]="1">1</mat-radio-button>
               </mat-radio-group>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="5">
               <mat-form-field appearance="fill">
                 <mat-label><b>Última dosis de gripe aplicada</b></mat-label>
-                <input matInput [matDatepicker]="picker" [disabled]="dosisGripe==0" [(ngModel)]="user.fecha" name="ultimaGripe" required/>
+                <input matInput [matDatepicker]="picker3" [disabled]="user.vacunas.gripe.dosis==0" [(ngModel)]="user.vacunas.gripe.fecha" name="ultimaGripe" required/>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle
                   matSuffix
-                  [for]="picker"
+                  [for]="picker3"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #picker startView="year"></mat-datepicker>
+                <mat-datepicker #picker3 startView="year"></mat-datepicker>
               </mat-form-field>
             </mat-grid-tile>
 
@@ -145,21 +143,21 @@
               <label class="fiebreAmarilla"><b>Fiebre amarilla:</b></label>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="3">
-              <mat-radio-group class="columnaDerecha" aria-label="dosisFiebreA">
-                <mat-radio-button value="0">0</mat-radio-button>
-                <mat-radio-button value="1">1</mat-radio-button>
+              <mat-radio-group [(ngModel)]="user.vacunas.fiebreA.dosis" name="dosisFiebreA" class="columnaDerecha" aria-label="dosisFiebreA">
+                <mat-radio-button [value]="0">0</mat-radio-button>
+                <mat-radio-button [value]="1">1</mat-radio-button>
               </mat-radio-group>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="5">
               <mat-form-field appearance="fill">
                 <mat-label><b>Última dosis de fiebre a. aplicada</b></mat-label>
-                <input matInput [matDatepicker]="picker" [disabled]="dosisFiebre==0" [(ngModel)]="user.fecha" name="ultimaFiebre" required/>
+                <input matInput [matDatepicker]="picker4" [disabled]="user.vacunas.fiebreA.dosis==0" [(ngModel)]="user.vacunas.fiebreA.fecha" name="ultimaFiebre" required/>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle
                   matSuffix
-                  [for]="picker"
+                  [for]="picker4"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #picker startView="year"></mat-datepicker>
+                <mat-datepicker #picker4 startView="year"></mat-datepicker>
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>

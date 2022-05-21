@@ -20,7 +20,7 @@ export class ProfileViewComponent implements OnInit {
   email = ''
   cuil = ''
   riesgo = false
-  fechaNac=this.formatDate(new Date())
+  fechaNac = this.formatDate(new Date())
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -29,7 +29,7 @@ export class ProfileViewComponent implements OnInit {
   sede: Sede = this.sedes[1]
   dosis = ['Gripe: 1', 'COVID: 2']
 
-  private URL = environment.baseApiUrl +"/users"
+  private URL = environment.baseApiUrl + '/users'
   constructor(private http: HttpClient, private authService: AuthService) {
     this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
       (res) => {
@@ -38,12 +38,11 @@ export class ProfileViewComponent implements OnInit {
         this.apellido = res.lastName
         this.email = res.email
         this.cuil = res.cuil
-        this.fechaNac=this.formatDate(new Date(res.fechaNac))
+        this.fechaNac = this.formatDate(new Date(res.fechaNac))
         this.riesgo = res.riesgo
         let sede = this.sedes.find((s) => s.nombre == res.sede)
         // si no encuentra la sede guardada pone la primera
         this.sede = sede ? sede : this.sedes[1]
-
       },
       (err) => {
         console.log(err)
@@ -57,10 +56,10 @@ export class ProfileViewComponent implements OnInit {
     this.sede = s
   }
 
-  private formatDate(d: Date): string{
-    let y=d.getFullYear()
-    let m=d.getMonth()+1
-    let day=d.getDate()
+  private formatDate(d: Date): string {
+    let y = d.getFullYear()
+    let m = d.getMonth() + 1
+    let day = d.getDate()
     return `${day}/${m}/${y}`
   }
   private getNivel(): string {
