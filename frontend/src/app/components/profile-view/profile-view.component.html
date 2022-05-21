@@ -1,62 +1,63 @@
 <app-navigation-header></app-navigation-header>
-<div class="noticiasContainer">
-  <app-noticia></app-noticia>
-</div>
-<div class="holder">
-  <mat-card class="planilla">
-    <mat-card-header>
-      <mat-card-title class="titulo">Datos Personales</mat-card-title>
-      <mat-card-subtitle class="subtitulo">{{ nivel }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+<div class="perfilHolder">
+  <app-vacunas class="vacunasContainer"></app-vacunas>
+  <div class="holder">
+    <mat-card class="planilla">
+      <mat-card-header>
+        <mat-card-title class="titulo">Datos Personales</mat-card-title>
+        <mat-card-subtitle class="subtitulo">{{ nivel }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
 
-    <form class="formulario">
-      <mat-form-field class="formulario-ancho" appearance="fill">
-        <mat-label><b>Nombre</b></mat-label>
-        <input matInput value="{{ nombre }}" disabled="true" class="inputTexto">
-      </mat-form-field>
-      <mat-form-field class="formulario-ancho" appearance="fill">
-        <mat-label><b>Apellido</b></mat-label>
-        <input matInput value="{{ apellido }}" disabled="true" class="inputTexto">
-      </mat-form-field>
-      <mat-form-field class="formulario-ancho" appearance="fill">
-        <mat-label><b>E-mail</b></mat-label>
-        <input matInput value="{{ email }}" disabled="true" class="inputTexto">
-      </mat-form-field>
-      <mat-form-field class="formulario-ancho" appearance="fill">
-        <mat-label><b>CUIL</b></mat-label>
-        <input matInput value="{{ cuil }}" disabled="true" class="inputTexto">
-      </mat-form-field>
+      <form class="formulario">
         <mat-form-field class="formulario-ancho" appearance="fill">
-          <mat-label><b>Fecha de Nacimiento</b></mat-label>
-          <input
-            matInput
-            value="{{ fechaNac }}"
-            class="inputTexto"
-            disabled="true"
-          />
+          <mat-label><b>Nombre</b></mat-label>
+          <input matInput value="{{ nombre }}" disabled="true" class="inputTexto">
         </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>Apellido</b></mat-label>
+          <input matInput value="{{ apellido }}" disabled="true" class="inputTexto">
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>E-mail</b></mat-label>
+          <input matInput value="{{ email }}" disabled="true" class="inputTexto">
+        </mat-form-field>
+        <mat-form-field class="formulario-ancho" appearance="fill">
+          <mat-label><b>CUIL</b></mat-label>
+          <input matInput value="{{ cuil }}" disabled="true" class="inputTexto">
+        </mat-form-field>
+          <mat-form-field class="formulario-ancho" appearance="fill">
+            <mat-label><b>Fecha de Nacimiento</b></mat-label>
+            <input
+              matInput
+              value="{{ fechaNac }}"
+              class="inputTexto"
+              disabled="true"
+            />
+          </mat-form-field>
 
-      <div>
-        <mat-checkbox labelPosition="after" disabled="true" class="riesgo-check" checked="{{riesgo}}">
-          Paciente de riesgo
-        </mat-checkbox>
-      </div>
-      <mat-form-field appearance="fill"  class="sede">
-        <mat-label>{{sede.nombre}}</mat-label>
-        <mat-select disabled="true">
-          <mat-option disabled="true" [value]="sede.id">
-            {{sede.nombre}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </form>
+        <div>
+          <mat-checkbox labelPosition="after" disabled="true" class="riesgo-check" checked="{{riesgo}}">
+            Paciente de riesgo
+          </mat-checkbox>
+        </div>
+        <mat-form-field appearance="fill"  class="sede">
+          <mat-label>{{sede.nombre}}</mat-label>
+          <mat-select disabled="true">
+            <mat-option disabled="true" [value]="sede.id">
+              {{sede.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
 
-    </mat-card-content>
-    <mat-card-actions class="opciones">
-      <button mat-button class="boton" routerLink="/EditarPerfil" color="primary">Editar</button>
-      <button mat-button class="boton" routerLink="/Home">Regresar</button>
-      </mat-card-actions>
-  </mat-card>
+      </mat-card-content>
+      <mat-card-actions class="opciones">
+        <button mat-button class="boton" routerLink="/EditarPerfil" color="primary">Editar</button>
+        <button mat-button class="boton" routerLink="/Home">Regresar</button>
+        </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
+
 

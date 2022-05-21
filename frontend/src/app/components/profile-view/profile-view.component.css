@@ -1,9 +1,20 @@
+.perfilHolder {
+  margin: auto;
+}
+
+.vacunasContainer{
+  margin: 2rem;
+  width: 35%;
+  float: left;
+  margin-left:20%;
+}
+
 .planilla {
-  width: 400px;
+  width: 40%;
   background-color: #a2cb83;
   justify-content: center;
   float: right;
-  margin-right: 2rem;
+  margin-right: 20%;
 }
 
 .mat-card-header {
@@ -64,10 +75,4 @@
 
 .sede {
   padding-left: 1rem;
-}
-
-.noticiasContainer{
-  margin: 2rem;
-  width: 60%;
-  float: left;
 }
