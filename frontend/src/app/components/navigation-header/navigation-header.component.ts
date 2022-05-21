@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { AuthGuard } from 'src/app/auth.guard'
 import { AuthService } from 'src/app/services/auth.service'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
@@ -6,6 +6,7 @@ import { DialogDeleteAccountComponent } from '../dialog-delete-account/dialog-de
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-navigation-header',
@@ -21,6 +22,7 @@ export class NavigationHeaderComponent implements OnInit {
     private authService: AuthService,
     public popup: MatDialog,
     private http: HttpClient,
+    @Inject(MatSnackBar) private snackBar : MatSnackBar,
     private router: Router
   ) {
     if (this.isLogged()) {
@@ -45,6 +47,7 @@ export class NavigationHeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logout()
+    this.snackBar.open('Se ha cerrado la sesion', void 0, { duration: 3000 })
   }
 
   deleteAccount() {
@@ -53,9 +56,11 @@ export class NavigationHeaderComponent implements OnInit {
         console.log(res)
         this.logOut()
         this.router.navigate(['/Login'])
+        this.snackBar.open('Se ha eliminado su cuenta', void 0, { duration: 3000 })
       },
       (err) => {
         console.log(err)
+        this.snackBar.open('Se produjo un error, intentelo de nuevo mas tarde', void 0, { duration: 3000 })
       }
     )
   }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
@@ -34,7 +35,7 @@ export class ProfileEditComponent implements OnInit {
   }
 
   private URL = environment.baseApiUrl +"/users"
-  constructor(private http: HttpClient, private authService: AuthService, private router:Router) {
+  constructor(private http: HttpClient, @Inject(MatSnackBar) private snackBar : MatSnackBar,private authService: AuthService, private router:Router) {
     this.http
       .get<any>(this.URL + '/user/' + this.authService.getId())
       .subscribe(
@@ -49,6 +50,7 @@ export class ProfileEditComponent implements OnInit {
           let sede = this.sedes.find((s) => s.nombre == res.sede)
           // si no encuentra la sede guardada pone la primera
           this.user.sede = sede ? sede : this.sedes[1]
+          this.snackBar.open('Se ha actualizado su perfil con éxito', void 0, { duration: 3000 })
         },
         (err) => {
           console.log(err)

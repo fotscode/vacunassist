@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { environment } from 'src/environments/environment'
 
@@ -31,12 +32,13 @@ export class NuevaNoticiaComponent implements OnInit {
     reader.readAsArrayBuffer(inputNode.files[0])
   }
 
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient,private router:Router, @Inject(MatSnackBar) private snackBar : MatSnackBar) {}
 
   uploadArticle() {
     this.http.post<any>(this.URL + '/uploadArticle', this.article).subscribe(
       (res) => {
         this.router.navigate(["/Home"])
+        this.snackBar.open('Se ha agregado una noticia', void 0, { duration: 3000 })
       },
       (err) => {
         // TODO error mas amigable

@@ -5,6 +5,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { environment } from 'src/environments/environment'
 
 @Injectable({
@@ -21,6 +22,7 @@ export class PasswordRecoveryMessageComponent {
     private http: HttpClient,
     @Optional()
     private dialogRef: MatDialogRef<PasswordRecoveryMessageComponent>,
+    @Inject(MatSnackBar) private snackBar : MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -32,6 +34,7 @@ export class PasswordRecoveryMessageComponent {
       .subscribe(
         (res) => {
           this.closeMe()
+          this.snackBar.open('Se ha enviado un mail con la nueva contraseña', void 0, { duration: 3000 })
         },
         (err) => {
           this.errorMsg=err.error.msg;
