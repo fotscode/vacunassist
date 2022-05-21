@@ -20,6 +20,7 @@ import { AdminProfileEditComponent } from './components/admin-profile-edit/admin
 import { VacunasComponent } from './components/vacunas/vacunas.component';
 import { AdminGuard } from './admin.guard';
 import { LoggedInGuard } from './logged-in.guard';
+import { ValidatedGuard } from './validated.guard';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -32,7 +33,7 @@ const routes: Routes=[
   {path: 'Turnos', component:MisturnosComponent},
   {path: 'NuevaNoticia', component:NuevaNoticiaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'Noticia', component:NoticiaComponent},
-  {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard]},
+  {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard,ValidatedGuard]},
   {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileEdit', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'Vacunas', component:VacunasComponent, canActivate:[AuthGuard]},

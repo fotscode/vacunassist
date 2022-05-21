@@ -14,14 +14,26 @@ import { Router } from '@angular/router'
 })
 export class NavigationHeaderComponent implements OnInit {
   turnosPendientes: number = 2
+  validated: boolean = false
 
   private URL: string = environment.baseApiUrl + '/users'
   constructor(
     private authService: AuthService,
     public popup: MatDialog,
     private http: HttpClient,
-    private router:Router
-  ) {}
+    private router: Router
+  ) {
+    if (this.isLogged()) {
+      this.http.get(this.URL + '/user/' + this.authService.getId()).subscribe(
+        (user) => {
+          this.validated = Object.entries(user).filter(
+            (e) => e[0] == 'validated'
+          )[0][1]
+        },
+        (err) => {}
+      )
+    }
+  }
 
   isLogged() {
     return this.authService.loggedIn()
@@ -64,6 +76,9 @@ export class NavigationHeaderComponent implements OnInit {
         }
       })
     }
+  }
+  isValidated(): boolean {
+    return this.validated
   }
 
   ngOnInit(): void {}
