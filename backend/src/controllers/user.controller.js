@@ -1,9 +1,29 @@
 const crypto = require('crypto')
 const User = require('../models/User')
+const UserVaccines = require('../models/UserVaccines')
 const utils = require('../lib/utils')
 const nodemailer = require('nodemailer')
 //TODO CRUD operations
 // async/await for db operations
+
+const insertVaccines = async (vacunas, id) => {
+  const newUsersVaccines = []
+  Object.entries(vacunas).forEach(([k, v]) => {
+    if (v.dosis > 0) {
+      let newUserVaccine = {
+        userId: id,
+        vaccineId: k,
+        applied: true,
+        modifiable: true,
+        doseNumber: v.dosis,
+        dateApplied: new Date(v.fecha).getTime(),
+      }
+      newUsersVaccines.push(newUserVaccine)
+    }
+  })
+  return await UserVaccines.insertMany(newUsersVaccines)
+}
+
 exports.signUp = (req, res, next) => {
   User.findOne({ cuil: req.body.cuil }).then((user) => {
     if (!user) {
@@ -28,14 +48,20 @@ exports.signUp = (req, res, next) => {
       newUser
         .save()
         .then((user) => {
-          sendEmail(req.body.email, pwd, user.cuil)
-          const jwt = utils.issueJWT(user)
-          res.status(200).json({
-            success: true,
-            user: user,
-            token: jwt.token,
-            expiresIn: jwt.expires,
-          })
+          insertVaccines(req.body.vacunas, user._id)
+            .then((docs) => {
+              sendEmail(req.body.email, pwd, user.cuil)
+              const jwt = utils.issueJWT(user)
+              res.status(200).json({
+                success: true,
+                user: user,
+                token: jwt.token,
+                expiresIn: jwt.expires,
+              })
+            })
+            .catch((err) => {
+              next(err)
+            })
         })
         .catch((err) => next(err))
     } else res.status(409).json({ success: false, msg: 'CUIL ya registrado' })
@@ -176,8 +202,8 @@ exports.validateUser = (req, res, next) => {
   if (Math.random() > 0.1) {
     User.find({ _id: req.params.user_id })
       .then((user) => {
-        user=user[0]
-        user.validated=true
+        user = user[0]
+        user.validated = true
         User.findOneAndUpdate(
           { _id: req.params.user_id },
           user,
