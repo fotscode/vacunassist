@@ -36,7 +36,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
 import { DialogDeleteAccountComponent } from './components/dialog-delete-account/dialog-delete-account.component';
-import { VacunasComponent } from './components/vacunas/vacunas.component';
+import { VacunasEditComponent } from './components/vacunas-edit/vacunas-edit.component';
+import { VacunasViewComponent } from './components/vacunas-view/vacunas-view.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { VacunasComponent } from './components/vacunas/vacunas.component';
     BuscarPersonaComponent,
     AdminProfileEditComponent,
     DialogDeleteAccountComponent,
-    VacunasComponent,
+    VacunasEditComponent,
+    VacunasViewComponent,
   ],
   imports: [
     BrowserModule,

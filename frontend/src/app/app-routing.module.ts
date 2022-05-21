@@ -17,7 +17,7 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
 import { ValidarIdentidadComponent } from './components/validar-identidad/validar-identidad.component';
 import { BuscarPersonaComponent } from './components/buscar-persona/buscar-persona.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
-import { VacunasComponent } from './components/vacunas/vacunas.component';
+import { VacunasEditComponent } from './components/vacunas-edit/vacunas-edit.component';
 import { AdminGuard } from './admin.guard';
 import { LoggedInGuard } from './logged-in.guard';
 import { ValidatedGuard } from './validated.guard';
@@ -36,7 +36,7 @@ const routes: Routes=[
   {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard,ValidatedGuard]},
   {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileEdit', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
-  {path: 'Vacunas', component:VacunasComponent, canActivate:[AuthGuard]},
+  {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

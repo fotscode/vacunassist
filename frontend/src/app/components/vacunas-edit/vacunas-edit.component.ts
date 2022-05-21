@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-vacunas',
-  templateUrl: './vacunas.component.html',
-  styleUrls: ['./vacunas.component.css'],
+  selector: 'app-vacunas-edit',
+  templateUrl: './vacunas-edit.component.html',
+  styleUrls: ['./vacunas-edit.component.css'],
 })
-export class VacunasComponent implements OnInit {
+export class VacunasEditComponent implements OnInit {
   vacunas = {
     covid: {
       dosis: 0,
