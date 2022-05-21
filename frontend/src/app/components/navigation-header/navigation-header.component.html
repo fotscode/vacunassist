@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <nav mat-toolbar class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/Home">
@@ -24,7 +25,7 @@
 
             <ul class="navbar-nav" *ngIf="isLogged()">
                 <li class="nav-item dropdown dropstart">
-                    <a style="font-size:18px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuario</a>
+                    <a style="font-size:18px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x"></i> Usuario </a>
 
                     <div class="dropdown-menu">
                         <a class="dropdown-item" routerLink="/Perfil">Perfil</a>
