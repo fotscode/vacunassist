@@ -223,3 +223,19 @@ exports.validateUser = (req, res, next) => {
       .send({ success: false, msg: 'no se pudo validar el usuario' })
   }
 }
+
+exports.deleteUser = (req, res, next) => {
+  UserVaccines.deleteMany({ userId: req.params.user_id })
+    .then((info) => {
+      User.findOneAndDelete({ _id: req.params.user_id })
+        .then((user) => {
+          return res.status(200).json({ success: true, msg: 'user deleted' })
+        })
+        .catch((err) => {
+          return res.send(409, { error: err, msg: 'user not found' })
+        })
+    })
+    .catch((err) => {
+      return res.status(500).json({ err, msg: 'unexpected error' })
+    })
+}
