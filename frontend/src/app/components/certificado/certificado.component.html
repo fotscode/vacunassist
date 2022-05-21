@@ -12,7 +12,7 @@
                 <th>{{user.nombre+' '+user.apellido}}</th>
                 <th>{{user.cuil}}</th>
                 <th>
-                    <p *ngFor="let vacuna of user.vacunas">{{vacuna}}</p>
+          <p *ngFor="let vacuna of user.vacunas | keyvalue ">{{vacuna.value.nombre}} {{vacuna.value.dosis}} dosis</p>
                 </th>
             </tr>
         </tbody>
