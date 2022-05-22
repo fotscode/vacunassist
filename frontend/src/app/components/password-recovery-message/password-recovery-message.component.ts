@@ -6,6 +6,7 @@ import {
   MatDialog,
 } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router'
 import { environment } from 'src/environments/environment'
 
 @Injectable({
@@ -17,27 +18,32 @@ import { environment } from 'src/environments/environment'
   styleUrls: ['./password-recovery-message.component.css'],
 })
 export class PasswordRecoveryMessageComponent {
-  private URL = environment.baseApiUrl +"/users"
+  private URL = environment.baseApiUrl + '/users'
   constructor(
     private http: HttpClient,
     @Optional()
     private dialogRef: MatDialogRef<PasswordRecoveryMessageComponent>,
-    @Inject(MatSnackBar) private snackBar : MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router
   ) {}
 
-  errorMsg="";
+  errorMsg = ''
 
-  public acceptRecover(){
+  public acceptRecover() {
     this.http
       .put<any>(this.URL + '/recover', { cuil: this.data.cuil })
       .subscribe(
         (res) => {
           this.closeMe()
-          this.snackBar.open('Se ha enviado un mail con la nueva contraseña', void 0, { duration: 3000 })
+          this.snackBar.open(
+            'Se ha enviado un mail con la nueva contraseña',
+            void 0,
+            { duration: 3000 }
+          )
+          this.router.navigate(['/Login'])
         },
         (err) => {
-          this.errorMsg=err.error.msg;
           this.closeMe()
         }
       )
