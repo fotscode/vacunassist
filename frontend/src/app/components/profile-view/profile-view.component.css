@@ -1,15 +1,16 @@
 .perfilHolder {
-  margin: 0 15vh;
+  margin: 0 5vw;
 }
 
 .vacunasContainer {
-  margin: 2rem;
-  min-width: 50vh;
+  max-width:33vw;
+  min-width: 30vw;
   float: left;
 }
 
 .planilla {
-  min-width:35vh;
+  max-width:33vw;
+  min-width:30vw;
   background-color: #a2cb83;
   justify-content: center;
   float: right;
@@ -32,7 +33,6 @@
 
 .holder {
   padding: 2rem;
-  padding-left: 30rem;
   justify-content: center;
   margin: auto;
   width: 100%;
