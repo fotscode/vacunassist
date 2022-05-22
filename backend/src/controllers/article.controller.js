@@ -5,9 +5,9 @@ exports.uploadArticle = (req, res, next) => {
     .then((article) => {
       if (!article) {
         const newArticle = new Article({
-          title: req.body.title,
+          title: req.body.title.trim(),
           img: req.body.img,
-          body: req.body.body,
+          body: req.body.body.trim(),
         })
         newArticle
           .save()
@@ -43,7 +43,7 @@ exports.getArticle = (req, res, next) => {
 }
 
 exports.deleteArticle = (req, res, next) => {
-  Article.findOneAndDelete({ title: req.params.article_title })
+  Article.findOneAndDelete({ title: req.params.article_title.trim() })
     .then((article) => {
       if (article) {
         res.status(200).json({ success: true, msg: 'se elimino la noticia' })
