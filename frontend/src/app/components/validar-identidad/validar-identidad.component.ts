@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, Inject, OnInit } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -16,7 +17,7 @@ export class ValidarIdentidadComponent implements OnInit {
   }
 
   private URL: string = environment.baseApiUrl + "/users"
-  constructor(private http: HttpClient,@Inject(MatSnackBar) private snackBar : MatSnackBar, private authService: AuthService) {}
+  constructor(private http: HttpClient,@Inject(MatSnackBar) private snackBar : MatSnackBar, private authService: AuthService,private router:Router) {}
 
   ngOnInit(): void {}
 
@@ -27,6 +28,7 @@ export class ValidarIdentidadComponent implements OnInit {
         (res) => {
           console.log(res)
           this.snackBar.open('Se ha validado su identidad con éxito', void 0, { duration: 3000 })
+          this.router.navigate(['/Home'])
         },
         (err) => {
           console.log(err)
