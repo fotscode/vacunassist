@@ -1,7 +1,8 @@
 .contenedor {
   margin: auto;
   min-height: fit-content;
-  width: 50%;
+  max-width:800px;
+  width: 80vw;
   margin-top: 3rem;
   background-color: #689f77;
   align-self: center;
@@ -40,11 +41,6 @@ input:placeholder-shown {
 
 textarea:placeholder-shown {
   font-style: italic;
-}
-
-.opciones {
-  margin:auto;
-  width: 38%;
 }
 
 .boton {

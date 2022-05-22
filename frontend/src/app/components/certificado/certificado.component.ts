@@ -21,14 +21,17 @@ export class CertificadoComponent implements OnInit {
       covid: {
         nombre: 'Covid',
         dosis: 0,
+        fecha: '',
       },
       gripe: {
         nombre: 'Gripe',
         dosis: 0,
+        fecha: '',
       },
       fiebreA: {
         nombre: 'Fiebre Amarilla',
         dosis: 0,
+        fecha: '',
       },
     },
   }
@@ -57,6 +60,8 @@ export class CertificadoComponent implements OnInit {
             Object.entries(this.user.vacunas).forEach(([k, v]) => {
               if (k === el.vaccineId) {
                 v.dosis = el.doseNumber
+                if (v.dosis>0)
+                  v.fecha=', Fecha de aplicacion: '+this.formatDate(new Date(el.dateApplied))
               }
             })
           })
@@ -81,5 +86,11 @@ export class CertificadoComponent implements OnInit {
     })
   }
 
+  private formatDate(d: Date): string{
+    let y=d.getFullYear()
+    let m=d.getMonth()+1
+    let day=d.getDate()
+    return `${day}/${m}/${y}`
+  }
   ngOnInit(): void {}
 }
