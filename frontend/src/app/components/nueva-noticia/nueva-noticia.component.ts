@@ -23,26 +23,37 @@ export class NuevaNoticiaComponent implements OnInit {
     const reader = new FileReader()
 
     reader.onload = (e: any) => {
-      const base64String = btoa(
-        String.fromCharCode(...new Uint8Array(e.target.result))
-      )
+      let binary = ''
+      let bytes = new Uint8Array(e.target.result)
+      let len = bytes.byteLength
+      for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i])
+      }
+      const base64String = btoa(binary)
       this.article.img = 'data:image/png;base64,' + base64String
     }
 
     reader.readAsArrayBuffer(inputNode.files[0])
   }
 
-  constructor(private http: HttpClient,private router:Router, @Inject(MatSnackBar) private snackBar : MatSnackBar) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar
+  ) {}
 
   uploadArticle() {
     this.http.post<any>(this.URL + '/uploadArticle', this.article).subscribe(
       (res) => {
-        this.router.navigate(["/Home"])
-        this.snackBar.open('Se ha agregado una noticia', void 0, { duration: 3000 })
+        this.router.navigate(['/Home'])
+        this.snackBar.open('Se ha agregado una noticia', void 0, {
+          duration: 3000,
+        })
       },
       (err) => {
-        // TODO error mas amigable
-        console.log(err)
+        this.snackBar.open('Hubo un error al subir la noticia', void 0, {
+          duration: 3000,
+        })
       }
     )
   }
