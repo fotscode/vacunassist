@@ -10,7 +10,7 @@
   margin-bottom: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: red;
+  background-color: white;
 }
 
 .fotoHolder {
@@ -21,7 +21,7 @@
 }
 
 .foto {
-  background-color: red;
+  background-color: white;
   margin:auto;
   max-width: 400px;
   max-height: 300px;

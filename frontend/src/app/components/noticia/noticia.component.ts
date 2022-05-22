@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -18,15 +19,18 @@ export class NoticiaComponent implements OnInit {
   private URL = environment.baseApiUrl + '/articles'
   articles: Noticia[] = []
 
-  constructor(private authService: AuthService, private http: HttpClient) {
+  constructor(
+    private authService: AuthService,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
+    private http: HttpClient
+  ) {
     this.fetchData()
-
   }
 
   ngOnInit(): void {}
 
-  private fetchData(){
-    this.articles=[]
+  private fetchData() {
+    this.articles = []
     this.http.get<any>(this.URL + '/getArticles').subscribe(
       (res) => {
         res.forEach((element: any) => {
@@ -44,11 +48,15 @@ export class NoticiaComponent implements OnInit {
   delete(title: String): void {
     this.http.delete(this.URL + '/deleteArticle/' + title).subscribe(
       (res) => {
-        console.log(res)
         this.fetchData()
+        this.snackBar.open('Se ha eliminado la noticia con exito', void 0, {
+          duration: 3000,
+        })
       },
       (err) => {
-        console.log(err)
+this.snackBar.open('Hubo un problema al borrar la noticia', void 0, {
+          duration: 3000,
+        })
       }
     )
   }
