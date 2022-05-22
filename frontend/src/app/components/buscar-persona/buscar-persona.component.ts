@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { environment } from 'src/environments/environment'
 
 export interface Persona {
+  _id:string
   cuil: string
   firstName: string
   lastName: string
@@ -53,7 +54,7 @@ export class BuscarPersonaComponent implements OnInit {
   }
 
   abrirPerfil(persona: Persona) {
-    this.router.navigate(['AdminProfileEdit'])
+    this.router.navigate(['/AdminProfileEdit',persona._id])
   }
   private formatDate(d: Date): string{
     let y=d.getFullYear()

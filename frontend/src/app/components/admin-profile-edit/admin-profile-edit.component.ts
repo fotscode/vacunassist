@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -34,12 +34,12 @@ export class AdminProfileEditComponent implements OnInit {
   }
 
   private URL = environment.baseApiUrl +"/users"
-  constructor(private http: HttpClient, private authService: AuthService, private router:Router) {
+  constructor(private http: HttpClient, private authService: AuthService, private router:Router,private route:ActivatedRoute) {
     this.http
-      .get<any>(this.URL + '/user/' + this.authService.getId())
+      .get<any>(this.URL + '/user/' + this.route.snapshot.paramMap.get('id'))
       .subscribe(
         (res) => {
-          this.nivel = this.getNivel()
+          this.nivel = this.getNivel(res.role)
           this.user.firstName = res.firstName
           this.user.lastName = res.lastName
           this.user.email = res.email
@@ -62,8 +62,7 @@ export class AdminProfileEditComponent implements OnInit {
     this.user.sede = s
   }
 
-  private getNivel(): string {
-    let rol = this.authService.getRol()
+  private getNivel(rol:number): string {
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
   }
 

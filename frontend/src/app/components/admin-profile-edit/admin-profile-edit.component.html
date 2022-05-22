@@ -2,8 +2,7 @@
 <div class="holder">
   <mat-card class="planilla">
     <mat-card-header>
-      <mat-card-title class="titulo"
-        ><i>Datos del Paciente</i></mat-card-title>
+      <mat-card-title class="titulo"><i>Datos del Paciente</i></mat-card-title>
       <mat-card-subtitle class="subtitulo">({{ nivel }})</mat-card-subtitle>
     </mat-card-header>
     <form (submit)="updateUser()" class="formulario">
@@ -13,6 +12,7 @@
           <input
             matInput
             [(ngModel)]="user.firstName"
+            [disabled]="true"
             name="firstName"
             class="inputTexto"
           />
@@ -23,6 +23,7 @@
             matInput
             [(ngModel)]="user.lastName"
             name="lastName"
+            [disabled]="true"
             class="inputTexto"
           />
         </mat-form-field>
@@ -33,6 +34,7 @@
             [(ngModel)]="user.email"
             name="email"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
         <mat-form-field class="formulario-ancho" appearance="fill">
@@ -42,6 +44,7 @@
             [(ngModel)]="user.cuil"
             name="cuil"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
         <mat-form-field class="formulario-ancho" appearance="fill">
@@ -51,6 +54,7 @@
             [(ngModel)]="user.fechaNac"
             name="fechaNac"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
 
@@ -60,13 +64,15 @@
             name="riesgo"
             labelPosition="after"
             class="riesgo-check"
+            [disabled]="true"
           >
             Paciente de riesgo
           </mat-checkbox>
         </div>
+
         <mat-form-field appearance="fill" class="sede">
           <mat-label>{{ user.sede.nombre }}</mat-label>
-          <mat-select>
+          <mat-select [disabled]="true">
             <mat-option
               *ngFor="let sede of sedes"
               [value]="sede.id"
@@ -77,14 +83,6 @@
           </mat-select>
         </mat-form-field>
       </mat-card-content>
-      <mat-card-actions class="opciones">
-        <button mat-button class="btn btn-block btn-primary" type="submit" color="primary" class="boton">
-          Guardar
-        </button>
-        <button mat-button class="btn btn-block" routerLink="/Perfil" class="boton">
-          Cancelar
-        </button>
-      </mat-card-actions>
     </form>
   </mat-card>
 </div>

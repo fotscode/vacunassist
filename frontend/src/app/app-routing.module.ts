@@ -35,7 +35,7 @@ const routes: Routes=[
   {path: 'Noticia', component:NoticiaComponent},
   {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard,ValidatedGuard]},
   {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
-  {path: 'AdminProfileEdit', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'AdminProfileEdit/:id', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
