@@ -16,6 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class NavigationHeaderComponent implements OnInit {
   turnosPendientes: number = 2
   validated: boolean = false
+  usuario:string=''
+  
 
   private URL: string = environment.baseApiUrl + '/users'
   constructor(
@@ -31,6 +33,7 @@ export class NavigationHeaderComponent implements OnInit {
           this.validated = Object.entries(user).filter(
             (e) => e[0] == 'validated'
           )[0][1]
+            this.usuario=Object.entries(user).filter((e)=>e[0]=="firstName")[0][1]
         },
         (err) => {}
       )
