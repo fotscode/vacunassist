@@ -9,23 +9,21 @@ const nodemailer = require('nodemailer')
 const insertVaccines = async (vacunas, id) => {
   const newUsersVaccines = []
   Object.entries(vacunas).forEach(([k, v]) => {
-    if (v.dosis > 0) {
-      let newUserVaccine = {
-        userId: id,
-        vaccineId: k,
-        applied: true,
-        modifiable: true,
-        doseNumber: v.dosis,
-        dateApplied: new Date(v.fecha).getTime(),
-      }
-      newUsersVaccines.push(newUserVaccine)
+    let newUserVaccine = {
+      userId: id,
+      vaccineId: k,
+      applied: true,
+      modifiable: true,
+      doseNumber: v.dosis,
+      dateApplied: new Date(v.fecha).getTime(),
     }
+    newUsersVaccines.push(newUserVaccine)
   })
   return await UserVaccines.insertMany(newUsersVaccines)
 }
 
 exports.signUp = (req, res, next) => {
-  User.findOne({ cuil: req.body.cuil }).then((user) => {
+  User.findOne({ cuil: req.body.cuil.trim() }).then((user) => {
     if (!user) {
       // if user not found, create user, else inform error
       const pwd = crypto.randomBytes(16).toString('hex')
@@ -33,12 +31,12 @@ exports.signUp = (req, res, next) => {
       const hash = saltHash.hash
       const salt = saltHash.salt
       const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        cuil: req.body.cuil,
+        firstName: req.body.firstName.trim(),
+        lastName: req.body.lastName.trim(),
+        email: req.body.email.trim(),
+        cuil: req.body.cuil.trim(),
         riesgo: req.body.riesgo,
-        sede: req.body.sede.nombre,
+        sede: req.body.sede.nombre.trim(),
         role: req.body.role,
         fechaNac: new Date(req.body.fecha).getTime(),
         validated: req.body.validated,
@@ -50,7 +48,7 @@ exports.signUp = (req, res, next) => {
         .then((user) => {
           insertVaccines(req.body.vacunas, user._id)
             .then((docs) => {
-              sendEmail(req.body.email, pwd, user.cuil)
+              sendEmail(req.body.email.trim(), pwd, user.cuil.trim())
               const jwt = utils.issueJWT(user)
               res.status(200).json({
                 success: true,
@@ -92,7 +90,7 @@ const sendEmail = (email, pwd, cuil) => {
 }
 
 exports.logIn = (req, res, next) => {
-  User.findOne({ cuil: req.body.cuil })
+  User.findOne({ cuil: req.body.cuil.trim() })
     .then((user) => {
       if (!user) {
         return res
@@ -133,13 +131,13 @@ exports.recover = (req, res, next) => {
       user.hash = saltHash.hash
       user.salt = saltHash.salt
       User.findOneAndUpdate(
-        { cuil: req.body.cuil },
+        { cuil: req.body.cuil.trim() },
         user,
         { upsert: true },
         (err, doc) => {
           if (err)
             return res.send(409, { error: err, msg: 'CUIL no encontrado' })
-          sendEmail(user.email, pwd, user.cuil)
+          sendEmail(user.email.trim(), pwd, user.cuil.trim())
           return res.status(200).json({ success: true, msg: 'user updated' })
         }
       )
@@ -162,18 +160,47 @@ exports.showUser = (req, res, next) => {
 exports.updateUser = (req, res, next) => {
   User.findOne({ _id: req.params.user_id })
     .then((user) => {
-      user.firstName = req.body.firstName
-      user.lastName = req.body.lastName
-      user.email = req.body.email
+      user.firstName = req.body.firstName.trim()
+      user.lastName = req.body.lastName.trim()
+      user.email = req.body.email.trim()
       user.riesgo = req.body.riesgo
-      user.sede = req.body.sede.nombre
+      user.sede = req.body.sede.nombre.trim()
       User.findOneAndUpdate(
         { _id: req.params.user_id },
         user,
         { upsert: true },
         (err, doc) => {
           if (err) return res.send(409, { error: err, msg: 'user not found' })
-          return res.status(200).json({ success: true, msg: 'user updated' })
+          UserVaccines.find({ userId: req.params.user_id })
+            .then((vaccines) => {
+              if (vaccines) {
+                vaccines.forEach((vac) => {
+                  let dataToUpdate = Object.entries(req.body.vacunas).filter(
+                    ([k, v]) => v.modifiable && k == vac.vaccineId
+                  )
+                  if (dataToUpdate) {
+                    dataToUpdate = dataToUpdate[0][1]
+                  }
+                  vac.doseNumber = dataToUpdate.dosis
+                  vac.dateApplied = new Date(dataToUpdate.fecha).getTime()
+                  UserVaccines.findOneAndUpdate(
+                    { _id: vac._id },
+                    vac,
+                    { upsert: true },
+                    (err, doc) => {
+                      if (err) console.log(err)
+                    }
+                  )
+                })
+                return res
+                  .status(200)
+                  .json({ success: true, msg: 'user updated' })
+              } else
+                return res.send(409, { error: err, msg: 'vaccines not found2' })
+            })
+            .catch((err) => {
+              return res.send(409, { error: err, msg: 'vaccines not found' })
+            })
         }
       )
     })
