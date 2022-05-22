@@ -3,7 +3,7 @@
   <h4 class="categoria" style="font-size: 30px; color: white">
     Agregar noticia
   </h4>
-  <form (submit)="uploadArticle()">
+  <form (submit)="uploadArticle()" ngNativeValidate>
     <mat-card class="noticia">
       <mat-card-header class="titulo-holder" style="font-size: 30px">
         <input
@@ -12,6 +12,7 @@
           name="title"
           contenteditable="true"
           placeholder="Título"
+          required
         />
       </mat-card-header>
       <p class="fotoHint" style="font-size: 20px; color: #263238">
@@ -23,6 +24,7 @@
         name="image"
         id="file"
         class="upload"
+        required
       />
       <mat-card-content class="cuerpo" style="font-size: 16px">
         <textarea
@@ -32,6 +34,7 @@
           name="body"
           placeholder="Cuerpo de noticia"
           rows="10"
+          required
         ></textarea>
       </mat-card-content>
       <mat-card-actions class="opciones">

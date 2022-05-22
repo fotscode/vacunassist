@@ -51,7 +51,7 @@ export class NuevaNoticiaComponent implements OnInit {
         })
       },
       (err) => {
-        this.snackBar.open('Hubo un error al subir la noticia', void 0, {
+        this.snackBar.open('Ya existe una noticia con ese título', void 0, {
           duration: 3000,
         })
       }

@@ -10,7 +10,7 @@ export class MisturnosComponent implements OnInit {
   turnos=[{
     id:'12',
     vacuna:" covid",
-    fecha:" 10 de Junio del 2022" 
+    fecha:" 10 de enero del 2022"
   },
   {
     id:'15',
