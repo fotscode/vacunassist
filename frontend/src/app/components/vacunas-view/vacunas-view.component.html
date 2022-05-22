@@ -4,7 +4,6 @@
       <p class="tituloVacunas"><b>Vacunas aplicadas</b></p>
       <p class="subtituloVacunas"><i>Cantidad de dosis</i></p>
     </div>
-
     <mat-grid-list
       class="grid"
       cols="5"
@@ -19,6 +18,7 @@
         <mat-radio-group
           class="columnaDerecha"
           [disabled]="true"
+          [(ngModel)]="vacunas.covid.dosis"
           aria-label="dosisCovid"
         >
           <div>
@@ -29,12 +29,13 @@
         </mat-radio-group>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="5">
-        <mat-form-field *ngIf="vacunas.covid.dosis>0" appearance="fill">
+        <mat-form-field *ngIf="vacunas.covid.dosis > 0" appearance="fill">
           <mat-label><b>Última dosis de covid aplicada</b></mat-label>
           <input
             matInput
             [matDatepicker]="picker1"
             [disabled]="true"
+            [(ngModel)]="vacunas.covid.fecha"
             name="ultimaCovid"
             required
           />
@@ -54,6 +55,7 @@
         <mat-radio-group
           class="columnaDerecha"
           [disabled]="true"
+          [(ngModel)]="vacunas.gripe.dosis"
           aria-label="dosisGripe"
         >
           <mat-radio-button [value]="0">0</mat-radio-button>
@@ -61,13 +63,14 @@
         </mat-radio-group>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="5">
-        <mat-form-field *ngIf="vacunas.gripe.dosis>0" appearance="fill">
+        <mat-form-field *ngIf="vacunas.gripe.dosis > 0" appearance="fill">
           <mat-label><b>Última dosis de gripe aplicada</b></mat-label>
           <input
             matInput
             [matDatepicker]="picker2"
             [disabled]="true"
             name="ultimaGripe"
+            [(ngModel)]="vacunas.gripe.fecha"
             required
           />
           <mat-hint>DD/MM/YYYY</mat-hint>
@@ -86,6 +89,7 @@
         <mat-radio-group
           class="columnaDerecha"
           [disabled]="true"
+          [(ngModel)]="vacunas.fiebreA.dosis"
           aria-label="dosisFiebreA"
         >
           <mat-radio-button [value]="0">0</mat-radio-button>
@@ -93,13 +97,14 @@
         </mat-radio-group>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="5">
-        <mat-form-field *ngIf="vacunas.fiebreA.dosis>0" appearance="fill">
+        <mat-form-field *ngIf="vacunas.fiebreA.dosis > 0" appearance="fill">
           <mat-label><b>Última dosis de fiebre a. aplicada</b></mat-label>
           <input
             matInput
             [matDatepicker]="picker3"
             [disabled]="true"
             name="ultimaFiebre"
+            [(ngModel)]="vacunas.fiebreA.fecha"
             required
           />
           <mat-hint>DD/MM/YYYY</mat-hint>

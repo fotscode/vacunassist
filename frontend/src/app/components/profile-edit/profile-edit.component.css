@@ -1,20 +1,18 @@
 .perfilHolder {
-  margin: auto;
+  margin: 0 15vh;
 }
 
-.vacunasContainer{
+.vacunasContainer {
   margin: 2rem;
-  width: 35%;
+  min-width: 50vh;
   float: left;
-  margin-left:18%;
 }
 
 .planilla {
-  width: 40%;
+  min-width:35vh;
   background-color: #a2cb83;
   justify-content: center;
   float: right;
-  margin-right: 20%;
 }
 
 .mat-card-header {
@@ -23,7 +21,11 @@
   border-bottom-left-radius: 1rem;
 }
 
-.subtitulo{
+.mat-card-actions{
+  padding:0;
+}
+
+.subtitulo {
   margin: 0rem;
   margin-bottom: 2rem;
 }
@@ -42,9 +44,8 @@
 }
 
 .boton {
-  margin: 1rem;
   width: 120px;
-  font-size:15px;
+  font-size: 15px;
   background-color: #c0eacc;
 }
 

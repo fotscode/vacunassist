@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -12,18 +12,22 @@ export class VacunasEditComponent implements OnInit {
   vacunas = {
     covid: {
       dosis: 0,
+      modifiable: false,
       fecha: new Date(),
     },
     gripe: {
       dosis: 0,
+      modifiable: false,
       fecha: new Date(),
     },
     fiebreA: {
       dosis: 0,
+      modifiable: false,
       fecha: new Date(),
     },
   }
   private URL = environment.baseApiUrl + '/usersVaccines'
+  @Input() v:any
   constructor(private http: HttpClient, private authService: AuthService) {
     this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
       (res) => {
@@ -31,6 +35,7 @@ export class VacunasEditComponent implements OnInit {
           Object.entries(this.vacunas).forEach(([k, v]) => {
             if (k === el.vaccineId) {
               v.dosis = el.doseNumber
+              v.modifiable = el.modifiable
               v.fecha = new Date(el.dateApplied)
             }
           })
