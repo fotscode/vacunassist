@@ -18,10 +18,18 @@ export class ValidatedGuard implements CanActivate {
     return new Promise((resolve) => {
       this.http.get(this.URL + '/user/' + this.authService.getId()).subscribe(
         (user) => {
-          let validated=Object.entries(user).filter(e=>e[0]=="validated")[0][1]
-          resolve(!validated)
+          let validated = Object.entries(user).filter(
+            (e) => e[0] == 'validated'
+          )[0][1]
+          if (validated) {
+            this.router.navigate(['/Home'])
+            resolve(false)
+          } else {
+            resolve(true)
+          }
         },
         (err) => {
+          this.router.navigate(['/Home'])
           resolve(false)
         }
       )
