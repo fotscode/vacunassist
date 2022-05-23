@@ -5,7 +5,19 @@
 }
 .turnosContainer{
     margin: 2rem;
-    /*background-color: "#689f77";*/
+    background: #689f77;
     float: right;
     width: 25%;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.vacio {
+  background:#92e3a9;
+  width: 100%;
+  font-size: large;
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 1rem;
 }

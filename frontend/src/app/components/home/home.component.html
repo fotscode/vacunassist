@@ -4,7 +4,9 @@
 </div>
 
 <div class="turnosContainer" *ngIf="!isLogged()">
-    <h3 style="border: 5px;">Debe tener la sesión iniciada para ver sus turnos</h3>
+    <div class="vacio">
+      Debe tener sesión iniciada para ver sus turnos.
+    </div>
 </div>
 
 <div class="turnosContainer" *ngIf="isLogged()">
