@@ -1,5 +1,9 @@
 thead{
-    background-color: #a2cb83 !important;
+    background-color: #70c187  !important;
+}
+
+tbody{
+    background-color: #92e3a9 !important;
 }
 
 .table-bordered, thead, td, th{
