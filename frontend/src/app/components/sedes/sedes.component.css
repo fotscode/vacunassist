@@ -26,6 +26,8 @@
 .botonAgregar {
   width: 130px;
   margin:auto;
+  margin-top: 28px;
+  height: 35px;
 }
 
 .botonRegresar {
@@ -58,4 +60,12 @@
   text-align: center;
   padding-left: 1rem;
   width: 80%;
+}
+
+input {
+  margin:0px;
+}
+
+.form-control {
+  height: 30px;
 }
