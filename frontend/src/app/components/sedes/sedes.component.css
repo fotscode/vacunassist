@@ -1,0 +1,61 @@
+.contenedor {
+  margin: auto;
+  min-height: fit-content;
+  width:35%;
+  margin-top: 3rem;
+  background-color: #689f77;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.cuerpo {
+  background-color: #92e3a9;
+  min-height: 90%;
+}
+
+.botonAgregar {
+  width: 130px;
+  margin:auto;
+}
+
+.botonRegresar {
+  margin: 2rem;
+  width: 130px;
+  margin:auto;
+}
+
+.tabla {
+  margin: auto;
+  width: 80%;
+}
+
+.nuevaSede {
+  width: 80%;
+  margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.tablaNuevaSede{
+  margin: auto;
+}
+
+.mat-column-nro {
+  text-align: center;
+}
+
+.mat-column-nombre {
+  text-align: center;
+  padding-left: 1rem;
+  width: 80%;
+}

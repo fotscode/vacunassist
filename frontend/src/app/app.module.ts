@@ -38,6 +38,9 @@ import { AdminProfileEditComponent } from './components/admin-profile-edit/admin
 import { DialogDeleteAccountComponent } from './components/dialog-delete-account/dialog-delete-account.component';
 import { VacunasEditComponent } from './components/vacunas-edit/vacunas-edit.component';
 import { VacunasViewComponent } from './components/vacunas-view/vacunas-view.component';
+import { DialogNoticiaDeleteComponent } from './components/dialog-noticia-delete/dialog-noticia-delete.component';
+import { SedesComponent } from './components/sedes/sedes.component';
+import { DialogSedesComponent } from './components/dialog-sedes/dialog-sedes.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { VacunasViewComponent } from './components/vacunas-view/vacunas-view.com
     DialogDeleteAccountComponent,
     VacunasEditComponent,
     VacunasViewComponent,
+    DialogNoticiaDeleteComponent,
+    SedesComponent,
+    DialogSedesComponent,
   ],
   imports: [
     BrowserModule,

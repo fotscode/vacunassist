@@ -17,7 +17,6 @@ export class NavigationHeaderComponent implements OnInit {
   turnosPendientes: number = 2
   validated: boolean = false
   usuario:string=''
-  
 
   private URL: string = environment.baseApiUrl + '/users'
   constructor(

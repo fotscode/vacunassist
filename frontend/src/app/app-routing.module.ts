@@ -21,6 +21,7 @@ import { VacunasEditComponent } from './components/vacunas-edit/vacunas-edit.com
 import { AdminGuard } from './admin.guard';
 import { LoggedInGuard } from './logged-in.guard';
 import { ValidatedGuard } from './validated.guard';
+import { SedesComponent } from './components/sedes/sedes.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -37,6 +38,7 @@ const routes: Routes=[
   {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileEdit/:id', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
+  {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

@@ -3,6 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { DialogNoticiaDeleteComponent } from '../dialog-noticia-delete/dialog-noticia-delete.component'
 
 interface Noticia {
   title: String
@@ -20,6 +22,7 @@ export class NoticiaComponent implements OnInit {
   articles: Noticia[] = []
 
   constructor(
+    public popup: MatDialog,
     private authService: AuthService,
     @Inject(MatSnackBar) private snackBar: MatSnackBar,
     private http: HttpClient
@@ -60,6 +63,23 @@ this.snackBar.open('Hubo un problema al borrar la noticia', void 0, {
       }
     )
   }
+
+  deleteAttempt(title: String): void {
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogNoticiaDeleteComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.delete(title)
+        }
+      })
+   }
+
 
   isAdmin(): Boolean {
     return this.authService.loggedIn() && this.authService.getRol() == 3

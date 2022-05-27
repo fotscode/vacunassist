@@ -1,0 +1,56 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+    <h4 class="categoria" style="font-size: 30px; color: white">
+      Sedes
+    </h4>
+    <mat-card class="cuerpo">
+
+      <div class="container text-center">
+
+        <table mat-table [dataSource]="data" class="tabla">
+          <ng-container matColumnDef="nro">
+            <th mat-header-cell *matHeaderCellDef> NRO. </th>
+            <td mat-cell *matCellDef="let sede"> {{sede.nro}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombre" class="columnasNombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let sede"> {{sede.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="accion">
+            <th mat-header-cell *matHeaderCellDef> Borrar </th>
+            <td mat-cell *matCellDef="let sede">
+              <a (click)="borrarRenglon(sede)">X</a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
+        </table>
+      </div>
+      <div class="nuevaSede">
+        <mat-grid-list class="tablaNuevaSede" cols="9" rowHeight="fit" style="height: 70px">
+          <mat-grid-tile [colspan]="6" [rowspan]="1" class="columnaIzquierda">
+            <div>
+              <label for="nuevaSede"><b>Nueva sede</b></label>
+              <input
+              type="text"
+              name="nuevaSede"
+              class="form-control"
+              />
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="1" class="columnaDerecha">
+            <button mat-raised-button class="botonAgregar">
+              Agregar
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+
+      <mat-card-actions class="opciones d-flex justify-content-center">
+        <button mat-raised-button class="botonRegresar" routerLink="/Home">
+          Regresar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+</div>
