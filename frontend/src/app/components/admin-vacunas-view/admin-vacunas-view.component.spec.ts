@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogSedesComponent } from './dialog-sedes.component';
+import { AdminVacunasViewComponent } from './admin-vacunas-view.component';
 
-describe('DialogSedesComponent', () => {
-  let component: DialogSedesComponent;
-  let fixture: ComponentFixture<DialogSedesComponent>;
+describe('AdminVacunasViewComponent', () => {
+  let component: AdminVacunasViewComponent;
+  let fixture: ComponentFixture<AdminVacunasViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogSedesComponent ]
+      declarations: [ AdminVacunasViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogSedesComponent);
+    fixture = TestBed.createComponent(AdminVacunasViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

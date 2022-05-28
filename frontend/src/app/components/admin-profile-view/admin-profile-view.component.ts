@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
-interface Sede {
+export interface Sede {
   id: number
   nombre: String
 }
@@ -14,11 +14,11 @@ export interface Rol {
 }
 
 @Component({
-  selector: 'app-admin-profile-edit',
-  templateUrl: './admin-profile-edit.component.html',
-  styleUrls: ['./admin-profile-edit.component.css']
+  selector: 'app-admin-profile-view',
+  templateUrl: './admin-profile-view.component.html',
+  styleUrls: ['./admin-profile-view.component.css']
 })
-export class AdminProfileEditComponent implements OnInit {
+export class AdminProfileViewComponent implements OnInit {
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },

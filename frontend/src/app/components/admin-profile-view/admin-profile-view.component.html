@@ -1,10 +1,10 @@
 <app-navigation-header></app-navigation-header>
 <div class="holder">
-  <app-admin-vacunas-edit class="vacunasContainer"></app-admin-vacunas-edit>
+  <app-admin-vacunas-view class="vacunasContainer"></app-admin-vacunas-view>
   <mat-card class="planilla">
     <mat-card-header>
-      <mat-card-title class="titulo"><i>Datos del Paciente</i></mat-card-title>
-      <mat-card-subtitle class="subtitulo">(<i>{{ nivel }}</i>)</mat-card-subtitle>
+      <mat-card-title class="titulo">Datos del Paciente</mat-card-title>
+      <mat-card-subtitle class="subtitulo">({{ nivel }})</mat-card-subtitle>
     </mat-card-header>
     <form (submit)="updateUser()" class="formulario">
       <mat-card-content>
@@ -13,6 +13,7 @@
           <input
             matInput
             [(ngModel)]="user.firstName"
+            [disabled]="true"
             name="firstName"
             class="inputTexto"
           />
@@ -23,6 +24,7 @@
             matInput
             [(ngModel)]="user.lastName"
             name="lastName"
+            [disabled]="true"
             class="inputTexto"
           />
         </mat-form-field>
@@ -33,6 +35,7 @@
             [(ngModel)]="user.email"
             name="email"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
         <mat-form-field class="formulario-ancho" appearance="fill">
@@ -42,6 +45,7 @@
             [(ngModel)]="user.cuil"
             name="cuil"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
         <mat-form-field class="formulario-ancho" appearance="fill">
@@ -51,11 +55,12 @@
             [(ngModel)]="user.fechaNac"
             name="fechaNac"
             class="inputTexto"
+            [disabled]="true"
           />
         </mat-form-field>
         <mat-form-field appearance="fill" class="rol">
           <mat-label>{{ nivel }}</mat-label>
-          <mat-select>
+          <mat-select [disabled]="true">
             <mat-option
               *ngFor="let rol of roles"
               [value]="rol.id"
@@ -72,6 +77,7 @@
             name="riesgo"
             labelPosition="after"
             class="riesgo-check"
+            [disabled]="true"
           >
             Paciente de riesgo
           </mat-checkbox>
@@ -79,7 +85,7 @@
 
         <mat-form-field appearance="fill" class="sede">
           <mat-label>{{ user.sede.nombre }}</mat-label>
-          <mat-select>
+          <mat-select [disabled]="true">
             <mat-option
               *ngFor="let sede of sedes"
               [value]="sede.id"
@@ -97,7 +103,7 @@
           routerLink="/EditarPerfil"
           color="primary"
         >
-          Guardar
+          Editar
         </button>
         <button mat-button class="boton" routerLink="/Home">Regresar</button>
       </mat-card-actions>

@@ -54,7 +54,7 @@ export class BuscarPersonaComponent implements OnInit {
   }
 
   abrirPerfil(persona: Persona) {
-    this.router.navigate(['/AdminProfileEdit',persona._id])
+    this.router.navigate(['/AdminProfileView',persona._id])
   }
   private formatDate(d: Date): string{
     let y=d.getFullYear()

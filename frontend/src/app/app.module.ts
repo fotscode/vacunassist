@@ -40,7 +40,9 @@ import { VacunasEditComponent } from './components/vacunas-edit/vacunas-edit.com
 import { VacunasViewComponent } from './components/vacunas-view/vacunas-view.component';
 import { DialogNoticiaDeleteComponent } from './components/dialog-noticia-delete/dialog-noticia-delete.component';
 import { SedesComponent } from './components/sedes/sedes.component';
-import { DialogSedesComponent } from './components/dialog-sedes/dialog-sedes.component';
+import { AdminProfileViewComponent } from './components/admin-profile-view/admin-profile-view.component';
+import { AdminVacunasViewComponent } from './components/admin-vacunas-view/admin-vacunas-view.component';
+import { AdminVacunasEditComponent } from './components/admin-vacunas-edit/admin-vacunas-edit.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { DialogSedesComponent } from './components/dialog-sedes/dialog-sedes.com
     VacunasViewComponent,
     DialogNoticiaDeleteComponent,
     SedesComponent,
-    DialogSedesComponent,
+    AdminProfileViewComponent,
+    AdminVacunasViewComponent,
+    AdminVacunasEditComponent,
   ],
   imports: [
     BrowserModule,
