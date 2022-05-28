@@ -88,5 +88,13 @@ export class NavigationHeaderComponent implements OnInit {
     return this.validated
   }
 
+  solicitarTurnoCovid(){
+
+  }
+
+  solicitarTurnoGripe(){
+
+  }
+
   ngOnInit(): void {}
 }

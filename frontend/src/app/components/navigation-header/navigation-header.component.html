@@ -27,19 +27,32 @@
             </ul>
 
             <ul class="navbar-nav" *ngIf="isLogged()">
-                <li class="nav-item dropdown dropstart">
-          <a style="font-size:18px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="fa fa-user fa-2x"></i></a>
+              <li class="nav-item dropdown dropstart">
+                <a style="font-size:18px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="fa fa-user fa-2x"></i></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="/Perfil">Perfil</a>
+                    <a class="dropdown-item" *ngIf="isLogged() && !isValidated()" routerLink="/ValidarIdentidad">Validar Identidad</a>
+                    <a class="dropdown-item" routerLink="/Certificado">Certificado de vacunación</a>
+                    <div class="dropdown-divider"></div>
 
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" routerLink="/Perfil">Perfil</a>
-                        <a class="dropdown-item" *ngIf="isLogged() && !isValidated()" routerLink="/ValidarIdentidad">Validar Identidad</a>
-                        <a class="dropdown-item" routerLink="/Certificado">Certificado de vacunación</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" (click)="deleteAccountAttempt()">Eliminar cuenta</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" (click)="logOut()" routerLink="#">Cerrar sesión</a>
-                    </div>
-                </li>
+                    <li>
+                      <a class="dropdown-item"><b>Solicitar turno &raquo;</b></a>
+                      <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                        <li>
+                          <a class="dropdown-item" (click)="solicitarTurnoCovid()">Covid-19</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" (click)="solicitarTurnoGripe()">Gripe</a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="deleteAccountAttempt()">Eliminar cuenta</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logOut()" routerLink="#">Cerrar sesión</a>
+                </div>
+              </li>
             </ul>
             <ul class="navbar-nav" *ngIf="!isLogged()">
                 <a mat-button class="nav-link" routerLink="/Login">Iniciar Sesión</a>
