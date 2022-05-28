@@ -1,20 +1,29 @@
-.perfilHolder {
-  margin: 0 5vw;
+.holder {
+  padding: 2rem;
+  margin: auto;
+  width: 100%;
 }
 
 .vacunasContainer {
-  max-width:33vw;
-  min-width: 30vw;
+  width:35%;
+  margin-right: 3rem;
   float: left;
 }
 
+.turnos {
+  width: 25%;
+  float: left;
+  margin-right: 3rem;
+}
+
 .planilla {
-  max-width:33vw;
-  min-width:30vw;
+  width:33%;
   background-color: #a2cb83;
   justify-content: center;
-  float: right;
+  float: left;
 }
+
+
 
 .mat-card-header {
   background-color: aliceblue;
@@ -29,14 +38,6 @@
 .subtitulo {
   margin: 0rem;
   margin-bottom: 2rem;
-}
-
-.holder {
-  padding: 2rem;
-  justify-content: center;
-  margin: auto;
-  width: 100%;
-  line-height: 2rem;
 }
 
 .opciones {
@@ -81,3 +82,4 @@
 .rol {
   padding-left: 1rem;
 }
+

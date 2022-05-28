@@ -1,5 +1,5 @@
 .vacunasBlock {
-  width: 100%;
+  width: 90%;
   margin: auto;
   line-height: 2rem;
   background-color: #a2cb83;
@@ -14,6 +14,13 @@
   background-color: aliceblue;
   border-top-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
+}
+
+.grid {
+  background-color: #a2cb83;
+  width: 100%;
+  position: flex;
+  margin: auto;
 }
 
 .tituloVacunas {
@@ -33,7 +40,7 @@
   padding-left: 1rem;
 }
 
-.gripe {
+.fiebreAmarilla {
   margin-right: 2rem;
   width: 100%;
   font-size: 16px;
@@ -42,7 +49,7 @@
   padding-left: 1rem;
 }
 
-.fiebreAmarilla {
+.gripe {
   margin-right: 2rem;
   width: 100%;
   font-size: 16px;
@@ -59,11 +66,4 @@
   width: 100%;
   float: right;
   padding-left: 1rem;
-}
-
-.grid {
-  background-color: #a2cb83;
-  width: 90%;
-  position: flex;
-  margin: auto;
 }

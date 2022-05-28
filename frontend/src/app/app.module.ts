@@ -43,6 +43,8 @@ import { SedesComponent } from './components/sedes/sedes.component';
 import { AdminProfileViewComponent } from './components/admin-profile-view/admin-profile-view.component';
 import { AdminVacunasViewComponent } from './components/admin-vacunas-view/admin-vacunas-view.component';
 import { AdminVacunasEditComponent } from './components/admin-vacunas-edit/admin-vacunas-edit.component';
+import { AdminTurnosViewComponent } from './components/admin-turnos-view/admin-turnos-view.component';
+import { AdminTurnosEditComponent } from './components/admin-turnos-edit/admin-turnos-edit.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { AdminVacunasEditComponent } from './components/admin-vacunas-edit/admin
     AdminProfileViewComponent,
     AdminVacunasViewComponent,
     AdminVacunasEditComponent,
+    AdminTurnosViewComponent,
+    AdminTurnosEditComponent,
   ],
   imports: [
     BrowserModule,
