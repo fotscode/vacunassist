@@ -6,23 +6,29 @@ tbody{
   background-color: #92e3a9 !important;
 }
 
-.table-bordered, thead, td, th{
+.table-bordered, table, thead, td, th{
   border-style: solid !important;
   border-color: #689f77 !important;
+  margin: auto;
+  justify-content: center;
 }
 
 .turnos {
   margin: auto;
   float: none;
-  padding: 1rem;
+  padding: 13px;
   background-color: #689f77;
+}
+
+.turnosActivos {
+  max-width: 10rem;
 }
 
 .turnosPendientes {
   margin-top: 3rem;
-  background-color: #689f77;
   width: 100%;
   line-height: 2rem;
+  background-color: #92e3a9 !important;
 }
 
 .mat-column-nombre {

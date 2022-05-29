@@ -1,11 +1,12 @@
 <div class="turnos" id="htmlData">
   <div class="turnosActivos">
-    <table class="table table-bordered">
+    <table style="width: 200px" class="table table-bordered">
       <thead>
           <tr>
               <th scope="col">Id</th>
               <th scope="col">Vacuna</th>
               <th scope="col">Fecha</th>
+              <td scope="col">Borrar</td>
           </tr>
       </thead>
       <tbody>
@@ -13,27 +14,27 @@
               <th scope="row">{{turno.id}}</th>
               <td>{{turno.vacuna}}</td>
               <td>{{turno.fecha}}</td>
+              <td>X</td>
           </tr>
       </tbody>
   </table>
   </div>
 
-  <div class="turnosPendientes">
-    <table mat-table [dataSource]="data">
+  <div>
+    <table mat-table [dataSource]="data" class="turnosPendientes">
       <ng-container matColumnDef="nro">
-        <th mat-header-cell *matHeaderCellDef> NRO. </th>
+        <th mat-header-cell *matHeaderCellDef class="header"> NRO. </th>
         <td mat-cell *matCellDef="let turno"> {{turno.nro}} </td>
       </ng-container>
       <ng-container matColumnDef="nombre" class="columnasNombre">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <th mat-header-cell *matHeaderCellDef class="header"> Nombre </th>
         <td mat-cell *matCellDef="let turno"> {{turno.nombre}} </td>
       </ng-container>
       <ng-container matColumnDef="accion">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <th mat-header-cell *matHeaderCellDef class="header"> Acciones </th>
         <td mat-cell *matCellDef="let turno">
-          <a (click)="rechazarTurno(turno)">Aceptar</a>
-          <a> | </a>
-          <a (click)="rechazarTurno(turno)">Rechazar</a>
+          <a (click)="rechazarTurno(turno)"><b> Aceptar </b></a>
+          <a (click)="rechazarTurno(turno)"><i>Rechazar</i></a>
         </td>
       </ng-container>
 

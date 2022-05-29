@@ -3,10 +3,10 @@
   <app-admin-vacunas-view class="vacunasContainer"></app-admin-vacunas-view>
   <app-admin-turnos-view class="turnos"></app-admin-turnos-view>
   <mat-card class="planilla">
-    <mat-card-header>
-      <mat-card-title class="titulo">Datos del Paciente</mat-card-title>
-      <mat-card-subtitle class="subtitulo">({{ nivel }})</mat-card-subtitle>
-    </mat-card-header>
+    <div class="headerPerfil">
+      <p class="titulo"><b>Datos del Paciente</b></p>
+      <p class="subtitulo">({{ nivel }})</p>
+    </div>
     <form (submit)="updateUser()" class="formulario">
       <mat-card-content>
         <mat-form-field class="formulario-ancho" appearance="fill">

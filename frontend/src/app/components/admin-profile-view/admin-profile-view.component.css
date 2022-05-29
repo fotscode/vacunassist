@@ -23,8 +23,6 @@
   float: left;
 }
 
-
-
 .mat-card-header {
   background-color: aliceblue;
   border-top-right-radius: 1rem;
@@ -83,3 +81,20 @@
   padding-left: 1rem;
 }
 
+.headerPerfil {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  line-height: 10px;
+  padding-bottom: 1px;
+  background-color: aliceblue;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.titulo {
+  font-size: 18px;
+}
+
+.subtitulo {
+  padding-left: 2rem;
+}
