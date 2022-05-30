@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // components
@@ -23,6 +23,7 @@ import { AdminGuard } from './admin.guard';
 import { LoggedInGuard } from './logged-in.guard';
 import { ValidatedGuard } from './validated.guard';
 import { SedesComponent } from './components/sedes/sedes.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component'
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -41,6 +42,7 @@ const routes: Routes=[
   {path: 'AdminProfileView/:id', component:AdminProfileViewComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
+  {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

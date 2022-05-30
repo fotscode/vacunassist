@@ -34,19 +34,9 @@
                     <a class="dropdown-item" *ngIf="isLogged() && !isValidated()" routerLink="/ValidarIdentidad">Validar Identidad</a>
                     <a class="dropdown-item" routerLink="/Certificado">Certificado de vacunación</a>
                     <div class="dropdown-divider"></div>
-
                     <li>
-                      <a class="dropdown-item"><b>Solicitar turno &raquo;</b></a>
-                      <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
-                        <li>
-                          <a class="dropdown-item" (click)="solicitarTurnoCovid()">Covid-19</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" (click)="solicitarTurnoGripe()">Gripe</a>
-                        </li>
-                      </ul>
+                      <a class="dropdown-item" routerLink="/SolicitarTurno"><b>Solicitar turno</b></a>
                     </li>
-
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" (click)="deleteAccountAttempt()">Eliminar cuenta</a>
                     <div class="dropdown-divider"></div>

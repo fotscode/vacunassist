@@ -1,0 +1,62 @@
+.contenedor {
+  margin: auto;
+  width: 50%;
+  margin-top: 3rem;
+  background-color: #689f77;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.seccion {
+  background-color: #92e3a9;
+  padding-bottom: 2rem;
+}
+
+.titulo {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  width: 80%;
+  margin: auto;
+}
+
+.cuerpo {
+  padding-bottom: 3rem;
+  width: 80%;
+  margin-top: 10px;
+  margin: auto;
+}
+
+.botonTurno {
+  width: 15rem;
+  height: 4rem;
+  font-size: xx-large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: #c0eacc;
+  border-color: #689f77;
+  border-radius: 10px;
+  color: #263238;
+  border-width: 4px;
+}
+
+.opciones {
+  margin: 1rem;
+  margin-bottom: 2rem;
+  padding-left: 39%;
+  margin-bottom: 2rem;
+}
+
+.actionBoton {
+  width: 120px;
+  font-size:15px;
+  background-color: #c0eacc;
+}

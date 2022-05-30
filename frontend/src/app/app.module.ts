@@ -45,6 +45,7 @@ import { AdminVacunasViewComponent } from './components/admin-vacunas-view/admin
 import { AdminVacunasEditComponent } from './components/admin-vacunas-edit/admin-vacunas-edit.component';
 import { AdminTurnosViewComponent } from './components/admin-turnos-view/admin-turnos-view.component';
 import { AdminTurnosEditComponent } from './components/admin-turnos-edit/admin-turnos-edit.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { AdminTurnosEditComponent } from './components/admin-turnos-edit/admin-t
     AdminVacunasEditComponent,
     AdminTurnosViewComponent,
     AdminTurnosEditComponent,
+    SolicitarTurnoComponent,
   ],
   imports: [
     BrowserModule,
