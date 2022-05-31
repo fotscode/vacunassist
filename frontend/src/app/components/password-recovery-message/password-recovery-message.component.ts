@@ -44,6 +44,12 @@ export class PasswordRecoveryMessageComponent {
           this.router.navigate(['/Login'])
         },
         (err) => {
+          
+          this.snackBar.open(
+            'El cuil ingresado es incorrecto',
+            void 0,
+            { duration: 3000 }
+          )
           this.closeMe()
         }
       )
