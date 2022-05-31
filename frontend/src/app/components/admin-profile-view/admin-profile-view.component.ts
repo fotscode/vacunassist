@@ -13,12 +13,24 @@ export interface Rol {
   nombre: String
 }
 
+export interface Persona {
+  _id:string
+  cuil: string
+  firstName: string
+  lastName: string
+  email: string
+  fechaNac: string
+  riesgo: string
+  sede: string
+}
+
 @Component({
   selector: 'app-admin-profile-view',
   templateUrl: './admin-profile-view.component.html',
   styleUrls: ['./admin-profile-view.component.css']
 })
 export class AdminProfileViewComponent implements OnInit {
+  usuario: Persona | undefined
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -48,6 +60,7 @@ export class AdminProfileViewComponent implements OnInit {
       .get<any>(this.URL + '/user/' + this.route.snapshot.paramMap.get('id'))
       .subscribe(
         (res) => {
+          this.usuario=res
           this.nivel = this.getNivel(res.role)
           this.user.firstName = res.firstName
           this.user.lastName = res.lastName
@@ -84,6 +97,10 @@ export class AdminProfileViewComponent implements OnInit {
     let m=d.getMonth()+1
     let day=d.getDate()
     return `${day}/${m}/${y}`
+  }
+
+  editarPerfil() {
+    this.router.navigate(['/AdminProfileEdit',this.usuario?._id])
   }
 
   updateUser() {
