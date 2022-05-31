@@ -3,10 +3,10 @@
   <app-admin-vacunas-edit class="vacunasContainer"></app-admin-vacunas-edit>
   <app-admin-turnos-edit class="turnos"></app-admin-turnos-edit>
   <mat-card class="planilla">
-    <mat-card-header>
-      <mat-card-title class="titulo"><i>Datos del Paciente</i></mat-card-title>
-      <mat-card-subtitle class="subtitulo">(<i>{{ nivel }}</i>)</mat-card-subtitle>
-    </mat-card-header>
+    <div class="headerPerfil">
+      <p class="titulo"><b><i>Datos del Paciente</i></b></p>
+      <p class="subtitulo">(<i>{{ nivel }})</i></p>
+    </div>
     <form (submit)="updateUser()" class="formulario">
       <mat-card-content>
         <mat-form-field class="formulario-ancho" appearance="fill">
@@ -100,7 +100,7 @@
         >
           Guardar
         </button>
-        <button mat-button class="boton" routerLink="/Home">Regresar</button>
+        <button mat-button class="boton" (click)="verPerfil()">Cancelar</button>
       </mat-card-actions>
     </form>
   </mat-card>

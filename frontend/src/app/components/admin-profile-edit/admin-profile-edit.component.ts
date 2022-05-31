@@ -75,6 +75,9 @@ export class AdminProfileEditComponent implements OnInit {
 
   }
 
+  verPerfil() {
+  }
+
   private getNivel(rol:number): string {
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
   }
