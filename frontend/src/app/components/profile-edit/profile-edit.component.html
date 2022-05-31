@@ -50,13 +50,10 @@
           </mat-form-field>
           <mat-form-field class="formulario-ancho" appearance="fill">
             <mat-label><b>Fecha de Nacimiento</b></mat-label>
-            <input
-              matInput
-              [(ngModel)]="user.fechaNac"
-              name="fechaNac"
-              class="inputTexto"
-              disabled="true"
-            />
+            <input matInput [matDatepicker]="picker" [(ngModel)]="user.fechaNac" name="fecha"/>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year"></mat-datepicker>
           </mat-form-field>
 
           <div>
