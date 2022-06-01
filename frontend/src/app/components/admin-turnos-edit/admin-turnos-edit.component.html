@@ -18,8 +18,8 @@
   </table>
   </div>
 
-  <div class="turnosPendientes">
-    <table mat-table [dataSource]="data">
+  <div>
+    <table mat-table [dataSource]="data" class="turnosPendientes">
       <ng-container matColumnDef="nro">
         <th mat-header-cell *matHeaderCellDef> NRO. </th>
         <td mat-cell *matCellDef="let turno"> {{turno.nro}} </td>

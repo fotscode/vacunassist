@@ -8,12 +8,14 @@
   width:35%;
   margin-right: 3rem;
   float: left;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
 }
 
 .turnos {
   width: 25%;
   float: left;
   margin-right: 3rem;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
 }
 
 .planilla {
@@ -21,6 +23,7 @@
   background-color: #a2cb83;
   justify-content: center;
   float: left;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
 }
 
 .mat-card-header {

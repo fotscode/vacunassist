@@ -6,3 +6,8 @@ thead{
     border-style: solid !important;
     border-color: #689f77 !important;
 }
+
+.table {
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
+  margin-bottom: 3rem;
+}

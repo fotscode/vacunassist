@@ -20,7 +20,7 @@ tbody{
 
 .turnosPendientes {
   margin-top: 3rem;
-  background-color: #689f77;
+  background-color: #92e3a9 !important;
   width: 100%;
   line-height: 2rem;
 }
