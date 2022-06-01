@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment'
   styleUrls: ['./admin-vacunas-view.component.css']
 })
 export class AdminVacunasViewComponent implements OnInit {
+  @Input() id: string = ''
   vacunas = {
     covid: {
       dosis: 0,
@@ -24,8 +25,10 @@ export class AdminVacunasViewComponent implements OnInit {
     },
   }
   private URL = environment.baseApiUrl + '/usersVaccines'
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
+  constructor(private http: HttpClient) {
+  }
+  ngAfterViewInit(){
+    this.http.get<any>(this.URL + '/user/' + this.id).subscribe(
       (res) => {
         res.forEach((el: any) => {
           Object.entries(this.vacunas).forEach(([k, v]) => {
@@ -40,6 +43,7 @@ export class AdminVacunasViewComponent implements OnInit {
         console.log(err)
       }
     )
+
   }
 
   ngOnInit(): void {}

@@ -1,6 +1,6 @@
 <app-navigation-header></app-navigation-header>
 <div class="holder">
-  <app-admin-vacunas-edit class="vacunasContainer"></app-admin-vacunas-edit>
+  <app-admin-vacunas-edit #vacunasComp [id]="id" class="vacunasContainer"></app-admin-vacunas-edit>
   <app-admin-turnos-edit class="turnos"></app-admin-turnos-edit>
   <mat-card class="planilla">
     <div class="headerPerfil">
@@ -95,7 +95,6 @@
         <button
           mat-button
           class="boton"
-          routerLink="/EditarPerfil"
           color="primary"
         >
           Guardar

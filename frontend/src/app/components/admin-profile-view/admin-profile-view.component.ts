@@ -30,6 +30,7 @@ export interface Persona {
   styleUrls: ['./admin-profile-view.component.css']
 })
 export class AdminProfileViewComponent implements OnInit {
+  public id: string
   usuario: Persona | undefined
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
@@ -56,8 +57,9 @@ export class AdminProfileViewComponent implements OnInit {
 
   private URL = environment.baseApiUrl +"/users"
   constructor(private http: HttpClient, private authService: AuthService, private router:Router,private route:ActivatedRoute) {
+    this.id=this.getIdPerson() || ''
     this.http
-      .get<any>(this.URL + '/user/' + this.route.snapshot.paramMap.get('id'))
+      .get<any>(this.URL + '/user/' + this.getIdPerson())
       .subscribe(
         (res) => {
           this.usuario=res
@@ -105,7 +107,7 @@ export class AdminProfileViewComponent implements OnInit {
 
   updateUser() {
     this.http
-      .put<any>(this.URL + '/user/' + this.authService.getId(), this.user)
+      .put<any>(this.URL + '/user/' + this.getIdPerson(), this.user)
       .subscribe(
         (res) => {
           this.router.navigate(["/Perfil"])
@@ -114,5 +116,8 @@ export class AdminProfileViewComponent implements OnInit {
           console.log(err)
         }
       )
+  }
+  public getIdPerson(){
+    return this.route.snapshot.paramMap.get('id')
   }
 }
