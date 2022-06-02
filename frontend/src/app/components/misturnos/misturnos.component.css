@@ -10,3 +10,9 @@ tbody{
     border-style: solid !important;
     border-color: #689f77 !important;
 }
+
+.turnos {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
