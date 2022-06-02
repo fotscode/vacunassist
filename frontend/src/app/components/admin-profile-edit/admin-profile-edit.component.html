@@ -60,7 +60,7 @@
             <mat-option
               *ngFor="let rol of roles"
               [value]="rol.id"
-              (onSelectionChange)="setSede(rol)"
+              (click)="setRol(rol)"
             >
               {{ rol.nombre }}
             </mat-option>
@@ -84,7 +84,7 @@
             <mat-option
               *ngFor="let sede of sedes"
               [value]="sede.id"
-              (onSelectionChange)="setSede(sede)"
+              (click)="setSede(sede)"
             >
               {{ sede.nombre }}
             </mat-option>

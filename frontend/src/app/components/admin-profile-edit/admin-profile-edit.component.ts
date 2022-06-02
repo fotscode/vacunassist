@@ -45,6 +45,7 @@ export class AdminProfileEditComponent implements OnInit {
     fechaNac: this.formatDate(new Date()),
     sede: this.sedes[1],
     vacunas: {},
+    role:1,
   }
 
   private URL = environment.baseApiUrl + '/users'
@@ -80,7 +81,9 @@ export class AdminProfileEditComponent implements OnInit {
     this.user.sede = s
   }
 
-  setRol(r: Rol) {}
+  setRol(r: Rol) {
+    this.user.role=r.id
+  }
 
   verPerfil() {}
 

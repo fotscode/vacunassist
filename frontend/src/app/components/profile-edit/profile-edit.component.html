@@ -72,7 +72,7 @@
               <mat-option
                 *ngFor="let sede of sedes"
                 [value]="sede.id"
-                (onSelectionChange)="setSede(sede)"
+                (clik)="setSede(sede)"
               >
                 {{ sede.nombre }}
               </mat-option>
