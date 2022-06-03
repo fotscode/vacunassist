@@ -15,8 +15,7 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <button
             class="botonTurno"
-            [disabled]="!isApprovable(this.covid)"
-            (click)="solicitarTurno(this.vacCovid)"
+            (click)="solicitarTurno(this.vacCovid, this.covid)"
           >
             Covid-19
           </button>
@@ -24,13 +23,13 @@
         <mat-grid-tile>
           <button
             class="botonTurno"
-            [disabled]="!isApprovable(this.gripe)"
-            (click)="solicitarTurno(this.vacGripe)"
+            (click)="solicitarTurno(this.vacGripe, this.gripe)"
           >
             Gripe
           </button>
         </mat-grid-tile>
       </mat-grid-list>
+      <span style="color: red"> {{ errorMsg }}</span>
     </mat-card-content>
     <mat-card-actions class="opciones">
       <button mat-raised-button class="actionBoton" routerLink="/Home">
