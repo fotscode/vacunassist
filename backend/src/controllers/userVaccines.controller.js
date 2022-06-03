@@ -31,9 +31,9 @@ exports.getVaccines = (req, res, next) => {
     })
 }
 exports.updateVaccine=(req,res,next)=>{
-  req.body.dateIssued=new Date(req.body.dateIssued).getTime()
   UserVaccines.findByIdAndUpdate(req.params.vaccine_id,req.body,{upsert:true},(err,docs)=>{
     if (err){
+      console.log(docs)
       return res.status(409).json({success:false,msg:'no se pudo actualizar la vacuna'})
     }
   })

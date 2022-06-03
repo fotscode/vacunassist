@@ -8,6 +8,7 @@ const userVaccinesSchema = new Schema(
     modifiable:{type:Boolean,required:true},
     doseNumber:{type:Number,required:true},
     dateIssued:{type:Number,required:false},
+    dateConfirmed:{type:Number,required:false},
     dateApplied:{type:Number,required:false},
   },
   {
