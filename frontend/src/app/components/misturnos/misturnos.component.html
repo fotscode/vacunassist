@@ -2,7 +2,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Vacuna</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Cancelar</th>
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let turno of turnos">
-                <th scope="row">{{turno.id}}</th>
+                <th scope="row">{{turno.estado}}</th>
                 <td>{{turno.vacuna}}</td>
                 <td>{{turno.fecha}}</td>
                 <td>X</td>
