@@ -69,7 +69,7 @@ export class SolicitarTurnoComponent implements OnInit {
       a.validated = res.validated
     })
     this.isBelowMaxCount().then((r) => (a.maxCount = r))
-    a.pending = !v.dateIssued && v.dateIssued==0
+    a.pending = !v.dateIssued || v.dateIssued==0
   }
 
   isApprovable(a: Approvable) {
@@ -102,7 +102,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
   solicitarTurno(v: Vacuna | undefined, a: Approvable) {
     if (v && this.isApprovable(a)) {
-      console.log(v)
       v.dateIssued = new Date().getTime()
       v.modifiable = false
       a.pending = false
