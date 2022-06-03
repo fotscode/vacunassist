@@ -1,20 +1,21 @@
-<div class="turnos" id="htmlData">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Estado</th>
-                <th scope="col">Vacuna</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Cancelar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let turno of turnos">
-                <th scope="row">{{turno.estado}}</th>
-                <td>{{turno.vacuna}}</td>
-                <td>{{turno.fecha}}</td>
-                <td>X</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="turnos d-flex justify-content-center" id="htmlData">
+  <table *ngIf="turnos.length>0" class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Estado</th>
+        <th scope="col">Vacuna</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Cancelar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turno of turnos">
+        <th scope="row">{{ turno.estado }}</th>
+        <td>{{ turno.vacuna }}</td>
+        <td>{{ turno.fecha }}</td>
+        <td><button (click)="cancelAppointment(turno.id)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="turnos.length==0" style="background-color:#92e3a9; padding:1rem;border-radius:4rem;width:70%; justify-content:center">No hay turnos para mostrar</div>
 </div>

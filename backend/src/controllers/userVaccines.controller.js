@@ -30,11 +30,41 @@ exports.getVaccines = (req, res, next) => {
       return res.status(500).json({ success: false, msg: 'error inesperado' })
     })
 }
-exports.updateVaccine=(req,res,next)=>{
-  UserVaccines.findByIdAndUpdate(req.params.vaccine_id,req.body,{upsert:true},(err,docs)=>{
-    if (err){
-      console.log(docs)
-      return res.status(409).json({success:false,msg:'no se pudo actualizar la vacuna'})
+exports.updateVaccine = (req, res, next) => {
+  UserVaccines.findByIdAndUpdate(
+    req.params.vaccine_id,
+    req.body,
+    { upsert: true },
+    (err, docs) => {
+      if (err) {
+        return res
+          .status(409)
+          .json({ success: false, msg: 'no se pudo actualizar la vacuna' })
+      } else {
+        return res
+          .status(200)
+          .json({ success: true, msg: 'se actualizo la vacuna' })
+      }
     }
-  })
+  )
+}
+
+exports.cancelAppointment = (req, res, next) => {
+  UserVaccines.findByIdAndUpdate(
+    { _id: req.params.vaccine_id },
+    { dateIssued: 0, dateConfirmed: 0 },
+    { upsert: true },
+    (err, docs) => {
+      if (err) {
+        console.log(docs)
+        return res
+          .status(409)
+          .json({ success: false, msg: 'no se pudo actualizar la vacuna' })
+      } else {
+        return res
+          .status(200)
+          .json({ success: true, msg: 'se actualizo la vacuna' })
+      }
+    }
+  )
 }

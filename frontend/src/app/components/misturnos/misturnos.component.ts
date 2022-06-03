@@ -16,6 +16,7 @@ interface Vacuna {
 }
 
 interface Turno {
+  id: string
   estado: string
   vacuna: string
   fecha: string
@@ -31,25 +32,7 @@ export class MisturnosComponent implements OnInit {
 
   turnos: Array<Turno> = []
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.http
-      .get<Array<Vacuna>>(this.URL + '/user/' + this.authService.getId())
-      .subscribe((res) => {
-        res
-          .filter((v) => !v.modifiable)
-          .forEach((v) => {
-            console.log(v)
-            let turno: Turno = {
-              estado: this.getEstado(v.dateConfirmed, v.applied),
-              vacuna: this.firstLetterUpper(v.vaccineId),
-              fecha: !v.dateConfirmed
-                ? 'No hay fecha'
-                : this.formatDate(new Date(v.dateConfirmed)),
-            }
-            this.turnos.push(turno)
-          })
-      })
-  }
+  constructor(private http: HttpClient, private authService: AuthService) {}
   private formatDate(d: Date): string {
     let y = d.getFullYear()
     let m = d.getMonth() + 1
@@ -63,5 +46,30 @@ export class MisturnosComponent implements OnInit {
   private getEstado(dConfirmed: number, applied: boolean): string {
     return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
   }
-  ngOnInit(): void {}
+
+  cancelAppointment(id: string) {
+    this.http.put(this.URL + '/cancel/' + id, {}).subscribe((res) => {
+      this.turnos=[]
+      this.ngOnInit()
+    })
+  }
+  ngOnInit(): void {
+    this.http
+      .get<Array<Vacuna>>(this.URL + '/user/' + this.authService.getId())
+      .subscribe((res) => {
+        res
+          .filter((v) => !v.modifiable && v.dateIssued != 0)
+          .forEach((v) => {
+            let turno: Turno = {
+              id: v._id,
+              estado: this.getEstado(v.dateConfirmed, v.applied),
+              vacuna: this.firstLetterUpper(v.vaccineId),
+              fecha: !v.dateConfirmed
+                ? 'No hay fecha'
+                : this.formatDate(new Date(v.dateConfirmed)),
+            }
+            this.turnos.push(turno)
+          })
+      })
+  }
 }
