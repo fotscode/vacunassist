@@ -45,7 +45,7 @@ export class AdminProfileEditComponent implements OnInit {
     fechaNac: this.formatDate(new Date()),
     sede: this.sedes[1],
     vacunas: {},
-    role:1,
+    role: 1,
   }
 
   private URL = environment.baseApiUrl + '/users'
@@ -82,10 +82,12 @@ export class AdminProfileEditComponent implements OnInit {
   }
 
   setRol(r: Rol) {
-    this.user.role=r.id
+    this.user.role = r.id
   }
 
-  verPerfil() {}
+  verPerfil() {
+    this.router.navigate(['/AdminProfileView', this.getIdPerson()])
+  }
 
   private getNivel(rol: number): string {
     return rol == 1 ? 'Paciente' : rol == 2 ? 'Vacunador' : 'Administrador'
