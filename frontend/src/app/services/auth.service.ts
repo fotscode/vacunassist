@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import * as moment from 'moment'
 import { environment } from 'src/environments/environment'
+interface User {
+  validated: boolean
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private URL = environment.baseApiUrl +"/users"
+  private URL = environment.baseApiUrl + '/users'
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(user: any) {
@@ -20,9 +23,9 @@ export class AuthService {
   }
 
   loggedIn(): Boolean {
-    return !!(localStorage.getItem("token")) 
+    return !!localStorage.getItem('token')
   }
-  
+
   loggedOut(): Boolean {
     return !this.loggedIn()
   }
@@ -31,22 +34,26 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  private getPayload(){
-    let x= this.getToken()?.split(" ")[1].split(".")[1];
-    return (x) ? JSON.parse(atob(x)) : null
+  private getPayload() {
+    let x = this.getToken()?.split(' ')[1].split('.')[1]
+    return x ? JSON.parse(atob(x)) : null
   }
 
-  getRol(){
-    return (this.getPayload()) ? this.getPayload().role : -1
+  getRol() {
+    return this.getPayload() ? this.getPayload().role : -1
   }
 
-  getId(){
-    return (this.getPayload()) ? this.getPayload().sub : -1
+  getId() {
+    return this.getPayload() ? this.getPayload().sub : -1
   }
 
   getExpiration() {
     const expiration = localStorage.getItem('expires')
     return expiration ? moment(JSON.parse(expiration)) : moment()
+  }
+
+  getUser() {
+    return this.http.get<User>(this.URL + '/user/' + this.getId())
   }
 
   logout() {
