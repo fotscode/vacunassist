@@ -42,7 +42,7 @@ const routes: Routes=[
   {path: 'AdminProfileView/:id', component:AdminProfileViewComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
-  {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard, AdminGuard]},
+  {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]
