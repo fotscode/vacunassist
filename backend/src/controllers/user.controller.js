@@ -12,7 +12,7 @@ const insertVaccines = async (vacunas, id) => {
     let newUserVaccine = {
       userId: id,
       vaccineId: k,
-      applied: true,
+      applied: false,
       modifiable: true,
       doseNumber: v.dosis,
       dateApplied: new Date(v.fecha).getTime(),

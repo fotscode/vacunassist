@@ -13,7 +13,7 @@
         <th scope="row">{{ turno.estado }}</th>
         <td>{{ turno.vacuna }}</td>
         <td>{{ turno.fecha }}</td>
-        <td><button (click)="cancelAppointment(turno.id)">X</button></td>
+        <td><button (click)="cancelAppointment(turno.id,turno.applied)">X</button></td>
       </tr>
     </tbody>
   </table>

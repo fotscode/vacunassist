@@ -20,6 +20,7 @@ interface Turno {
   estado: string
   vacuna: string
   fecha: string
+  applied: boolean
 }
 
 @Component({
@@ -47,12 +48,13 @@ export class MisturnosComponent implements OnInit {
     return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
   }
 
-  cancelAppointment(id: string) {
-    this.http.put(this.URL + '/cancel/' + id, {}).subscribe((res) => {
+  cancelAppointment(id: string,appl:boolean) {
+    this.http.put(this.URL + '/cancel/' + id, {applied:appl}).subscribe((res) => {
       this.turnos=[]
       this.ngOnInit()
     })
   }
+
   ngOnInit(): void {
     this.http
       .get<Array<Vacuna>>(this.URL + '/user/' + this.authService.getId())
@@ -62,6 +64,7 @@ export class MisturnosComponent implements OnInit {
           .forEach((v) => {
             let turno: Turno = {
               id: v._id,
+              applied:v.applied,
               estado: this.getEstado(v.dateConfirmed, v.applied),
               vacuna: this.firstLetterUpper(v.vaccineId),
               fecha: !v.dateConfirmed

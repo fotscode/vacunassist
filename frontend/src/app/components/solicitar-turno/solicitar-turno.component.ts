@@ -50,26 +50,28 @@ export class SolicitarTurnoComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     @Inject(MatSnackBar) private snackBar: MatSnackBar
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.http
       .get<Array<Vacuna>>(this.URL + '/user/' + this.authService.getId())
       .subscribe((res) => {
-        this.vacCovid = res.filter((e: Vacuna) => e.vaccineId == 'covid')[0]
+        this.vacCovid = res.find((e: Vacuna) => e.vaccineId == 'covid')
         this.setApprovable(this.vacCovid, this.covid, 2)
-        this.vacGripe = res.filter((e: Vacuna) => e.vaccineId == 'gripe')[0]
+        this.vacGripe = res.find((e: Vacuna) => e.vaccineId == 'gripe')
         this.setApprovable(this.vacGripe, this.gripe, 1)
       })
   }
 
-  ngOnInit(): void {}
-
-  private setApprovable(v: Vacuna, a: Approvable, doseMax: number) {
-    a.maxDosage = v.doseNumber < doseMax
-    this.authService.getUser().subscribe((res) => {
-      a.validated = res.validated
-    })
-    this.isBelowMaxCount().then((r) => (a.maxCount = r))
-    a.pending = !v.dateIssued || v.dateIssued==0
+  private setApprovable(v: Vacuna | undefined, a: Approvable, doseMax: number) {
+    if (v) {
+      a.maxDosage = v.doseNumber < doseMax
+      this.authService.getUser().subscribe((res) => {
+        a.validated = res.validated
+      })
+      this.isBelowMaxCount().then((r) => (a.maxCount = r))
+      a.pending = !v.dateIssued || v.dateIssued == 0
+    } else this.errorMsg = 'No se encontraron vacunas'
   }
 
   isApprovable(a: Approvable) {
@@ -109,7 +111,9 @@ export class SolicitarTurnoComponent implements OnInit {
         .put(this.URL + '/' + v._id, v)
         .toPromise()
         .then((res) => {
-          this.snackBar.open(`Turno de ${v.vaccineId} solicitado`, void 0, { duration: 3000 })
+          this.snackBar.open(`Turno de ${v.vaccineId} solicitado`, void 0, {
+            duration: 3000,
+          })
         })
         .catch((err) => {
           console.log(err)

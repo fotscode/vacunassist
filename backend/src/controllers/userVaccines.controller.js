@@ -52,7 +52,7 @@ exports.updateVaccine = (req, res, next) => {
 exports.cancelAppointment = (req, res, next) => {
   UserVaccines.findByIdAndUpdate(
     { _id: req.params.vaccine_id },
-    { dateIssued: 0, dateConfirmed: 0 },
+    { dateIssued: 0, dateConfirmed: 0, modifiable: !req.body.applied },
     { upsert: true },
     (err, docs) => {
       if (err) {
