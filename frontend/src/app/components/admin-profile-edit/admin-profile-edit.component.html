@@ -45,20 +45,20 @@
             class="inputTexto"
           />
         </mat-form-field>
+        <span style="color:red">{{this.errorMsg}}</span>
         <mat-form-field class="formulario-ancho" appearance="fill">
           <mat-label><b>Fecha de Nacimiento</b></mat-label>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="user.fechaNac" name="fecha" required="false"/>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="user.fechaNac" name="fecha" />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker startView="year"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill" class="rol">
-          <mat-label>{{ nivel }}</mat-label>
-          <mat-select>
+          <mat-label>Rol</mat-label>
+          <mat-select [(value)]="this.user.role">
             <mat-option
               *ngFor="let rol of roles"
               [value]="rol.id"
-              (click)="setRol(rol)"
             >
               {{ rol.nombre }}
             </mat-option>
@@ -77,14 +77,13 @@
         </div>
 
         <mat-form-field appearance="fill" class="sede">
-          <mat-label>{{ user.sede.nombre }}</mat-label>
-          <mat-select>
+          <mat-label>Sede</mat-label>
+          <mat-select [(value)]="this.user.sede">
             <mat-option
-              *ngFor="let sede of sedes"
-              [value]="sede.id"
-              (click)="setSede(sede)"
+              *ngFor="let s of sedes"
+              [value]="s"
             >
-              {{ sede.nombre }}
+              {{ s.nombre }}
             </mat-option>
           </mat-select>
         </mat-form-field>

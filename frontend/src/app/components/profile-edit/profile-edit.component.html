@@ -47,6 +47,7 @@
               class="inputTexto"
             />
           </mat-form-field>
+          <span style="color:red">{{this.errorMsg}}</span>
           <mat-form-field class="formulario-ancho" appearance="fill">
             <mat-label><b>Fecha de Nacimiento</b></mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="user.fechaNac" name="fecha" required="false"/>

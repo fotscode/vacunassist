@@ -1,5 +1,12 @@
 import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
@@ -18,7 +25,8 @@ interface Sede {
   styleUrls: ['./profile-edit.component.css'],
 })
 export class ProfileEditComponent implements OnInit {
-  @ViewChild('vacunasEdit') myId:any;
+  @ViewChild('vacunasEdit') myId: any
+  errorMsg: string = ''
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
     { id: 2, nombre: 'Centro' },
@@ -32,7 +40,7 @@ export class ProfileEditComponent implements OnInit {
     email: '',
     cuil: '',
     riesgo: false,
-    fechaNac: this.formatDate(new Date()),
+    fechaNac: new Date(),
     sede: this.sedes[1],
     vacunas: {},
   }
@@ -54,7 +62,7 @@ export class ProfileEditComponent implements OnInit {
           this.user.email = res.email
           this.user.cuil = res.cuil
           this.user.riesgo = res.riesgo
-          this.user.fechaNac = this.formatDate(new Date(res.fechaNac))
+          this.user.fechaNac = new Date(res.fechaNac)
           let sede = this.sedes.find((s) => s.nombre == res.sede)
           // si no encuentra la sede guardada pone la primera
           this.user.sede = sede ? sede : this.sedes[1]
@@ -83,20 +91,33 @@ export class ProfileEditComponent implements OnInit {
     return `${day}/${m}/${y}`
   }
 
+  private isValidCuil(): Boolean {
+    const regex = /^(20|23|24|27)[-]?\d{8}[-]?\d{1}$/
+    return regex.test(this.user.cuil)
+  }
+
   updateUser() {
-    this.user.vacunas=this.myId.vacunas
-    this.http
-      .put<any>(this.URL + '/user/' + this.authService.getId(), this.user)
-      .subscribe(
-        (res) => {
-          this.router.navigate(['/Perfil'])
-          this.snackBar.open('Se ha actualizado su perfil con éxito', void 0, {
-            duration: 3000,
-          })
-        },
-        (err) => {
-          console.log(err)
-        }
-      )
+    if (this.isValidCuil()) {
+      this.user.vacunas = this.myId.vacunas
+      this.http
+        .put<any>(this.URL + '/user/' + this.authService.getId(), this.user)
+        .subscribe(
+          (res) => {
+            this.router.navigate(['/Perfil'])
+            this.snackBar.open(
+              'Se ha actualizado su perfil con éxito',
+              void 0,
+              {
+                duration: 3000,
+              }
+            )
+          },
+          (err) => {
+            console.log(err)
+          }
+        )
+    } else
+      this.errorMsg =
+        'El cuil no posee un formato correcto. CUIL: xx-xxxxxxxx-x'
   }
 }

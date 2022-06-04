@@ -22,6 +22,7 @@ export interface Rol {
 })
 export class AdminProfileEditComponent implements OnInit {
   @ViewChild('vacunasComp') vacunasComp: any
+  errorMsg: string = ''
   public id: string
   sedes: Sede[] = [
     { id: 1, nombre: 'Bosque' },
@@ -29,7 +30,7 @@ export class AdminProfileEditComponent implements OnInit {
     { id: 3, nombre: 'Estadio' },
   ]
   roles: Rol[] = [
-    { id: 1, nombre: 'Usuario' },
+    { id: 1, nombre: 'Paciente' },
     { id: 2, nombre: 'Vacunador' },
     { id: 3, nombre: 'Administrador' },
   ]
@@ -42,7 +43,7 @@ export class AdminProfileEditComponent implements OnInit {
     email: '',
     cuil: '',
     riesgo: false,
-    fechaNac: this.formatDate(new Date()),
+    fechaNac: new Date(),
     sede: this.sedes[1],
     vacunas: {},
     role: 1,
@@ -59,12 +60,13 @@ export class AdminProfileEditComponent implements OnInit {
     this.http.get<any>(this.URL + '/user/' + this.getIdPerson()).subscribe(
       (res) => {
         this.nivel = this.getNivel(res.role)
+        this.user.role = res.role
         this.user.firstName = res.firstName
         this.user.lastName = res.lastName
         this.user.email = res.email
         this.user.cuil = res.cuil
-        this.user.riesgo = res.riesgo === 'true' ? true : false
-        this.user.fechaNac = this.formatDate(new Date(res.fechaNac))
+        this.user.riesgo = res.riesgo
+        this.user.fechaNac = new Date(res.fechaNac)
         let sede = this.sedes.find((s) => s.nombre == res.sede)
         // si no encuentra la sede guardada pone la primera
         this.user.sede = sede ? sede : this.sedes[1]
@@ -99,19 +101,27 @@ export class AdminProfileEditComponent implements OnInit {
     let day = d.getDate()
     return `${day}/${m}/${y}`
   }
+  private isValidCuil(): Boolean {
+    const regex = /^(20|23|24|27)[-]?\d{8}[-]?\d{1}$/
+    return regex.test(this.user.cuil)
+  }
 
   updateUser() {
-    this.user.vacunas = this.vacunasComp.vacunas
-    this.http
-      .put<any>(this.URL + '/user/' + this.getIdPerson(), this.user)
-      .subscribe(
-        (res) => {
-          this.router.navigate(['/AdminProfileView', this.getIdPerson()])
-        },
-        (err) => {
-          console.log(err)
-        }
-      )
+    if (this.isValidCuil()) {
+      this.user.vacunas = this.vacunasComp.vacunas
+      this.http
+        .put<any>(this.URL + '/user/' + this.getIdPerson(), this.user)
+        .subscribe(
+          (res) => {
+            this.router.navigate(['/AdminProfileView', this.getIdPerson()])
+          },
+          (err) => {
+            console.log(err)
+          }
+        )
+    } else
+      this.errorMsg =
+        'El cuil no posee un formato correcto. CUIL: xx-xxxxxxxx-x'
   }
   redirectToView() {
     this.router.navigate(['/AdminProfileView', this.getIdPerson()])
