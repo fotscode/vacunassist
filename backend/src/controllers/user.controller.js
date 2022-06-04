@@ -164,7 +164,10 @@ exports.updateUser = (req, res, next) => {
       user.lastName = req.body.lastName.trim()
       user.email = req.body.email.trim()
       user.riesgo = req.body.riesgo
+      user.role=req.body.role
+      user.cuil=req.body.cuil
       user.sede = req.body.sede.nombre.trim()
+      user.fechaNac=new Date(req.body.fechaNac).getTime()
       User.findOneAndUpdate(
         { _id: req.params.user_id },
         user,
@@ -176,7 +179,7 @@ exports.updateUser = (req, res, next) => {
               if (vaccines) {
                 vaccines.forEach((vac) => {
                   let dataToUpdate = Object.entries(req.body.vacunas).filter(
-                    ([k, v]) => v.modifiable && k == vac.vaccineId
+                    ([k, v]) => k === vac.vaccineId
                   )
                   if (dataToUpdate) {
                     dataToUpdate = dataToUpdate[0][1]
