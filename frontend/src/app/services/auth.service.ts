@@ -5,6 +5,7 @@ import * as moment from 'moment'
 import { environment } from 'src/environments/environment'
 interface User {
   validated: boolean
+  fechaNac:number
 }
 
 @Injectable({

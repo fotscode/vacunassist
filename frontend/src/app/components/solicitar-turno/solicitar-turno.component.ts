@@ -20,6 +20,7 @@ interface Approvable {
   validated: boolean // esta validado
   maxCount: boolean // cantidad maxima del dia
   pending: boolean // si ya solicito
+  ageAllowed?: boolean // si es mayor/igual a 18 anios en covid
 }
 
 @Component({
@@ -35,6 +36,7 @@ export class SolicitarTurnoComponent implements OnInit {
     validated: false,
     maxCount: false,
     pending: false,
+    ageAllowed: false,
   }
 
   gripe: Approvable = {
@@ -68,6 +70,11 @@ export class SolicitarTurnoComponent implements OnInit {
       a.maxDosage = v.doseNumber < doseMax
       this.authService.getUser().subscribe((res) => {
         a.validated = res.validated
+        if (typeof a.ageAllowed !== 'undefined') {
+          a.ageAllowed =
+            (new Date().getTime() - res.fechaNac) / 1000 / 60 / 60 / 24 / 365 >=
+            18
+        }
       })
       this.isBelowMaxCount().then((r) => (a.maxCount = r))
       a.pending = !v.dateIssued || v.dateIssued == 0
@@ -129,6 +136,8 @@ export class SolicitarTurnoComponent implements OnInit {
       ? 'Ya tiene un turno pendiente'
       : !a.maxCount
       ? 'No hay mas dosis diarias de vacunas'
-      : 'Ya tiene la cantidad de dosis maximas'
+      : !a.maxDosage
+      ? 'Ya tiene la cantidad de dosis maximas'
+      : 'Menores de edad no pueden solicitar turnos'
   }
 }
