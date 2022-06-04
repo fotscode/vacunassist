@@ -68,7 +68,7 @@ export class AdminProfileViewComponent implements OnInit {
           this.user.lastName = res.lastName
           this.user.email = res.email
           this.user.cuil = res.cuil
-          this.user.riesgo = res.riesgo==='true' ? true : false
+          this.user.riesgo = res.riesgo
           this.user.fechaNac=this.formatDate(new Date(res.fechaNac))
           let sede = this.sedes.find((s) => s.nombre == res.sede)
           // si no encuentra la sede guardada pone la primera
