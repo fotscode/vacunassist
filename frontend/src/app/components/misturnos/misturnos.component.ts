@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
+import { DialogCancelTurnoComponent } from '../dialog-cancel-turno/dialog-cancel-turno.component'
 
 interface Vacuna {
   _id: string
@@ -33,7 +35,7 @@ export class MisturnosComponent implements OnInit {
 
   turnos: Array<Turno> = []
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(public popup: MatDialog,private http: HttpClient, private authService: AuthService) {}
   private formatDate(d: Date): string {
     let y = d.getFullYear()
     let m = d.getMonth() + 1
@@ -47,6 +49,23 @@ export class MisturnosComponent implements OnInit {
   private getEstado(dConfirmed: number, applied: boolean): string {
     return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
   }
+
+  cancelAttempt(id:string,appl:boolean){
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogCancelTurnoComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.cancelAppointment(id, appl)
+        }
+      })
+  }
+
 
   cancelAppointment(id: string,appl:boolean) {
     this.http.put(this.URL + '/cancel/' + id, {applied:appl}).subscribe((res) => {
