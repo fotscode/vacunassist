@@ -19,7 +19,7 @@
           <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef> Borrar </th>
             <td mat-cell *matCellDef="let sede">
-              <a (click)="borrarRenglon(sede.name)">X</a>
+            <a *ngIf="sede.nro>3" (click)="borrarRenglon(sede.name)">X</a>
             </td>
           </ng-container>
 

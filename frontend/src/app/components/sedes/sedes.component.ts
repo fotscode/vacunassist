@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
+import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
+import { User } from '../register-page/register-page.component'
 
 export interface Sede {
   nro: number
@@ -31,7 +33,7 @@ export class SedesComponent implements OnInit {
     if (this.sedeName) {
       this.http.post<Sede>(this.URL, { sedeName: this.sedeName }).subscribe(
         (res) => {
-          let temp = this.sedes.slice()
+          let temp = this.data.data.slice()
           temp.push({ nro: temp.length + 1, name: res.name })
           this.errorMsg = this.sedeName = ''
           this.data.data = temp
@@ -47,14 +49,29 @@ export class SedesComponent implements OnInit {
     } // TODO cambiar HU
   }
 
-  borrarRenglon(sedeName: string) {
-    this.http.delete(this.URL + sedeName).subscribe((res) => {
-      /* TODO snackbar
-       *res tambien responde un
-       * error si no pudo eliminar la sede
-       */
-      this.data.data = this.sedes
-      this.ngOnInit()
+  async borrarRenglon(sedeName: string) {
+    if (await this.isUsed(sedeName)) {
+      this.http.delete(this.URL + sedeName).subscribe((res) => {
+        /* TODO snackbar
+         *res tambien responde un
+         * error si no pudo eliminar la sede
+         */
+        this.data.data = this.sedes
+        this.ngOnInit()
+      })
+    } else {
+      this.errorMsg =
+        'No se pudo borrar la sede ya que hay usuarios utilizandola'
+    }
+  }
+  private isUsed(s: string): Promise<Boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<Array<User>>(environment.baseApiUrl + '/users/user/')
+        .subscribe((res) => {
+          if (res.every((u) => u.sede.trim() !== s)) resolve(true)
+          else resolve(false)
+        })
     })
   }
 
