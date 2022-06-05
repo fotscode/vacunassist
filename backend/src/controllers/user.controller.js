@@ -36,7 +36,7 @@ exports.signUp = (req, res, next) => {
         email: req.body.email.trim(),
         cuil: req.body.cuil.trim(),
         riesgo: req.body.riesgo,
-        sede: req.body.sede.nombre.trim(),
+        sede: req.body.sede.name.trim(),
         role: req.body.role,
         fechaNac: new Date(req.body.fecha).getTime(),
         validated: req.body.validated,
@@ -166,7 +166,7 @@ exports.updateUser = (req, res, next) => {
       user.riesgo = req.body.riesgo
       user.role=req.body.role
       user.cuil=req.body.cuil
-      user.sede = req.body.sede.nombre.trim()
+      user.sede = req.body.sede.name.trim()
       user.fechaNac=new Date(req.body.fechaNac).getTime()
       User.findOneAndUpdate(
         { _id: req.params.user_id },

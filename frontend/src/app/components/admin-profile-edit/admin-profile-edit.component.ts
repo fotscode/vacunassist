@@ -3,13 +3,8 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
-import { AdminVacunasEditComponent } from '../admin-vacunas-edit/admin-vacunas-edit.component'
-import { VacunasEditComponent } from '../vacunas-edit/vacunas-edit.component'
+import { Sede } from '../sedes/sedes.component'
 
-interface Sede {
-  id: number
-  nombre: String
-}
 export interface Rol {
   id: number
   nombre: String
@@ -25,9 +20,9 @@ export class AdminProfileEditComponent implements OnInit {
   errorMsg: string = ''
   public id: string
   sedes: Sede[] = [
-    { id: 1, nombre: 'Bosque' },
-    { id: 2, nombre: 'Centro' },
-    { id: 3, nombre: 'Estadio' },
+    { nro: 1, name: 'Bosque' },
+    { nro: 2, name: 'Centro' },
+    { nro: 3, name: 'Estadio' },
   ]
   roles: Rol[] = [
     { id: 1, nombre: 'Paciente' },
@@ -57,6 +52,9 @@ export class AdminProfileEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.id = this.getIdPerson() || ''
+  }
+
+  ngOnInit(): void {
     this.http.get<any>(this.URL + '/user/' + this.getIdPerson()).subscribe(
       (res) => {
         this.nivel = this.getNivel(res.role)
@@ -67,9 +65,7 @@ export class AdminProfileEditComponent implements OnInit {
         this.user.cuil = res.cuil
         this.user.riesgo = res.riesgo
         this.user.fechaNac = new Date(res.fechaNac)
-        let sede = this.sedes.find((s) => s.nombre == res.sede)
-        // si no encuentra la sede guardada pone la primera
-        this.user.sede = sede ? sede : this.sedes[1]
+        this.getSedes(res.sede)
       },
       (err) => {
         console.log(err)
@@ -77,7 +73,17 @@ export class AdminProfileEditComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {}
+  private getSedes(sede: string) {
+    this.http
+      .get<Array<Sede>>(environment.baseApiUrl + '/sites/')
+      .subscribe((res) => {
+        res.forEach((s) =>
+          this.sedes.push({ nro: this.sedes.length + 1, name: s.name.trim() })
+        )
+        let s = this.sedes.find((s) => s.name == sede)
+        this.user.sede = s ? s : this.sedes[1]
+      })
+  }
 
   setSede(s: Sede) {
     this.user.sede = s

@@ -11,13 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
-import { VacunasEditComponent } from '../vacunas-edit/vacunas-edit.component'
-import { MatDatepickerModule } from '@angular/material/datepicker'
-
-interface Sede {
-  id: number
-  nombre: String
-}
+import { Sede } from '../sedes/sedes.component'
 
 @Component({
   selector: 'app-profile-edit',
@@ -28,9 +22,9 @@ export class ProfileEditComponent implements OnInit {
   @ViewChild('vacunasEdit') myId: any
   errorMsg: string = ''
   sedes: Sede[] = [
-    { id: 1, nombre: 'Bosque' },
-    { id: 2, nombre: 'Centro' },
-    { id: 3, nombre: 'Estadio' },
+    { nro: 1, name: 'Bosque' },
+    { nro: 2, name: 'Centro' },
+    { nro: 3, name: 'Estadio' },
   ]
 
   nivel = ''
@@ -51,7 +45,9 @@ export class ProfileEditComponent implements OnInit {
     @Inject(MatSnackBar) private snackBar: MatSnackBar,
     private authService: AuthService,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.http
       .get<any>(this.URL + '/user/' + this.authService.getId())
       .subscribe(
@@ -63,17 +59,25 @@ export class ProfileEditComponent implements OnInit {
           this.user.cuil = res.cuil
           this.user.riesgo = res.riesgo
           this.user.fechaNac = new Date(res.fechaNac)
-          let sede = this.sedes.find((s) => s.nombre == res.sede)
+          this.getSedes(res.sede)
           // si no encuentra la sede guardada pone la primera
-          this.user.sede = sede ? sede : this.sedes[1]
         },
         (err) => {
           console.log(err)
         }
       )
   }
-
-  ngOnInit(): void {}
+  private getSedes(sede: string) {
+    this.http
+      .get<Array<Sede>>(environment.baseApiUrl + '/sites/')
+      .subscribe((res) => {
+        res.forEach((s) =>
+          this.sedes.push({ nro: this.sedes.length + 1, name: s.name.trim() })
+        )
+        let s = this.sedes.find((s) => s.name == sede)
+        this.user.sede = s ? s : this.sedes[1]
+      })
+  }
 
   setSede(s: Sede) {
     this.user.sede = s

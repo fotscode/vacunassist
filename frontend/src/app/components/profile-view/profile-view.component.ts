@@ -2,11 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
-
-interface Sede {
-  id: number
-  nombre: String
-}
+import { Sede } from '../sedes/sedes.component'
 
 @Component({
   selector: 'app-profile-view',
@@ -22,35 +18,47 @@ export class ProfileViewComponent implements OnInit {
   riesgo = false
   fechaNac = this.formatDate(new Date())
   sedes: Sede[] = [
-    { id: 1, nombre: 'Bosque' },
-    { id: 2, nombre: 'Centro' },
-    { id: 3, nombre: 'Estadio' },
+    { nro: 1, name: 'Bosque' },
+    { nro: 2, name: 'Centro' },
+    { nro: 3, name: 'Estadio' },
   ]
   sede: Sede = this.sedes[1]
   dosis = ['Gripe: 1', 'COVID: 2']
 
   private URL = environment.baseApiUrl + '/users'
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.http.get<any>(this.URL + '/user/' + authService.getId()).subscribe(
-      (res) => {
-        this.nivel = this.getNivel()
-        this.nombre = res.firstName
-        this.apellido = res.lastName
-        this.email = res.email
-        this.cuil = res.cuil
-        this.fechaNac = this.formatDate(new Date(res.fechaNac))
-        this.riesgo = res.riesgo
-        let sede = this.sedes.find((s) => s.nombre == res.sede)
-        // si no encuentra la sede guardada pone la primera
-        this.sede = sede ? sede : this.sedes[1]
-      },
-      (err) => {
-        console.log(err)
-      }
-    )
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.http
+      .get<any>(this.URL + '/user/' + this.authService.getId())
+      .subscribe(
+        (res) => {
+          this.nivel = this.getNivel()
+          this.nombre = res.firstName
+          this.apellido = res.lastName
+          this.email = res.email
+          this.cuil = res.cuil
+          this.fechaNac = this.formatDate(new Date(res.fechaNac))
+          this.riesgo = res.riesgo
+          this.getSedes(res.sede)
+        },
+        (err) => {
+          console.log(err)
+        }
+      )
   }
 
-  ngOnInit(): void {}
+  private getSedes(sede: string) {
+    this.http
+      .get<Array<Sede>>(environment.baseApiUrl + '/sites/')
+      .subscribe((res) => {
+        res.forEach((s) =>
+          this.sedes.push({ nro: this.sedes.length + 1, name: s.name.trim() })
+        )
+        let s = this.sedes.find((s) => s.name == sede)
+        this.sede = s ? s : this.sedes[1]
+      })
+  }
 
   setSede(s: Sede) {
     this.sede = s

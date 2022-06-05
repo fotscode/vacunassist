@@ -85,14 +85,14 @@
         </div>
 
         <mat-form-field appearance="fill" class="sede">
-          <mat-label>{{ user.sede.nombre }}</mat-label>
+          <mat-label>{{ user.sede.name }}</mat-label>
           <mat-select [disabled]="true">
             <mat-option
               *ngFor="let sede of sedes"
-              [value]="sede.id"
+              [value]="sede.nro"
               (onSelectionChange)="setSede(sede)"
             >
-              {{ sede.nombre }}
+              {{ sede.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
