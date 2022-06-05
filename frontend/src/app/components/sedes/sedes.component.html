@@ -12,14 +12,14 @@
             <th mat-header-cell *matHeaderCellDef> NRO. </th>
             <td mat-cell *matCellDef="let sede"> {{sede.nro}} </td>
           </ng-container>
-          <ng-container matColumnDef="nombre" class="columnasNombre">
+          <ng-container matColumnDef="name" class="columnasNombre">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let sede"> {{sede.nombre}} </td>
+            <td mat-cell *matCellDef="let sede"> {{sede.name}} </td>
           </ng-container>
           <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef> Borrar </th>
             <td mat-cell *matCellDef="let sede">
-              <a (click)="borrarRenglon(sede)">X</a>
+              <a (click)="borrarRenglon(sede.name)">X</a>
             </td>
           </ng-container>
 
@@ -35,18 +35,19 @@
               <input
               type="text"
               name="nuevaSede"
+              [(ngModel)]="sedeName"
               class="form-control"
               />
             </div>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1" class="columnaDerecha">
-            <button mat-raised-button class="botonAgregar">
+            <button mat-raised-button (click)="addSede()" class="botonAgregar">
               Agregar
             </button>
           </mat-grid-tile>
         </mat-grid-list>
       </div>
-
+        <span style="color:red">{{errorMsg}}</span>
       <mat-card-actions class="opciones d-flex justify-content-center">
         <button mat-raised-button class="botonRegresar" routerLink="/Home">
           Regresar
