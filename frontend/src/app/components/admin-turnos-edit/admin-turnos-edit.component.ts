@@ -5,9 +5,7 @@ export interface Sede {
   nombre:string
 }
 const SEDES: Sede[] = [
-  {nro:1, nombre:'Bosque'},
-  {nro:2, nombre:'Centro'},
-  {nro:3, nombre:'Estadio'},
+  {nro:1, nombre:'Centro'},
 ]
 
 @Component({
