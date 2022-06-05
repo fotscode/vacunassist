@@ -126,18 +126,21 @@ export class SolicitarTurnoComponent implements OnInit {
           console.log(err)
         })
     } else if (v) {
-      this.errorMsg = this.getErrMsg(a) // TODO hacer mas lindo esto
+      this.snackBar.open(
+        'Error al solicitar turno',
+        void 0,{duration: 3000,})
+      this.errorMsg = this.getErrMsg(a)
     }
   }
   private getErrMsg(a: Approvable): string {
     return !a.validated
       ? 'No se encuentra validado'
       : !a.pending
-      ? 'Ya tiene un turno pendiente'
+      ? 'Ya tenés un turno pendiente para esta vacuna'
       : !a.maxCount
       ? 'No hay mas dosis diarias de vacunas'
       : !a.maxDosage
-      ? 'Ya tiene la cantidad de dosis maximas'
-      : 'Menores de edad no pueden solicitar turnos'
+      ? 'Ya tenés la cantidad de dosis máxima'
+      : 'Los menores de edad no pueden solicitar turnos'
   }
 }

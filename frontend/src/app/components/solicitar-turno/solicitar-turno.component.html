@@ -4,12 +4,9 @@
     Solicitar turno
   </h4>
   <mat-card class="seccion">
-    <mat-card-header>
-      <div class="titulo">
-        <h1>¿De qué vacuna querés solicitar tu turno?</h1>
-      </div>
-    </mat-card-header>
-
+    <div class="titulo">
+      ¿De qué vacuna querés solicitar tu turno?
+    </div>
     <mat-card-content class="cuerpo" style="font-size: 16px">
       <mat-grid-list cols="2" rowHeight="fit" style="height: 100px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -29,7 +26,9 @@
           </button>
         </mat-grid-tile>
       </mat-grid-list>
-      <span style="color: red"> {{ errorMsg }}</span>
+      <div class="errorMsg">
+        <span style="color: red"> {{ errorMsg }}</span>
+      </div>
     </mat-card-content>
     <mat-card-actions class="opciones">
       <button mat-raised-button class="actionBoton" routerLink="/Home">
