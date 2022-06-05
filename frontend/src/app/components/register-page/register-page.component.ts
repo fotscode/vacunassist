@@ -4,11 +4,23 @@ import { Router } from '@angular/router'
 import * as moment from 'moment'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Inject } from '@angular/core'
-
-interface Sede {
-  id: number
-  nombre: String
+import {Sede} from '../sedes/sedes.component'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
+export interface User {
+    firstName: string
+    lastName: string
+    email: string
+    cuil: string
+    riesgo: boolean
+    sede: string
+    password: string
+    fecha: Date
+    validated: boolean
+    vacunas: Object
 }
+
+
 
 @Component({
   selector: 'app-register-page',
@@ -17,9 +29,9 @@ interface Sede {
 })
 export class RegisterPageComponent implements OnInit {
   sedes: Sede[] = [
-    { id: 1, nombre: 'Bosque' },
-    { id: 2, nombre: 'Centro' },
-    { id: 3, nombre: 'Estadio' },
+    { nro: 1, name: 'Bosque' },
+    { nro: 2, name: 'Centro' },
+    { nro: 3, name: 'Estadio' },
   ]
   dosisCovid: number = 1
   dosisGripe: number = 0
@@ -61,10 +73,13 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private http:HttpClient,
     @Inject(MatSnackBar) private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getSedes()
+  }
 
   setSede(s: Sede) {
     this.user.sede = s
@@ -92,5 +107,14 @@ export class RegisterPageComponent implements OnInit {
   private isValidCuil(): Boolean{
     const regex= /^(20|23|24|27)[-]?\d{8}[-]?\d{1}$/
     return regex.test(this.user.cuil)
+  }
+  private getSedes() {
+    this.http
+      .get<Array<Sede>>(environment.baseApiUrl + '/sites/')
+      .subscribe((res) => {
+        res.forEach((s) =>
+          this.sedes.push({ nro: this.sedes.length + 1, name: s.name.trim() })
+        )
+      })
   }
 }
