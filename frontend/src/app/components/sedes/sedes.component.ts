@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { Component, Inject, OnInit, ViewChild } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 import { User } from '../register-page/register-page.component'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 export interface Sede {
   nro: number
@@ -27,17 +28,22 @@ export class SedesComponent implements OnInit {
   columnasMostradas: string[] = ['nro', 'name', 'accion']
   sedeName: string = ''
   errorMsg: string = ''
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar
+    ) {}
 
   addSede() {
     if (this.sedeName) {
       this.http.post<Sede>(this.URL, { sedeName: this.sedeName }).subscribe(
         (res) => {
           let temp = this.data.data.slice()
+          let nuevaSede = this.sedeName
           temp.push({ nro: temp.length + 1, name: res.name })
           this.errorMsg = this.sedeName = ''
           this.data.data = temp
-          // TODO snackbar
+          this.snackBar.open(
+            `Sede ${nuevaSede} agregada con éxito`,
+            void 0,{duration: 3000,})
         },
         (err) => {
           this.errorMsg = 'Ya existe una sede con el mismo nombre'
@@ -46,22 +52,21 @@ export class SedesComponent implements OnInit {
       )
     } else {
       this.errorMsg = 'No se puede agregar una sede vacia'
-    } // TODO cambiar HU
+    }
   }
 
   async borrarRenglon(sedeName: string) {
     if (await this.isUsed(sedeName)) {
       this.http.delete(this.URL + sedeName).subscribe((res) => {
-        /* TODO snackbar
-         *res tambien responde un
-         * error si no pudo eliminar la sede
-         */
         this.data.data = this.sedes
         this.ngOnInit()
       })
     } else {
       this.errorMsg =
-        'No se pudo borrar la sede ya que hay usuarios utilizandola'
+        'No se pudo borrar la sede ya que hay usuarios utilizandola';
+      this.snackBar.open(
+        `No se pudo eliminar la sede ${sedeName}`,
+        void 0,{duration: 3000,})
     }
   }
   private isUsed(s: string): Promise<Boolean> {

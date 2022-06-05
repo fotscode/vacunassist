@@ -43,10 +43,10 @@
 }
 
 .nuevaSede {
-  width: 80%;
+  width: 75%;
   margin: auto;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .tablaNuevaSede{
@@ -69,4 +69,10 @@ input {
 
 .form-control {
   height: 30px;
+}
+
+.error-msg {
+  padding-bottom: 1rem;
+  width: 90%;
+  margin:auto;
 }
