@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 import { User } from '../register-page/register-page.component'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { DialogSedeDeleteComponent } from '../dialog-sede-delete/dialog-sede-delete.component'
 
 export interface Sede {
   nro: number
@@ -26,7 +28,7 @@ export class SedesComponent implements OnInit {
   columnasMostradas: string[] = ['nro', 'name', 'accion']
   sedeName: string = ''
   errorMsg: string = ''
-  constructor(private http: HttpClient,
+  constructor(public popup: MatDialog, private http: HttpClient,
     @Inject(MatSnackBar) private snackBar: MatSnackBar
     ) {}
 
@@ -56,6 +58,9 @@ export class SedesComponent implements OnInit {
   async borrarRenglon(sedeName: string) {
     if (await this.isUsed(sedeName)) {
       this.http.delete(this.URL + sedeName).subscribe((res) => {
+        this.snackBar.open(
+          `Se ha eliminado con éxito la sede ${sedeName}`,
+          void 0,{duration: 3000,})
         this.data.data = this.sedes
         this.ngOnInit()
       })
@@ -77,6 +82,22 @@ export class SedesComponent implements OnInit {
         })
     })
   }
+
+  deleteAttempt(name: string): void {
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogSedeDeleteComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.borrarRenglon(name)
+        }
+      })
+   }
 
   ngOnInit(): void {
     this.http.get<Array<Sede>>(this.URL).subscribe((res) => {
