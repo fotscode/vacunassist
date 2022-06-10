@@ -5,6 +5,7 @@
         <th scope="col">Estado</th>
         <th scope="col">Vacuna</th>
         <th scope="col">Fecha</th>
+        <th scope="col">Sede</th>
         <th scope="col">Cancelar</th>
       </tr>
     </thead>
@@ -13,6 +14,7 @@
         <th scope="row">{{ turno.estado }}</th>
         <td>{{ turno.vacuna }}</td>
         <td>{{ turno.fecha }}</td>
+        <td></td>
         <td><button (click)="cancelAttempt(turno.id,turno.applied)">X</button></td>
       </tr>
     </tbody>
