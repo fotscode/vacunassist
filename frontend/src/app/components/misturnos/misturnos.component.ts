@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 import { DialogCancelTurnoComponent } from '../dialog-cancel-turno/dialog-cancel-turno.component'
 
-interface Vacuna {
+export interface Vacuna {
   _id: string
   applied: boolean
   createdAt: Date
@@ -15,6 +15,7 @@ interface Vacuna {
   doseNumber: number
   modifiable: boolean
   vaccineId: string
+  sede:string
 }
 
 interface Turno {
@@ -23,6 +24,7 @@ interface Turno {
   vacuna: string
   fecha: string
   applied: boolean
+  sede:string
 }
 
 @Component({
@@ -87,8 +89,9 @@ export class MisturnosComponent implements OnInit {
               estado: this.getEstado(v.dateConfirmed, v.applied),
               vacuna: this.firstLetterUpper(v.vaccineId),
               fecha: !v.dateConfirmed
-                ? 'No hay fecha'
+                ? 'A confirmar'
                 : this.formatDate(new Date(v.dateConfirmed)),
+              sede: v.dateConfirmed ? v.sede : 'A confirmar',
             }
             this.turnos.push(turno)
           })

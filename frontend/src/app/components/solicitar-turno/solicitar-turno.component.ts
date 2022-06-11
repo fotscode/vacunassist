@@ -13,6 +13,7 @@ interface Vacuna {
   doseNumber: number
   modifiable: boolean
   vaccineId: string
+  sede:string
 }
 
 interface Approvable {
@@ -109,11 +110,12 @@ export class SolicitarTurnoComponent implements OnInit {
     )
   }
 
-  solicitarTurno(v: Vacuna | undefined, a: Approvable) {
+  async solicitarTurno(v: Vacuna | undefined, a: Approvable) {
     if (v && this.isApprovable(a)) {
       v.dateIssued = new Date().getTime()
       v.modifiable = false
       a.pending = false
+      await this.getSede().then((res)=>v.sede=res);
       this.http
         .put(this.URL + '/' + v._id, v)
         .toPromise()
@@ -142,5 +144,15 @@ export class SolicitarTurnoComponent implements OnInit {
       : !a.maxDosage
       ? 'Ya tenés la cantidad de dosis máxima'
       : 'Los menores de edad no pueden solicitar turnos'
+  }
+
+  private async getSede():Promise<string>{
+    return new Promise((resolve,reject)=>{
+      this.authService.getUser().subscribe((res)=>{
+        resolve(res.sede)
+      },(err)=>reject(err))
+
+    })
+
   }
 }

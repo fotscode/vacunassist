@@ -14,7 +14,7 @@
         <th scope="row">{{ turno.estado }}</th>
         <td>{{ turno.vacuna }}</td>
         <td>{{ turno.fecha }}</td>
-        <td></td>
+        <td>{{turno.sede}}</td>
         <td><button (click)="cancelAttempt(turno.id,turno.applied)">X</button></td>
       </tr>
     </tbody>

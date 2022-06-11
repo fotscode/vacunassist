@@ -10,6 +10,7 @@ const userVaccinesSchema = new Schema(
     dateIssued:{type:Number,required:false},
     dateConfirmed:{type:Number,required:false},
     dateApplied:{type:Number,required:false},
+    sede:{type:String,required:false},
   },
   {
     timestamps: true,

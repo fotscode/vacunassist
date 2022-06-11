@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment'
 interface User {
   validated: boolean
   fechaNac:number
+  sede:string
 }
 
 @Injectable({
