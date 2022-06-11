@@ -7,6 +7,7 @@ import { User } from '../register-page/register-page.component'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { DialogSedeDeleteComponent } from '../dialog-sede-delete/dialog-sede-delete.component'
+import { Vacuna } from '../misturnos/misturnos.component'
 
 export interface Sede {
   nro: number
@@ -20,17 +21,18 @@ export interface Sede {
 })
 export class SedesComponent implements OnInit {
   private URL: string = environment.baseApiUrl + '/sites/'
-  sedes: Sede[] = [
-    { nro: 1, name: 'Centro' },
-  ]
+  sedes: Sede[] = [{ nro: 1, name: 'Centro' }]
 
   data = new MatTableDataSource<Sede>()
   columnasMostradas: string[] = ['nro', 'name', 'accion']
   sedeName: string = ''
   errorMsg: string = ''
-  constructor(public popup: MatDialog, private http: HttpClient,
-    @Inject(MatSnackBar) private snackBar: MatSnackBar
-    ) {}
+  constructor(
+    public popup: MatDialog,
+    private http: HttpClient,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
+    private authService: AuthService
+  ) {}
 
   addSede() {
     if (this.sedeName) {
@@ -41,9 +43,9 @@ export class SedesComponent implements OnInit {
           temp.push({ nro: temp.length + 1, name: res.name })
           this.errorMsg = this.sedeName = ''
           this.data.data = temp
-          this.snackBar.open(
-            `Sede ${nuevaSede} agregada con éxito`,
-            void 0,{duration: 3000,})
+          this.snackBar.open(`Sede ${nuevaSede} agregada con éxito`, void 0, {
+            duration: 3000,
+          })
         },
         (err) => {
           this.errorMsg = 'Ya existe una sede con el mismo nombre'
@@ -56,23 +58,33 @@ export class SedesComponent implements OnInit {
   }
 
   async borrarRenglon(sedeName: string) {
-    if (await this.isUsed(sedeName)) {
+    let userNotUsing = await this.notUsedOnUser(sedeName)
+    let vaccineNotUsing = await this.notUsedOnVaccine(sedeName)
+    if (userNotUsing && vaccineNotUsing) {
       this.http.delete(this.URL + sedeName).subscribe((res) => {
         this.snackBar.open(
           `Se ha eliminado con éxito la sede ${sedeName}`,
-          void 0,{duration: 3000,})
+          void 0,
+          { duration: 3000 }
+        )
         this.data.data = this.sedes
         this.ngOnInit()
       })
+    } else if (!userNotUsing) {
+      this.errorMsg =
+        'No se pudo borrar la sede ya que hay usuarios utilizandola'
+      this.snackBar.open(`No se pudo eliminar la sede ${sedeName}`, void 0, {
+        duration: 3000,
+      })
     } else {
       this.errorMsg =
-        'No se pudo borrar la sede ya que hay usuarios utilizandola';
-      this.snackBar.open(
-        `No se pudo eliminar la sede ${sedeName}`,
-        void 0,{duration: 3000,})
+        'No se pudo borrar la sede ya que hay turnos utilizandola'
+      this.snackBar.open(`No se pudo eliminar la sede ${sedeName}`, void 0, {
+        duration: 3000,
+      })
     }
   }
-  private isUsed(s: string): Promise<Boolean> {
+  private notUsedOnUser(s: string): Promise<Boolean> {
     return new Promise((resolve, reject) => {
       this.http
         .get<Array<User>>(environment.baseApiUrl + '/users/user/')
@@ -82,22 +94,34 @@ export class SedesComponent implements OnInit {
         })
     })
   }
+  private notUsedOnVaccine(s: string): Promise<Boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<Array<Vacuna>>(
+          environment.baseApiUrl +
+            '/usersVaccines/user/' +
+            this.authService.getId()
+        )
+        .subscribe((res) => {
+          console.log(res)
+          if (res.every((v) => v.sede?.trim() !== s)) resolve(true)
+          else resolve(false)
+        })
+    })
+  }
 
   deleteAttempt(name: string): void {
     const dialogConfig = new MatDialogConfig()
-      dialogConfig.disableClose = true
-      dialogConfig.autoFocus = false
-      dialogConfig.width = '500px'
-      const referencia = this.popup.open(
-        DialogSedeDeleteComponent,
-        dialogConfig
-      )
-      referencia.afterClosed().subscribe((result) => {
-        if (result) {
-          this.borrarRenglon(name)
-        }
-      })
-   }
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = false
+    dialogConfig.width = '500px'
+    const referencia = this.popup.open(DialogSedeDeleteComponent, dialogConfig)
+    referencia.afterClosed().subscribe((result) => {
+      if (result) {
+        this.borrarRenglon(name)
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.http.get<Array<Sede>>(this.URL).subscribe((res) => {
