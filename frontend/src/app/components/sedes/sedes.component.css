@@ -76,3 +76,7 @@ input {
   width: 90%;
   margin:auto;
 }
+
+.mat-header-cell {
+  background-color: aliceblue;
+}
