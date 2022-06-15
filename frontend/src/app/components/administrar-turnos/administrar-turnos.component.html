@@ -1,26 +1,37 @@
 <app-navigation-header></app-navigation-header>
 <div class="contenedor">
     <h4 class="categoria" style="font-size: 30px; color: white">
-      Sedes
+      Administrar Turnos
     </h4>
     <mat-card class="cuerpo">
 
-      <div>
+      <div class="tablaTurnos">
         <table mat-table [dataSource]="data" class="turnosPendientes">
           <ng-container matColumnDef="nro">
             <th mat-header-cell *matHeaderCellDef> NRO. </th>
-            <td mat-cell *matCellDef="let turno"> {{turno.nro}} </td>
+            <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
           </ng-container>
-          <ng-container matColumnDef="nombre" class="columnasNombre">
+          <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let turno"> {{turno.nombre}} </td>
+            <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
+          </ng-container>
+          <ng-container matColumnDef="vacuna">
+            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
+            <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
+          </ng-container>
+          <ng-container matColumnDef="sede">
+            <th mat-header-cell *matHeaderCellDef> Sede </th>
+            <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
           </ng-container>
           <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let turno">
-              <a (click)="rechazarTurno(turno)">Aceptar</a>
-              <a> | </a>
-              <a (click)="rechazarTurno(turno)">Rechazar</a>
+            <td mat-cell class="accionesColumna" *matCellDef="let turno">
+              <button class="botonAceptar" mat-flat-button (click)="aceptarTurno(turno)" color="aceptar">Aceptar</button>
+              <button mat-flat-button (click)="rechazarTurno(turno)" color="rechazar">Rechazar</button>
             </td>
           </ng-container>
 

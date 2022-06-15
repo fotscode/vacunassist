@@ -1,7 +1,7 @@
 .contenedor {
   margin: auto;
   min-height: fit-content;
-  width:35%;
+  width:60%;
   margin-top: 3rem;
   background-color: #689f77;
   align-self: center;
@@ -24,42 +24,60 @@
   min-height: 90%;
 }
 
-.botonAgregar {
-  width: 130px;
-  margin:auto;
-  margin-top: 28px;
-  height: 35px;
-}
-
 .botonRegresar {
   margin: 2rem;
   width: 130px;
   margin:auto;
 }
 
-.tabla {
-  margin: auto;
-  width: 80%;
-}
-
-.tablaNuevaSede{
-  margin: auto;
-}
-
-.mat-column-nro {
-  text-align: center;
-}
-
-.mat-column-nombre {
-  text-align: center;
-  padding-left: 1rem;
-  width: 80%;
-}
-
-.form-control {
-  height: 30px;
-}
-
 .mat-header-cell {
   background-color: aliceblue;
+  text-align: center;
 }
+
+.mat-cell {
+  text-align: center;
+}
+
+.tablaTurnos {
+  margin-bottom: 2rem;
+}
+
+.accionesColumna{
+  width: 25%;
+}
+
+.botonAceptar{
+  margin-right: 8px;
+}
+
+.columnaNro {
+  width: 5%;
+}
+
+.columnaNombre {
+  width: 20%;
+}
+
+.columnaApellido{
+  width: 20%;
+}
+
+.columnaVacuna {
+  width: 10%;
+}
+
+.columnaSede {
+  width: 20%;
+}
+
+.mat-aceptar {
+  background-color: rgb(79, 216, 79);
+  color: #ffffff;
+}
+
+.mat-rechazar {
+  background-color: rgb(219, 90, 86);
+  color: #ffffff;
+}
+
