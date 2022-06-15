@@ -24,6 +24,7 @@ import { LoggedInGuard } from './logged-in.guard';
 import { ValidatedGuard } from './validated.guard';
 import { SedesComponent } from './components/sedes/sedes.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component'
+import { AdministrarTurnosComponent } from './components/administrar-turnos/administrar-turnos.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -43,6 +44,7 @@ const routes: Routes=[
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard]},
+  {path: 'AdministrarTurnos', component:AdministrarTurnosComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

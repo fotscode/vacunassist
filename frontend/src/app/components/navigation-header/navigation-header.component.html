@@ -24,6 +24,9 @@
                 <li class="nav-item">
                   <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Sedes">Sedes</a>
                 </li>
+                <li class="nav-item">
+                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/AdministrarTurnos">Turnos</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav" *ngIf="isLogged()">
