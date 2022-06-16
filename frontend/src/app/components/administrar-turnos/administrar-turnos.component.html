@@ -31,7 +31,7 @@
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell class="accionesColumna" *matCellDef="let turno">
               <button class="botonAceptar" mat-flat-button (click)="aceptarTurno(turno)" color="aceptar">Aceptar</button>
-              <button mat-flat-button (click)="rechazarTurno(turno)" color="rechazar">Rechazar</button>
+              <button mat-flat-button (click)="rechazarTurnoAttempt(turno)" color="rechazar">Rechazar</button>
             </td>
           </ng-container>
 

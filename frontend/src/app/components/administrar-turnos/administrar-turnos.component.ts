@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { DialogRechazarTurnoComponent } from '../dialog-rechazar-turno/dialog-rechazar-turno.component';
 
 export interface Sede {
   nro:number,
@@ -22,7 +25,6 @@ const SEDES: Sede[] = [
   styleUrls: ['./administrar-turnos.component.css']
 })
 export class AdministrarTurnosComponent implements OnInit {
-
   data = SEDES;
   columnasMostradas: string[] = [
     'nro',
@@ -33,17 +35,32 @@ export class AdministrarTurnosComponent implements OnInit {
     'accion',
   ]
 
+  constructor(@Inject(MatSnackBar) private snackBar: MatSnackBar,
+            public popup: MatDialog,) { }
+
   aceptarTurno(turno:any){
 
   }
 
   rechazarTurno(turno:any){
-    this.data = this.data.filter((value,key)=>{
-      return value.nro != turno.id;
-    });
-  }
-  constructor() { }
 
-  ngOnInit(): void {
   }
+
+  rechazarTurnoAttempt(turno:any){
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogRechazarTurnoComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.rechazarTurno(turno)
+        }
+      })
+  }
+
+  ngOnInit(): void {}
 }
