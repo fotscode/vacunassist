@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { DialogRechazarTurnoComponent } from '../dialog-rechazar-turno/dialog-rechazar-turno.component';
+import { Router } from '@angular/router'
 
 export interface Sede {
   nro:number,
@@ -36,10 +37,11 @@ export class AdministrarTurnosComponent implements OnInit {
   ]
 
   constructor(@Inject(MatSnackBar) private snackBar: MatSnackBar,
-            public popup: MatDialog,) { }
+              public popup: MatDialog,
+              private router: Router) { }
 
   aceptarTurno(turno:any){
-
+    this.router.navigate(['/ConfirmarTurno'])
   }
 
   rechazarTurno(turno:any){
@@ -58,6 +60,9 @@ export class AdministrarTurnosComponent implements OnInit {
       referencia.afterClosed().subscribe((result) => {
         if (result) {
           this.rechazarTurno(turno)
+          this.snackBar.open('El turno ha sido rechazado', void 0, {
+            duration: 3000,
+          })
         }
       })
   }

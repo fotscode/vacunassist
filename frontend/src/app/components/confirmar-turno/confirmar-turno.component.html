@@ -1,0 +1,70 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+  <h4 class="categoria" style="font-size: 30px; color: white">
+    Confirmar turno
+  </h4>
+  <mat-card class="seccion">
+    <div class="titulo">
+      Elegí fecha y hora para el turno:
+    </div>
+    <mat-card-content class="cuerpo" style="font-size: 16px">
+      <mat-grid-list cols="3" rowHeight="fit" style="height: 440px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>CUIL:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          20-28673854-5
+        </mat-grid-tile>
+        <mat-grid-tile class="columnaIzquierda" [colspan]="1" [rowspan]="1">
+          <h3 color="#ffffff">Nombre:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          Pepe
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>Apellido:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          Grillo
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>Vacuna:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          Covid
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>Dosis:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          <h3>Fecha:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+          <mat-form-field class="formulario-ancho" appearance="fill">
+            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="false"/>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="month"></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>Hora:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          Qué te importa
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions class="opciones">
+      <button mat-raised-button class="botonConfirmar" (click)="confirmarTurno()">
+        Confirmar
+      </button>
+      <button mat-raised-button class="botonRegresar" routerLink="/AdministrarTurnos">
+        Regresar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

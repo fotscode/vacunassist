@@ -1,0 +1,86 @@
+.contenedor {
+  margin: auto;
+  width: 50%;
+  margin-top: 3rem;
+  background-color: #689f77;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.seccion {
+  background-color: #92e3a9;
+  padding-bottom: 2rem;
+}
+
+mat-card-header{
+  display: flex;
+}
+
+.titulo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  background-color: aliceblue;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.cuerpo {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  width: 80%;
+  margin-top: 10px;
+  margin: auto;
+}
+
+.botonConfirmar {
+  color:rgb(79, 216, 79);
+  width: 140px;
+  font-size:18px;
+  background-color: aliceblue;
+}
+
+.botonRegresar {
+  color: rgb(219, 90, 86);
+  width: 140px;
+  font-size:18px;
+  background-color: aliceblue;
+}
+
+.mat-card-actions {
+  margin: 1rem;
+  margin-bottom: 2rem;
+  padding-left: 28%;
+  margin-bottom: 2rem;
+  align-content: center;
+}
+
+.mat-snack-bar-container {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 80vw !important;
+    max-width: 100vw !important;
+}
+
+.mat-grid-list{
+  background-color: aliceblue;
+}
+
+.mat-grid-tile {
+  background-color: #c0eacc;
+}
