@@ -13,48 +13,53 @@
           <h3>CUIL:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          20-28673854-5
+          {{ user.cuil }}
         </mat-grid-tile>
         <mat-grid-tile class="columnaIzquierda" [colspan]="1" [rowspan]="1">
           <h3 color="#ffffff">Nombre:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          Pepe
+          {{ user.nombre }}
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <h3>Apellido:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          Grillo
+          {{ user.apellido }}
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <h3>Vacuna:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          Covid
+          {{ user.vacuna }}
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <h3>Dosis:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          1
+          {{ user.dosis }}
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="2">
           <h3>Fecha:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="2">
           <mat-form-field class="formulario-ancho" appearance="fill">
-            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="false"/>
+            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="user.fecha" required="false"/>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="month"></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <h3>Hora:</h3>
+          <h3>Riesgo:</h3>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          Qué te importa
+          <span *ngIf="user.riesgo">
+            <p style="color: rgb(219, 90, 86)"><b>Sí</b></p>
+          </span>
+          <span *ngIf="!user.riesgo">
+            <p style="color:rgb(79, 216, 79)"><b>No</b></p>
+          </span>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>
