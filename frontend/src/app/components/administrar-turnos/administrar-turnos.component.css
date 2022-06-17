@@ -45,7 +45,7 @@
 }
 
 .accionesColumna{
-  width: 25%;
+  width: 35%;
 }
 
 .botonAceptar{
@@ -57,11 +57,11 @@
 }
 
 .columnaNombre {
-  width: 20%;
+  width: 15%;
 }
 
 .columnaApellido{
-  width: 20%;
+  width: 15%;
 }
 
 .columnaVacuna {
@@ -69,12 +69,19 @@
 }
 
 .columnaSede {
-  width: 20%;
+  width: 15%;
+}
+
+.columnaRiesgo {
+  width: 5%;
+  text-align: center;
+  height: 5px;
 }
 
 .mat-aceptar {
   background-color: rgb(79, 216, 79);
   color: #ffffff;
+  margin-right: 10%;
 }
 
 .mat-rechazar {

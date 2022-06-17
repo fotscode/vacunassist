@@ -10,14 +10,15 @@ export interface Sede {
   apellido:string,
   vacuna:string,
   sede:string,
+  riesgo:boolean,
 }
 const SEDES: Sede[] = [
-  {nro:1, nombre:'Papu', apellido:'Gómez', vacuna:'Covid', sede: 'Centro'},
-  {nro:2, nombre:'Carmen', apellido:'Barbieri', vacuna:'Gripe', sede: 'Estadio'},
-  {nro:3, nombre:'Laura', apellido:'De Giusti', vacuna:'Covid', sede: 'Bosque'},
-  {nro:4, nombre:'Pablo', apellido:'Thomas', vacuna:'Covid', sede: 'Bosque'},
-  {nro:5, nombre:'Rodolfo', apellido:'Bertone', vacuna:'Gripe', sede: 'Centro'},
-  {nro:6, nombre:'Viviana', apellido:'Harari', vacuna:'Covid', sede: 'Estadio'},
+  {nro:1, nombre:'Papu', apellido:'Gómez', vacuna:'Covid', sede: 'Centro', riesgo:true},
+  {nro:2, nombre:'Carmen', apellido:'Barbieri', vacuna:'Gripe', sede: 'Estadio', riesgo:true},
+  {nro:3, nombre:'Laura', apellido:'De Giusti', vacuna:'Covid', sede: 'Bosque', riesgo:false},
+  {nro:4, nombre:'Pablo', apellido:'Thomas', vacuna:'Covid', sede: 'Bosque', riesgo:true},
+  {nro:5, nombre:'Rodolfo', apellido:'Bertone', vacuna:'Gripe', sede: 'Centro', riesgo:false},
+  {nro:6, nombre:'Viviana', apellido:'Harari', vacuna:'Covid', sede: 'Estadio', riesgo:true},
 ]
 
 @Component({
@@ -33,6 +34,7 @@ export class AdministrarTurnosComponent implements OnInit {
     'apellido',
     'vacuna',
     'sede',
+    'riesgo',
     'accion',
   ]
 
@@ -40,6 +42,12 @@ export class AdministrarTurnosComponent implements OnInit {
               public popup: MatDialog,
               private router: Router) { }
 
+  esRiesgo(valor:boolean){
+    if (valor)
+      return 'Sí'
+    else
+      return 'No';
+  }
   aceptarTurno(turno:any){
     this.router.navigate(['/ConfirmarTurno'])
   }

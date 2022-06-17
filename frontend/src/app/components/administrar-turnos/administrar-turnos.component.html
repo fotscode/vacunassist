@@ -4,7 +4,6 @@
       Administrar Turnos
     </h4>
     <mat-card class="cuerpo">
-
       <div class="tablaTurnos">
         <table mat-table [dataSource]="data" class="turnosPendientes">
           <ng-container matColumnDef="nro">
@@ -26,6 +25,13 @@
           <ng-container matColumnDef="sede">
             <th mat-header-cell *matHeaderCellDef> Sede </th>
             <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
+          </ng-container>
+          <ng-container matColumnDef="riesgo">
+            <th mat-header-cell *matHeaderCellDef> Riesgo </th>
+            <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
+              <div *ngIf="turno.riesgo"><b>Sí</b></div>
+              <div *ngIf="!turno.riesgo"><i>No</i></div>
+            </td>
           </ng-container>
           <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
