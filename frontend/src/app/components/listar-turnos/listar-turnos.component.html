@@ -1,0 +1,48 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+    <h4 class="categoria" style="font-size: 30px; color: white">
+      Administrar Turnos
+    </h4>
+    <mat-card class="cuerpo">
+      <div class="tablaTurnos">
+        <table mat-table [dataSource]="data" class="turnosPendientes">
+          <ng-container matColumnDef="nro">
+            <th mat-header-cell *matHeaderCellDef> NRO. </th>
+            <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
+          </ng-container>
+          <ng-container matColumnDef="vacuna">
+            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
+            <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
+          </ng-container>
+          <ng-container matColumnDef="sede">
+            <th mat-header-cell *matHeaderCellDef> Sede </th>
+            <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
+          </ng-container>
+          <ng-container matColumnDef="riesgo">
+            <th mat-header-cell *matHeaderCellDef> Riesgo </th>
+            <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
+              <div *ngIf="turno.riesgo"><b>Sí</b></div>
+              <div *ngIf="!turno.riesgo"><i>No</i></div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
+        </table>
+      </div>
+
+      <mat-card-actions class="opciones d-flex justify-content-center">
+        <button mat-raised-button class="botonRegresar" routerLink="/Home">
+          Regresar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+</div>

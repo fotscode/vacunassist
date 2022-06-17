@@ -26,6 +26,7 @@ import { SedesComponent } from './components/sedes/sedes.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component'
 import { AdministrarTurnosComponent } from './components/administrar-turnos/administrar-turnos.component';
 import { ConfirmarTurnoComponent } from './components/confirmar-turno/confirmar-turno.component';
+import { ListarTurnosComponent } from './components/listar-turnos/listar-turnos.component';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -47,6 +48,7 @@ const routes: Routes=[
   {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard]},
   {path: 'AdministrarTurnos', component:AdministrarTurnosComponent, canActivate:[AuthGuard]},
   {path: 'ConfirmarTurno', component:ConfirmarTurnoComponent, canActivate:[AuthGuard]},
+  {path: 'ListarTurnos', component:ListarTurnosComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

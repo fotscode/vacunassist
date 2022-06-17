@@ -51,6 +51,7 @@ import { DialogSedeDeleteComponent } from './components/dialog-sede-delete/dialo
 import { AdministrarTurnosComponent } from './components/administrar-turnos/administrar-turnos.component';
 import { DialogRechazarTurnoComponent } from './components/dialog-rechazar-turno/dialog-rechazar-turno.component';
 import { ConfirmarTurnoComponent } from './components/confirmar-turno/confirmar-turno.component';
+import { ListarTurnosComponent } from './components/listar-turnos/listar-turnos.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { ConfirmarTurnoComponent } from './components/confirmar-turno/confirmar-
     AdministrarTurnosComponent,
     DialogRechazarTurnoComponent,
     ConfirmarTurnoComponent,
+    ListarTurnosComponent,
   ],
   imports: [
     BrowserModule,

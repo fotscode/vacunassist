@@ -1,0 +1,91 @@
+.contenedor {
+  margin: auto;
+  min-height: fit-content;
+  width: fit-content;
+  margin-top: 3rem;
+  background-color: #6eb882;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.cuerpo {
+  background-color: #92e3a9;
+  min-height: 90%;
+
+}
+
+.botonRegresar {
+  margin: 2rem;
+  width: 130px;
+  margin:auto;
+}
+
+.mat-header-cell {
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.mat-cell {
+  text-align: center;
+}
+
+.tablaTurnos {
+  margin-bottom: 2rem;
+}
+
+.accionesColumna{
+  width: 35%;
+}
+
+.botonAceptar{
+  margin-right: 8px;
+}
+
+.columnaNro {
+  width: 5%;
+}
+
+.columnaNombre {
+  width: 15%;
+}
+
+.columnaApellido{
+  width: 15%;
+}
+
+.columnaVacuna {
+  width: 10%;
+}
+
+.columnaSede {
+  width: 15%;
+}
+
+.columnaRiesgo {
+  width: 5%;
+  text-align: center;
+  height: 5px;
+}
+
+.mat-aceptar {
+  background-color: rgb(79, 216, 79);
+  color: #ffffff;
+  margin-right: 10%;
+}
+
+.mat-rechazar {
+  background-color: rgb(219, 90, 86);
+  color: #ffffff;
+}
+
