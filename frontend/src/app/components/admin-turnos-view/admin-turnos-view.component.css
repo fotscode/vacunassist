@@ -11,11 +11,13 @@ tbody{
   border-color: #689f77 !important;
   margin: auto;
   justify-content: center;
+  
 }
 
 .turnos {
   margin: auto;
   float: none;
+  text-align: center;
   padding: 13px;
   background-color: #689f77;
 }
@@ -36,3 +38,4 @@ tbody{
   padding-left: 1rem;
   width: 80%;
 }
+

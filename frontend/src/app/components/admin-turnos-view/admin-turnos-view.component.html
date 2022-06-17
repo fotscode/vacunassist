@@ -1,26 +1,29 @@
 <div class="turnos" id="htmlData">
   <div class="turnosActivos">
-    <table style="width: 200px" class="table table-bordered">
+    <table *ngIf="turnos.length>0" style="width: 200px" class="table table-bordered">
       <thead>
-          <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Vacuna</th>
-              <th scope="col">Fecha</th>
-              <td scope="col">Borrar</td>
-          </tr>
+        <tr>
+          <th scope="col">Estado</th>
+          <th scope="col">Vacuna</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Sede</th>
+          <th scope="col">Borrar</th>
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let turno of turnos">
-              <th scope="row">{{turno.id}}</th>
-              <td>{{turno.vacuna}}</td>
-              <td>{{turno.fecha}}</td>
-              <td>X</td>
-          </tr>
+        <tr *ngFor="let turno of turnos">
+          <th scope="row">{{ turno.estado }}</th>
+          <td>{{ turno.vacuna }}</td>
+          <td>{{ turno.fecha }}</td>
+          <td>{{ turno.sede }}</td>
+          <td><button>X</button></td>
+        </tr>
       </tbody>
-  </table>
+    </table>
+  <div *ngIf="turnos.length==0" style="background-color:#92e3a9; padding:1rem;border-radius:4rem; width:70%; justify-content:center">No hay turnos para mostrar</div>
   </div>
 
-  <div>
+  <!--<div>
     <table mat-table [dataSource]="data" class="turnosPendientes">
       <ng-container matColumnDef="nro">
         <th mat-header-cell *matHeaderCellDef class="header"> NRO. </th>
@@ -41,5 +44,5 @@
       <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
       <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
     </table>
-  </div>
+  </div>-->
 </div>
