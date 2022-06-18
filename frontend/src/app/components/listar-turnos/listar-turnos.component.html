@@ -5,53 +5,58 @@
     </h4>
     <mat-card class="cuerpo">
       <div class="tablaTurnos">
+        <div class="visualizador">
+          <label for="Visualizar"><b>Visualizar:</b></label>
+          <mat-radio-group aria-label="Visualizar">
+            <mat-radio-button value="1" checked="">Todos</mat-radio-button>
+            <mat-radio-button value="2">Los de hoy</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="tabsSedes">
+          <mat-tab-group>
+            <mat-tab *ngFor="let sede of sedes" label="{{sede.name}}">
+              <table mat-table [dataSource]="data" class="turnosAceptados">
+                <ng-container matColumnDef="nro">
+                  <th mat-header-cell *matHeaderCellDef> NRO. </th>
+                  <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
+                </ng-container>
+                <ng-container matColumnDef="apellido">
+                  <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                  <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
+                </ng-container>
+                <ng-container matColumnDef="vacuna">
+                  <th mat-header-cell *matHeaderCellDef> Vacuna </th>
+                  <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
+                </ng-container>
+                <ng-container matColumnDef="sede">
+                  <th mat-header-cell *matHeaderCellDef> Sede </th>
+                  <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
+                </ng-container>
+                <ng-container matColumnDef="riesgo">
+                  <th mat-header-cell *matHeaderCellDef> Riesgo </th>
+                  <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
+                    <div *ngIf="turno.riesgo"><b>Sí</b></div>
+                    <div *ngIf="!turno.riesgo"><i>No</i></div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="borrar">
+                  <th mat-header-cell *matHeaderCellDef> Borrar </th>
+                  <td mat-cell class="columnaBorrar" *matCellDef="let turno">
+                    <button class="botonBorrar">X</button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+                <tr mat-row (click)="confirmarVisita(row)" *matRowDef="let row; columns: columnasMostradas;"></tr>
+              </table>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
 
 
-        <table mat-table [dataSource]="data" class="turnosPendientes">
-          <ng-container matColumnDef="nro">
-            <th mat-header-cell *matHeaderCellDef> NRO. </th>
-            <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
-          </ng-container>
-          <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
-          </ng-container>
-          <ng-container matColumnDef="apellido">
-            <th mat-header-cell *matHeaderCellDef> Apellido </th>
-            <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
-          </ng-container>
-          <ng-container matColumnDef="vacuna">
-            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
-            <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
-          </ng-container>
-          <ng-container matColumnDef="sede">
-            <th mat-header-cell *matHeaderCellDef> Sede de preferencia </th>
-            <td mat-cell class="columnaSede" *matCellDef="let turno">
-              <mat-form-field appearance="fill" class="sede">
-                <mat-label>{{ sede.name }}</mat-label>
-                <mat-select>
-                  <mat-option
-                    *ngFor="let sede of sedes"
-                    [value]="sede.nro"
-                    (click)="setSede(sede)"
-                  >
-                    {{ sede.name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              </td>
-          </ng-container>
-          <ng-container matColumnDef="riesgo">
-            <th mat-header-cell *matHeaderCellDef> Riesgo </th>
-            <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
-              <div *ngIf="turno.riesgo"><b>Sí</b></div>
-              <div *ngIf="!turno.riesgo"><i>No</i></div>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
-        </table>
       </div>
 
       <mat-card-actions class="opciones d-flex justify-content-center">

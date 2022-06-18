@@ -22,7 +22,7 @@
 .cuerpo {
   background-color: #92e3a9;
   min-height: 90%;
-
+  min-width: 700px;
 }
 
 .botonRegresar {
@@ -69,13 +69,21 @@
 }
 
 .columnaSede {
-  width: 15%;
+  width: 10%;
 }
 
 .columnaRiesgo {
-  width: 5%;
+  width: 7%;
   text-align: center;
   height: 5px;
+}
+
+.columnaBorrar {
+  width: 3%;
+}
+
+.botonBorrar{
+  background-color: rgb(219, 90, 86);
 }
 
 .mat-aceptar {
@@ -89,3 +97,19 @@
   color: #ffffff;
 }
 
+.visualizador {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: aliceblue;
+  width: 350px;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.mat-radio-button {
+  padding-left: 20px;
+}
+
+.tabsSedes {
+  width:100%;
+}

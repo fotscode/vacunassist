@@ -36,6 +36,7 @@ export class ListarTurnosComponent implements OnInit {
     'vacuna',
     'sede',
     'riesgo',
+    'borrar',
   ]
   sedes: Sede[] = [
     { nro: 1, name: 'Centro' },
@@ -55,35 +56,9 @@ export class ListarTurnosComponent implements OnInit {
     else
       return 'No';
   }
-  aceptarTurno(turno:any){
-    this.router.navigate(['/ConfirmarTurno'])
-  }
 
-  rechazarTurno(turno:any){
+  confirmarVisita(row:any){
 
-  }
-
-  setSede(s: Sede) {
-    //this.sede = s;
-  }
-
-  rechazarTurnoAttempt(turno:any){
-    const dialogConfig = new MatDialogConfig()
-      dialogConfig.disableClose = true
-      dialogConfig.autoFocus = false
-      dialogConfig.width = '500px'
-      const referencia = this.popup.open(
-        DialogRechazarTurnoComponent,
-        dialogConfig
-      )
-      referencia.afterClosed().subscribe((result) => {
-        if (result) {
-          this.rechazarTurno(turno)
-          this.snackBar.open('El turno ha sido rechazado', void 0, {
-            duration: 3000,
-          })
-        }
-      })
   }
 
   ngOnInit(): void {}
