@@ -3,12 +3,4 @@
     <app-noticia></app-noticia>
 </div>
 
-<div class="turnosContainer" *ngIf="!isLogged()">
-    <div class="vacio">
-      Debe tener sesión iniciada para ver sus turnos.
-    </div>
-</div>
-
-<div class="turnosContainer" *ngIf="isLogged()">
-    <app-misturnos></app-misturnos>
-</div>
+<app-misturnos></app-misturnos>

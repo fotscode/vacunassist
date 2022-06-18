@@ -1,24 +1,7 @@
 .noticiasContainer{
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
     width: 55%;
     float: left;
 }
-.turnosContainer{
-    margin: 2rem;
-    background: #689f77;
-    float: right;
-    width: 35%;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0px 5px 20px rgb(0, 0, 0);
-}
 
-.vacio {
-  background:#92e3a9;
-  width: 100%;
-  font-size: large;
-  text-align: center;
-  margin: auto;
-  padding: 1rem;
-  border-radius: 1rem;
-}

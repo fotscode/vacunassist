@@ -97,4 +97,8 @@ export class MisturnosComponent implements OnInit {
           })
       })
   }
+
+  isLogged(){
+    return this.authService.loggedIn();
+  }
 }
