@@ -22,7 +22,7 @@
 .cuerpo {
   background-color: #92e3a9;
   min-height: 90%;
-  min-width: 700px;
+  min-width: 800px;
 }
 
 .botonRegresar {
@@ -42,10 +42,6 @@
 
 .tablaTurnos {
   margin-bottom: 2rem;
-}
-
-.accionesColumna{
-  width: 35%;
 }
 
 .botonAceptar{
@@ -73,28 +69,28 @@
 }
 
 .columnaRiesgo {
-  width: 7%;
+  width: 10%;
   text-align: center;
   height: 5px;
 }
 
-.columnaBorrar {
-  width: 3%;
+.columnaAcciones {
+  width: 40%;
+}
+
+.botonConfirmar {
+  background-color: rgb(79, 216, 79);
+  width:60%;
+  height: 2.5rem;
+  font-size: 20px;
+  vertical-align: middle;
 }
 
 .botonBorrar{
   background-color: rgb(219, 90, 86);
-}
-
-.mat-aceptar {
-  background-color: rgb(79, 216, 79);
-  color: #ffffff;
-  margin-right: 10%;
-}
-
-.mat-rechazar {
-  background-color: rgb(219, 90, 86);
-  color: #ffffff;
+  margin-left: 1rem;
+  height: 2rem;
+  vertical-align: middle;
 }
 
 .visualizador {
@@ -112,4 +108,8 @@
 
 .tabsSedes {
   width:100%;
+}
+
+.mat-row  {
+  line-height: 4rem;
 }

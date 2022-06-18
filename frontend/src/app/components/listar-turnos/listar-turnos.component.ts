@@ -37,7 +37,7 @@ export class ListarTurnosComponent implements OnInit {
     'vacuna',
     'sede',
     'riesgo',
-    'borrar',
+    'acciones',
   ]
   sedes: Sede[] = [
     { nro: 1, name: 'Centro' },

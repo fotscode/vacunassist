@@ -8,8 +8,8 @@
         <div class="visualizador">
           <label for="Visualizar"><b>Visualizar:</b></label>
           <mat-radio-group aria-label="Visualizar">
-            <mat-radio-button value="1" checked="">Todos</mat-radio-button>
-            <mat-radio-button value="2">Los de hoy</mat-radio-button>
+            <mat-radio-button value="1">Todos</mat-radio-button>
+            <mat-radio-button value="2" checked="">Los de hoy</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="tabsSedes">
@@ -43,14 +43,15 @@
                     <div *ngIf="!turno.riesgo"><i>No</i></div>
                   </td>
                 </ng-container>
-                <ng-container matColumnDef="borrar">
-                  <th mat-header-cell *matHeaderCellDef> Borrar </th>
-                  <td mat-cell class="columnaBorrar" *matCellDef="let turno">
-                    <button class="botonBorrar" (click)="borrarTurnoAttempt(turno)">X</button>
+                <ng-container matColumnDef="acciones">
+                  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                  <td mat-cell class="columnaAcciones" *matCellDef="let turno">
+                    <button mat-raised-button class="botonConfirmar" (click)="confirmarVisita(turno)"><b>Confirmar</b></button>
+                    <button mat-raised-button class="botonBorrar" (click)="borrarTurnoAttempt(turno)">Borrar</button>
                   </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
-                <tr mat-row (click)="confirmarVisita(row)" *matRowDef="let row; columns: columnasMostradas;"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
               </table>
             </mat-tab>
           </mat-tab-group>
