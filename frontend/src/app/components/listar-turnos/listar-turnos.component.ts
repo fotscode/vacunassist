@@ -77,7 +77,6 @@ export class ListarTurnosComponent implements OnInit {
     })
   }
 
-
   borrarTurno(turno:any){
 
   }

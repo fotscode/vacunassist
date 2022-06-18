@@ -1,0 +1,113 @@
+.contenedor {
+  margin: auto;
+  min-height: fit-content;
+  width: fit-content;
+  margin-top: 3rem;
+  background-color: #6eb882;
+  align-self: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  box-shadow: 0px 5px 20px rgb(0, 0, 0);
+}
+
+.categoria {
+  padding-bottom: 20px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.cuerpo {
+  background-color: #92e3a9;
+  min-height: 90%;
+  width: 100%;
+}
+
+.botonRegresar {
+  margin: 2rem;
+  width: 130px;
+  margin:auto;
+}
+
+.mat-header-cell {
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.mat-cell {
+  text-align: center;
+}
+
+.tablaTurnos {
+  margin-bottom: 2rem;
+}
+
+.accionesColumna{
+  width: 35%;
+}
+
+.botonAceptar{
+  margin-right: 8px;
+}
+
+.columnaCUIL {
+  width: 15%;
+}
+
+.columnaNombre {
+  width: 15%;
+}
+
+.columnaApellido{
+  width: 15%;
+}
+
+.columnaRiesgo {
+  width: 10%;
+}
+
+.columnaVacuna {
+  width: 10%;
+}
+
+.columnaSede {
+  width: 10%;
+}
+
+.columnaVacunador {
+  width: 15%;
+}
+
+.columnaFecha {
+  width: 10%;
+}
+
+.visualizador {
+  margin: auto;
+  margin-bottom: 1rem;
+  background-color: aliceblue;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.mat-radio-button {
+  padding-left: 20px;
+}
+
+.mat-hint {
+  font-size: 16px;
+  color:orange;
+  padding-left: 2rem;
+}
+
+.mat-form-field {
+  width: 150px;
+  margin: 1rem;
+}
+
+.mat-header-cell {
+  background-color: #a2cb83;
+}

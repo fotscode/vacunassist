@@ -11,24 +11,27 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a style="font-size:18px" class="nav-link active" *ngIf="!isAdmin()" routerLink="/Home">Home
+                    <a style="font-size:16px" class="nav-link active" *ngIf="!isAdmin()" routerLink="/Home">Home
                       <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/NuevaNoticia">Agregar Noticia</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/NuevaNoticia">Agregar Noticia</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/BuscarPersona">Buscar Persona</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/BuscarPersona">Buscar Persona</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Sedes">Sedes</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Sedes">Sedes</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/AdministrarTurnos">Solicitudes</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/AdministrarTurnos">Solicitudes</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:18px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/ListarTurnos">Turnos</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/ListarTurnos">Turnos</a>
+                </li>
+                <li class="nav-item">
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Reportes">Reportes</a>
                 </li>
             </ul>
 
