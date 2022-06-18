@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
-import { DialogRechazarTurnoComponent } from '../dialog-rechazar-turno/dialog-rechazar-turno.component';
 import { Router } from '@angular/router'
 import { Sede } from '../sedes/sedes.component'
+import { DialogBorrarTurnoComponent } from '../dialog-borrar-turno/dialog-borrar-turno.component';
+import { DialogConfirmarVisitaComponent } from '../dialog-confirmar-visita/dialog-confirmar-visita.component';
 
 export interface User {
   nro:number,
@@ -58,7 +59,46 @@ export class ListarTurnosComponent implements OnInit {
   }
 
   confirmarVisita(row:any){
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = false
+    dialogConfig.width = '500px'
+    const referencia = this.popup.open(
+      DialogConfirmarVisitaComponent,
+      dialogConfig
+    )
+    referencia.afterClosed().subscribe((result) => {
+      if (result) {
+        //Logica de aplicado de vacuna
+        this.snackBar.open('Visita confirmada', void 0, {
+          duration: 3000,
+        })
+      }
+    })
+  }
 
+
+  borrarTurno(turno:any){
+
+  }
+
+  borrarTurnoAttempt(turno:any){
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogBorrarTurnoComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.borrarTurno(turno)
+          this.snackBar.open('El turno ha sido borrado', void 0, {
+            duration: 3000,
+          })
+        }
+      })
   }
 
   ngOnInit(): void {}

@@ -46,7 +46,7 @@
                 <ng-container matColumnDef="borrar">
                   <th mat-header-cell *matHeaderCellDef> Borrar </th>
                   <td mat-cell class="columnaBorrar" *matCellDef="let turno">
-                    <button class="botonBorrar">X</button>
+                    <button class="botonBorrar" (click)="borrarTurnoAttempt(turno)">X</button>
                   </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
