@@ -1,10 +1,12 @@
 <app-navigation-header></app-navigation-header>
 <div class="contenedor">
     <h4 class="categoria" style="font-size: 30px; color: white">
-      Administrar Turnos
+      Turnos Aceptados
     </h4>
     <mat-card class="cuerpo">
       <div class="tablaTurnos">
+
+
         <table mat-table [dataSource]="data" class="turnosPendientes">
           <ng-container matColumnDef="nro">
             <th mat-header-cell *matHeaderCellDef> NRO. </th>
@@ -23,8 +25,21 @@
             <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
           </ng-container>
           <ng-container matColumnDef="sede">
-            <th mat-header-cell *matHeaderCellDef> Sede </th>
-            <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
+            <th mat-header-cell *matHeaderCellDef> Sede de preferencia </th>
+            <td mat-cell class="columnaSede" *matCellDef="let turno">
+              <mat-form-field appearance="fill" class="sede">
+                <mat-label>{{ sede.name }}</mat-label>
+                <mat-select>
+                  <mat-option
+                    *ngFor="let sede of sedes"
+                    [value]="sede.nro"
+                    (click)="setSede(sede)"
+                  >
+                    {{ sede.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </td>
           </ng-container>
           <ng-container matColumnDef="riesgo">
             <th mat-header-cell *matHeaderCellDef> Riesgo </th>

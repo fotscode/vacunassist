@@ -39,6 +39,23 @@
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           {{ user.dosis }}
         </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1.5">
+          <h3>Sede asignada:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1.5">
+          <mat-form-field appearance="fill" class="sede">
+            <mat-label>{{ sede.name }}</mat-label>
+            <mat-select>
+              <mat-option
+                *ngFor="let sede of sedes"
+                [value]="sede.nro"
+                (click)="setSede(sede)"
+              >
+                {{ sede.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="2">
           <h3>Fecha:</h3>
         </mat-grid-tile>

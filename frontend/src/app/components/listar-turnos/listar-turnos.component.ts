@@ -3,8 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { DialogRechazarTurnoComponent } from '../dialog-rechazar-turno/dialog-rechazar-turno.component';
 import { Router } from '@angular/router'
+import { Sede } from '../sedes/sedes.component'
 
-export interface Sede {
+export interface User {
   nro:number,
   nombre:string,
   apellido:string,
@@ -12,7 +13,7 @@ export interface Sede {
   sede:string,
   riesgo:boolean,
 }
-const SEDES: Sede[] = [
+const USERS: User[] = [
   {nro:1, nombre:'Papu', apellido:'Gómez', vacuna:'Covid', sede: 'Centro', riesgo:true},
   {nro:2, nombre:'Carmen', apellido:'Barbieri', vacuna:'Gripe', sede: 'Estadio', riesgo:true},
   {nro:3, nombre:'Laura', apellido:'De Giusti', vacuna:'Covid', sede: 'Bosque', riesgo:false},
@@ -27,7 +28,7 @@ const SEDES: Sede[] = [
   styleUrls: ['./listar-turnos.component.css']
 })
 export class ListarTurnosComponent implements OnInit {
-  data = SEDES;
+  data = USERS;
   columnasMostradas: string[] = [
     'nro',
     'nombre',
@@ -36,6 +37,13 @@ export class ListarTurnosComponent implements OnInit {
     'sede',
     'riesgo',
   ]
+  sedes: Sede[] = [
+    { nro: 1, name: 'Centro' },
+    { nro: 2, name: 'Estadio' },
+    { nro: 3, name: 'Bosque' },
+  ]
+  sede = this.sedes[1];
+
 
   constructor(@Inject(MatSnackBar) private snackBar: MatSnackBar,
               public popup: MatDialog,
@@ -53,6 +61,10 @@ export class ListarTurnosComponent implements OnInit {
 
   rechazarTurno(turno:any){
 
+  }
+
+  setSede(s: Sede) {
+    //this.sede = s;
   }
 
   rechazarTurnoAttempt(turno:any){
