@@ -111,8 +111,8 @@ export class AdminTurnosViewComponent implements OnInit {
     })
   }
 
-  solicitarTurno(){
-    this.router.navigate(['/SolicitarTurno'])
+  solicitarTurno(tipo:string){
+
   }
 
   ngOnInit(): void {
