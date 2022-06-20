@@ -46,8 +46,10 @@ export class SolicitarTurnoComponent implements OnInit {
     maxCount: false,
     pending: false,
   }
-  vacCovid: Vacuna | undefined
-  vacGripe: Vacuna | undefined
+
+  vacCovid:     Vacuna | undefined
+  vacGripe:     Vacuna | undefined
+  vacFAmarilla: Vacuna | undefined
 
   constructor(
     private http: HttpClient,
@@ -154,5 +156,9 @@ export class SolicitarTurnoComponent implements OnInit {
 
     })
 
+  }
+
+  isVacunador() {
+    return this.authService.getRol() == (3 || 2)
   }
 }
