@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
+import { DialogCancelTurnoComponent } from '../dialog-cancel-turno/dialog-cancel-turno.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { Router } from '@angular/router'
 
 export interface Vacuna {
   _id: string
@@ -60,7 +62,11 @@ export class AdminTurnosViewComponent implements OnInit {
     'accion',
   ]
 
-  constructor(public popup: MatDialog,private http: HttpClient, private authService: AuthService, private route: ActivatedRoute) {
+  constructor(public popup: MatDialog,
+              private http: HttpClient,
+              private authService: AuthService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.id = this.getIdPerson() || ''
   }
   public getIdPerson() {
@@ -79,6 +85,34 @@ export class AdminTurnosViewComponent implements OnInit {
 
   private getEstado(dConfirmed: number, applied: boolean): string {
     return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
+  }
+
+  cancelAttempt(id:string,appl:boolean){
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = false
+      dialogConfig.width = '500px'
+      const referencia = this.popup.open(
+        DialogCancelTurnoComponent,
+        dialogConfig
+      )
+      referencia.afterClosed().subscribe((result) => {
+        if (result) {
+          this.cancelAppointment(id, appl)
+        }
+      })
+  }
+
+
+  cancelAppointment(id: string,appl:boolean) {
+    this.http.put(this.URL + '/cancel/' + id, {applied:appl}).subscribe((res) => {
+      this.turnos=[]
+      this.ngOnInit()
+    })
+  }
+
+  solicitarTurno(){
+    this.router.navigate(['/SolicitarTurno'])
   }
 
   ngOnInit(): void {
