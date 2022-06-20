@@ -48,7 +48,7 @@ const routes: Routes=[
   {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard]},
   {path: 'AdministrarTurnos', component:AdministrarTurnosComponent, canActivate:[AuthGuard]},
-  {path: 'ConfirmarTurno', component:ConfirmarTurnoComponent, canActivate:[AuthGuard]},
+  {path: 'ConfirmarTurno/:id', component:ConfirmarTurnoComponent, canActivate:[AuthGuard]},
   {path: 'ListarTurnos', component:ListarTurnosComponent, canActivate:[AuthGuard]},
   {path: 'Reportes', component:GenerarReporteComponent, canActivate:[AuthGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
