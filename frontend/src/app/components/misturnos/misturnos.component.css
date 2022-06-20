@@ -30,6 +30,7 @@ tbody{
   background: #689f77;
   float: right;
   max-width: 40%;
+  min-width: 20%;
   padding: 10px;
   padding-top: 1rem;
   border-radius: 1rem;
