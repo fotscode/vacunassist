@@ -3,8 +3,6 @@ const User = require('../models/User')
 const UserVaccines = require('../models/UserVaccines')
 const utils = require('../lib/utils')
 const nodemailer = require('nodemailer')
-//TODO CRUD operations
-// async/await for db operations
 
 const insertVaccines = async (vacunas, id) => {
   const newUsersVaccines = []

@@ -68,3 +68,35 @@ exports.cancelAppointment = (req, res, next) => {
     }
   )
 }
+
+exports.getVaccine = (req, res, next) => {
+  UserVaccines.findById({ _id: req.params.vaccine_id })
+    .then((vaccine) => {
+      if (vaccine) res.status(200).json(vaccine)
+      else
+        return res
+          .status(401)
+          .json({ success: false, msg: 'no se encontro la vacuna' })
+    })
+    .catch((err) => {
+      console.log(err)
+      return res.status(500).json({ success: false, msg: 'error inesperado' })
+    })
+}
+
+exports.confirmAppointment = (req, res, next) => {
+  UserVaccines.findByIdAndUpdate({ _id: req.params.vaccine_id }, req.body, {
+    upsert: true,
+  })
+    .then((vaccine) => {
+      if (vaccine) res.status(200).json({ success: true, msg: vaccine })
+      else
+        return res
+          .status(401)
+          .json({ success: false, msg: 'no se encontro la vacuna' })
+    })
+    .catch((err) => {
+      console.log(err)
+      return res.status(500).json({ success: false, msg: 'error inesperado' })
+    })
+}
