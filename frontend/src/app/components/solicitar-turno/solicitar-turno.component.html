@@ -26,16 +26,6 @@
           </button>
         </mat-grid-tile>
       </mat-grid-list>
-      <mat-grid-list cols="1" rowHeight="fit" style="height: 100px" *ngIf="isVacunador()">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <button
-            class="botonTurno"
-            (click)="solicitarTurno(this.vacCovid, this.covid)"
-          >
-            Fiebre Amarilla
-          </button>
-        </mat-grid-tile>
-      </mat-grid-list>
       <div class="errorMsg">
         <span style="color: red"> {{ errorMsg }}</span>
       </div>
