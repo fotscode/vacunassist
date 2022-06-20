@@ -87,7 +87,7 @@ export class AdminProfileViewComponent implements OnInit {
           this.sedes.push({ nro: this.sedes.length + 1, name: s.name.trim() })
         )
         let s = this.sedes.find((s) => s.name == sede)
-        this.user.sede = s ? s : this.sedes[1]
+        this.user.sede = s ? s : this.sedes[0]
       })
   }
 
