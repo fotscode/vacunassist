@@ -5,6 +5,10 @@ import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 import { DialogCancelTurnoComponent } from '../dialog-cancel-turno/dialog-cancel-turno.component'
 
+export const firstLetterUpper = (s: string): string => {
+    return s.substring(0, 1).toUpperCase() + s.substring(1)
+}
+
 export interface Vacuna {
   _id: string
   applied: boolean
@@ -16,6 +20,7 @@ export interface Vacuna {
   modifiable: boolean
   vaccineId: string
   sede:string
+  userId:string
 }
 
 interface Turno {
@@ -44,9 +49,7 @@ export class MisturnosComponent implements OnInit {
     let day = d.getDate()
     return `${day}/${m}/${y}`
   }
-  private firstLetterUpper(s: string): string {
-    return s.substring(0, 1).toUpperCase() + s.substring(1)
-  }
+  
 
   private getEstado(dConfirmed: number, applied: boolean): string {
     return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
@@ -87,7 +90,7 @@ export class MisturnosComponent implements OnInit {
               id: v._id,
               applied:v.applied,
               estado: this.getEstado(v.dateConfirmed, v.applied),
-              vacuna: this.firstLetterUpper(v.vaccineId),
+              vacuna: firstLetterUpper(v.vaccineId),
               fecha: !v.dateConfirmed
                 ? 'A confirmar'
                 : this.formatDate(new Date(v.dateConfirmed)),
