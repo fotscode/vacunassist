@@ -30,8 +30,13 @@
                 <li class="nav-item">
                   <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/ListarTurnos">Turnos</a>
                 </li>
-                <li class="nav-item">
-                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Reportes">Reportes</a>
+                <li class="nav-item dropdown">
+                  <a style="font-size:16px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Reportes</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" routerLink="/ReporteTurnos">Turnos</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" routerLink="/ReporteCuentas">Cuentas</a>
+                  </div>
                 </li>
             </ul>
 

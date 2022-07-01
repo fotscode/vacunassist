@@ -1,0 +1,69 @@
+<app-navigation-header></app-navigation-header>
+<div class="contenedor">
+    <h4 class="categoria" style="font-size: 30px; color: white">
+      Reporte de <i>turnos registrados</i>
+    </h4>
+    <mat-card class="cuerpo">
+      <div class="tablaTurnos">
+        <div class="visualizador">
+          <mat-form-field class="fechaDesde" appearance="fill">
+            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="true"/>
+            <mat-hint>DESDE</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="month"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fechaHasta" appearance="fill">
+            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="true"/>
+            <mat-hint>HASTA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="month"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <table mat-table [dataSource]="data" class="turnosFiltrados">
+          <ng-container matColumnDef="cuil">
+            <th mat-header-cell *matHeaderCellDef> CUIL </th>
+            <td mat-cell class="columnaCUIL" *matCellDef="let turno"> {{turno.cuil}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
+          </ng-container>
+          <ng-container matColumnDef="vacuna">
+            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
+            <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
+          </ng-container>
+          <ng-container matColumnDef="sede">
+            <th mat-header-cell *matHeaderCellDef> Sede </th>
+            <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
+          </ng-container>
+          <ng-container matColumnDef="riesgo">
+            <th mat-header-cell *matHeaderCellDef> Riesgo </th>
+            <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
+              <div *ngIf="turno.riesgo"><b>Sí</b></div>
+              <div *ngIf="!turno.riesgo"><i>No</i></div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="vacunador">
+            <th mat-header-cell *matHeaderCellDef> Vacunador </th>
+            <td mat-cell class="columnaVacunador" *matCellDef="let turno"> {{turno.vacunador}} </td>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell class="columnaFecha" *matCellDef="let turno"> {{turno.fecha}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
+        </table>
+      </div>
+
+      <mat-card-actions class="opciones d-flex justify-content-center">
+        <button mat-raised-button class="botonRegresar" routerLink="/Home">
+          Regresar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+</div>
