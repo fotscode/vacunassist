@@ -7,17 +7,17 @@
       <div class="tablaTurnos">
         <div class="visualizador">
           <label for="Visualizar"><b>Visualizar:</b></label>
-          <mat-radio-group aria-label="Visualizar">
-            <mat-radio-button value="1">Todos</mat-radio-button>
-            <mat-radio-button value="2" checked="">Los de hoy</mat-radio-button>
+          <mat-radio-group [(ngModel)]="hoy" aria-label="Visualizar">
+            <mat-radio-button [value]="false">Todos</mat-radio-button>
+            <mat-radio-button [value]="true" checked="">Los de hoy</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="tabsSedes">
           <mat-tab-group>
             <mat-tab *ngFor="let sede of sedes" label="{{sede.name}}">
-              <table mat-table [dataSource]="data" class="turnosAceptados">
+              <table mat-table [dataSource]="getData(sede.name)" class="turnosAceptados">
                 <ng-container matColumnDef="nro">
-                  <th mat-header-cell *matHeaderCellDef> NRO. </th>
+                <th mat-header-cell *matHeaderCellDef> NRO </th>
                   <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
                 </ng-container>
                 <ng-container matColumnDef="nombre">

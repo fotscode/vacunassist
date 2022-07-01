@@ -4,6 +4,13 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 
+export const datesOnSameDay = (first: Date, second: Date): boolean =>{
+    return (
+      first.getFullYear() === second.getFullYear() &&
+      first.getMonth() === second.getMonth() &&
+      first.getDate() === second.getDate()
+    )
+  }
 interface Vacuna {
   _id: string
   applied: boolean
@@ -97,20 +104,14 @@ export class SolicitarTurnoComponent implements OnInit {
               (v) =>
                 v.dateApplied == -1 &&
                 v.dateIssued &&
-                this.datesOnSameDay(new Date(v.dateIssued), new Date())
+                datesOnSameDay(new Date(v.dateIssued), new Date())
             ).length <= 10
           )
         } else resolve(false)
       })
     })
   }
-  private datesOnSameDay(first: Date, second: Date): boolean {
-    return (
-      first.getFullYear() === second.getFullYear() &&
-      first.getMonth() === second.getMonth() &&
-      first.getDate() === second.getDate()
-    )
-  }
+  
 
   async solicitarTurno(v: Vacuna | undefined, a: Approvable) {
     if (v && this.isApprovable(a)) {

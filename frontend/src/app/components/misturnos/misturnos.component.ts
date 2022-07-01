@@ -52,7 +52,7 @@ export class MisturnosComponent implements OnInit {
   
 
   private getEstado(dConfirmed: number, applied: boolean): string {
-    return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
+    return !dConfirmed ? 'Pendiente' : dConfirmed!=0 ? 'Confirmado' : 'Aplicado'
   }
 
   cancelAttempt(id:string,appl:boolean){

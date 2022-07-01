@@ -22,8 +22,8 @@ export interface Solicitud {
   riesgo: boolean
   v: Vacuna
 }
-let SOLICITUDES: Solicitud[] = []
 
+let SOLICITUDES:Solicitud[]=[]
 @Component({
   selector: 'app-administrar-turnos',
   templateUrl: './administrar-turnos.component.html',
@@ -31,6 +31,7 @@ let SOLICITUDES: Solicitud[] = []
 })
 export class AdministrarTurnosComponent implements OnInit {
   private apiURL: string = environment.baseApiUrl
+  SOLICITUDES:Solicitud[]=[]
   data = SOLICITUDES
   columnasMostradas: string[] = [
     'nro',
@@ -56,16 +57,14 @@ export class AdministrarTurnosComponent implements OnInit {
     this.http
       .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
       .subscribe(async (res) => {
-        console.log(res)
-        SOLICITUDES = []
         let arr = res.filter(
-          (e) => e.dateConfirmed == 0 && !e.applied
+          (e) =>  !(e.sede==undefined) && !(e.dateConfirmed==undefined) && e.dateConfirmed==0 && e.dateIssued!=0
         )
         arr.forEach(async (e) => {
           let u = await this.getUserInfo(e.userId)
           let obj: Solicitud = {
             id: e._id,
-            nro: SOLICITUDES.length + 1,
+            nro: this.SOLICITUDES.length + 1,
             nombre: u.firstName,
             apellido: u.lastName,
             vacuna: firstLetterUpper(e.vaccineId),
@@ -73,10 +72,11 @@ export class AdministrarTurnosComponent implements OnInit {
             riesgo: u.riesgo,
             v: e,
           }
-          SOLICITUDES.push(obj)
+          this.SOLICITUDES.push(obj)
         })
         setTimeout(() => {
-          this.data = SOLICITUDES // TODO mejor hecho pero no lo veo bien
+          console.log(this.SOLICITUDES)
+          this.data = this.SOLICITUDES // TODO mejor hecho pero no lo veo bien
         }, 100)
       })
   }
