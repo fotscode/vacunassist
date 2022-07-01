@@ -52,36 +52,40 @@
   margin-right: 8px;
 }
 
-.columnaCUIL {
-  width: 15%;
+.columnaFecCreada {
+  width: 6rem;
 }
 
 .columnaNombre {
-  width: 15%;
+  width: 8rem;
 }
 
 .columnaApellido{
-  width: 15%;
+  width: 8rem;
+}
+
+.columnaCUIL {
+  width: 8rem;
 }
 
 .columnaRiesgo {
-  width: 10%;
-}
-
-.columnaVacuna {
-  width: 10%;
+  width: 6rem;
 }
 
 .columnaSede {
-  width: 10%;
+  width: 10rem;
+}
+
+.columnaVacuna {
+  width: 6rem;
 }
 
 .columnaVacunador {
-  width: 15%;
+  width: 8rem;
 }
 
 .columnaFecha {
-  width: 10%;
+  width: 6rem;
 }
 
 .visualizador {

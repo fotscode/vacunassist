@@ -1,7 +1,7 @@
 <app-navigation-header></app-navigation-header>
 <div class="contenedor">
     <h4 class="categoria" style="font-size: 30px; color: white">
-      Reporte de actividad
+      Reporte de <i>usuarios registrados</i>
     </h4>
     <mat-card class="cuerpo">
       <div class="tablaTurnos">
@@ -20,9 +20,9 @@
           </mat-form-field>
         </div>
         <table mat-table [dataSource]="data" class="turnosFiltrados">
-          <ng-container matColumnDef="cuil">
-            <th mat-header-cell *matHeaderCellDef> CUIL </th>
-            <td mat-cell class="columnaCUIL" *matCellDef="let turno"> {{turno.cuil}} </td>
+          <ng-container matColumnDef="fecCreada">
+            <th mat-header-cell *matHeaderCellDef> Fecha Creación </th>
+            <td mat-cell class="columnaFecCreada" *matCellDef="let turno"> {{turno.fecCreada}} </td>
           </ng-container>
           <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
@@ -32,9 +32,17 @@
             <th mat-header-cell *matHeaderCellDef> Apellido </th>
             <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
           </ng-container>
-          <ng-container matColumnDef="vacuna">
-            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
-            <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> E-Mail </th>
+            <td mat-cell class="columnaEmail" *matCellDef="let turno"> {{turno.email}} </td>
+          </ng-container>
+          <ng-container matColumnDef="cuil">
+            <th mat-header-cell *matHeaderCellDef> CUIL </th>
+            <td mat-cell class="columnaCUIL" *matCellDef="let turno"> {{turno.cuil}} </td>
+          </ng-container>
+          <ng-container matColumnDef="fecNac">
+            <th mat-header-cell *matHeaderCellDef> Fecha Nacim. </th>
+            <td mat-cell class="columnaFecNac" *matCellDef="let turno"> {{turno.fecNac}} </td>
           </ng-container>
           <ng-container matColumnDef="sede">
             <th mat-header-cell *matHeaderCellDef> Sede </th>
@@ -46,14 +54,6 @@
               <div *ngIf="turno.riesgo"><b>Sí</b></div>
               <div *ngIf="!turno.riesgo"><i>No</i></div>
             </td>
-          </ng-container>
-          <ng-container matColumnDef="vacunador">
-            <th mat-header-cell *matHeaderCellDef> Vacunador </th>
-            <td mat-cell class="columnaVacunador" *matCellDef="let turno"> {{turno.vacunador}} </td>
-          </ng-container>
-          <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef> Fecha </th>
-            <td mat-cell class="columnaFecha" *matCellDef="let turno"> {{turno.fecha}} </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
           <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>

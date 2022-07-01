@@ -54,7 +54,8 @@ import { ConfirmarTurnoComponent } from './components/confirmar-turno/confirmar-
 import { ListarTurnosComponent } from './components/listar-turnos/listar-turnos.component';
 import { DialogBorrarTurnoComponent } from './components/dialog-borrar-turno/dialog-borrar-turno.component';
 import { DialogConfirmarVisitaComponent } from './components/dialog-confirmar-visita/dialog-confirmar-visita.component';
-import { GenerarReporteComponent } from './components/generar-reporte/generar-reporte.component';
+import { ReporteTurnosComponent } from './components/reporte-turnos/reporte-turnos.component';
+import { ReporteCuentasComponent } from './components/reporte-cuentas/reporte-cuentas.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { GenerarReporteComponent } from './components/generar-reporte/generar-re
     ListarTurnosComponent,
     DialogBorrarTurnoComponent,
     DialogConfirmarVisitaComponent,
-    GenerarReporteComponent,
+    ReporteTurnosComponent,
+    ReporteCuentasComponent,
   ],
   imports: [
     BrowserModule,
