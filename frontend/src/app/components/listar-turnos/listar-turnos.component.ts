@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core'
+import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Router } from '@angular/router'
@@ -11,6 +11,7 @@ import { User } from '../register-page/register-page.component'
 import { environment } from 'src/environments/environment'
 import { datesOnSameDay } from '../solicitar-turno/solicitar-turno.component'
 
+
 export interface Solicitud {
   nro: number
   nombre: string
@@ -22,6 +23,8 @@ export interface Solicitud {
   vac?: Vacuna
 }
 let USERS: Solicitud[] = []
+
+
 
 @Component({
   selector: 'app-listar-turnos',
@@ -52,6 +55,7 @@ export class ListarTurnosComponent implements OnInit {
   ) {
     this.hoy = false
   }
+
 
   esRiesgo(valor: boolean) {
     if (valor) return 'Sí'
@@ -161,4 +165,5 @@ export class ListarTurnosComponent implements OnInit {
         )
       })
   }
+
 }

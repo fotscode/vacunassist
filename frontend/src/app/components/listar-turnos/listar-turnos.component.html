@@ -14,8 +14,8 @@
         </div>
         <div class="tabsSedes">
           <mat-tab-group>
-            <mat-tab *ngFor="let sede of sedes" label="{{sede.name}}">
-              <table mat-table [dataSource]="getData(sede.name)" class="turnosAceptados">
+            <mat-tab  *ngFor="let sede of sedes" label="{{sede.name}}" >
+              <table mat-table [dataSource]="getData(sede.name)" class="turnosAceptados" >
                 <ng-container matColumnDef="nro">
                 <th mat-header-cell class="columnaNro" *matHeaderCellDef> NRO </th>
                   <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
