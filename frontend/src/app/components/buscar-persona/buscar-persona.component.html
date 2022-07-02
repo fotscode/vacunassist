@@ -21,34 +21,33 @@
 
 
       <table mat-table [dataSource]="data">
-
         <ng-container matColumnDef="cuil">
-          <th mat-header-cell *matHeaderCellDef> CUIL. </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.cuil}} </td>
+          <th mat-header-cell class="columnaCuil" *matHeaderCellDef> CUIL. </th>
+          <td mat-cell class="columnaCuil" *matCellDef="let persona"> {{persona.cuil}} </td>
         </ng-container>
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.firstName}} </td>
+          <th mat-header-cell class="columnaNombre" *matHeaderCellDef> Nombre </th>
+          <td mat-cell class="columnaNombre" *matCellDef="let persona"> {{persona.firstName}} </td>
         </ng-container>
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef> Apellido </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.lastName}} </td>
+          <th mat-header-cell class="columnaApellido" *matHeaderCellDef> Apellido </th>
+          <td mat-cell class="columnaApellido" *matCellDef="let persona"> {{persona.lastName}} </td>
         </ng-container>
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> E-Mail </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.email}} </td>
+          <th mat-header-cell class="columnaEmail" *matHeaderCellDef> E-Mail </th>
+          <td mat-cell class="columnaEmail" *matCellDef="let persona"> {{persona.email}} </td>
         </ng-container>
         <ng-container matColumnDef="fechaNac">
-          <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.fechaNac}} </td>
+          <th mat-header-cell class="columnaFecNac" *matHeaderCellDef> Fecha de Nacimiento </th>
+          <td mat-cell class="columnaFecNac" *matCellDef="let persona"> {{persona.fechaNac}} </td>
         </ng-container>
         <ng-container matColumnDef="riesgo">
-          <th mat-header-cell *matHeaderCellDef> De Riesgo </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.riesgo}} </td>
+          <th mat-header-cell class="columnaRiesgo" *matHeaderCellDef> De Riesgo </th>
+          <td mat-cell class="columnaRiesgo" *matCellDef="let persona"> {{persona.riesgo}} </td>
         </ng-container>
         <ng-container matColumnDef="sede">
-          <th mat-header-cell *matHeaderCellDef> Sede </th>
-          <td mat-cell *matCellDef="let persona"> {{persona.sede}} </td>
+          <th mat-header-cell class="columnaSede" *matHeaderCellDef> Sede </th>
+          <td mat-cell class="columnaSede" *matCellDef="let persona"> {{persona.sede}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>

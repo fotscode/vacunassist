@@ -1,0 +1,11 @@
+.contenido {
+  max-width: 90%;
+  margin:auto;
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.mat-dialog-title {
+  background-color: rgb(219, 90, 86);
+  text-align: center;
+}

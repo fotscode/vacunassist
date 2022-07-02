@@ -9,17 +9,17 @@
 
         <table mat-table [dataSource]="data" class="tabla">
           <ng-container matColumnDef="nro">
-            <th mat-header-cell *matHeaderCellDef> NRO. </th>
-            <td mat-cell *matCellDef="let sede"> {{sede.nro}} </td>
+            <th mat-header-cell class="columnaNro" *matHeaderCellDef> NRO. </th>
+            <td mat-cell class="columnaNro" *matCellDef="let sede"> {{sede.nro}} </td>
           </ng-container>
           <ng-container matColumnDef="name" class="columnasNombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let sede"> {{sede.name}} </td>
+            <th mat-header-cell class="columnaNombre" *matHeaderCellDef> Nombre </th>
+            <td mat-cell class="columnaNombre" *matCellDef="let sede"> {{sede.name}} </td>
           </ng-container>
           <ng-container matColumnDef="accion">
-            <th mat-header-cell *matHeaderCellDef> Borrar </th>
-            <td mat-cell *matCellDef="let sede">
-            <a *ngIf="sede.nro>1" (click)="deleteAttempt(sede.name)">X</a>
+            <th mat-header-cell class="columnaAcciones" *matHeaderCellDef> Acciones </th>
+            <td mat-cell class="columnaAcciones" *matCellDef="let sede">
+            <button mat-raised-button class="botonBorrar" *ngIf="sede.nro>1" (click)="deleteAttempt(sede.name)">Borrar</button>
             </td>
           </ng-container>
 

@@ -21,42 +21,48 @@
         </div>
         <table mat-table [dataSource]="data" class="turnosFiltrados">
           <ng-container matColumnDef="cuil">
-            <th mat-header-cell *matHeaderCellDef> CUIL </th>
+            <th mat-header-cell class="columnaCUIL" *matHeaderCellDef> CUIL </th>
             <td mat-cell class="columnaCUIL" *matCellDef="let turno"> {{turno.cuil}} </td>
           </ng-container>
           <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <th mat-header-cell class="columnaNombre" *matHeaderCellDef> Nombre </th>
             <td mat-cell class="columnaNombre" *matCellDef="let turno"> {{turno.nombre}} </td>
           </ng-container>
           <ng-container matColumnDef="apellido">
-            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <th mat-header-cell class="columnaApellido" *matHeaderCellDef> Apellido </th>
             <td mat-cell class="columnaApellido" *matCellDef="let turno"> {{turno.apellido}} </td>
           </ng-container>
           <ng-container matColumnDef="vacuna">
-            <th mat-header-cell *matHeaderCellDef> Vacuna </th>
+            <th mat-header-cell class="columnaVacuna" *matHeaderCellDef> Vacuna </th>
             <td mat-cell class="columnaVacuna" *matCellDef="let turno"> {{turno.vacuna}} </td>
           </ng-container>
           <ng-container matColumnDef="sede">
-            <th mat-header-cell *matHeaderCellDef> Sede </th>
+            <th mat-header-cell class="columnaSede" *matHeaderCellDef> Sede </th>
             <td mat-cell class="columnaSede" *matCellDef="let turno"> {{turno.sede}} </td>
           </ng-container>
           <ng-container matColumnDef="riesgo">
-            <th mat-header-cell *matHeaderCellDef> Riesgo </th>
+            <th mat-header-cell class="columnaRiesgo" *matHeaderCellDef> Riesgo </th>
             <td mat-cell class="columnaRiesgo" *matCellDef="let turno">
               <div *ngIf="turno.riesgo"><b>Sí</b></div>
               <div *ngIf="!turno.riesgo"><i>No</i></div>
             </td>
           </ng-container>
           <ng-container matColumnDef="vacunador">
-            <th mat-header-cell *matHeaderCellDef> Vacunador </th>
+            <th mat-header-cell class="columnaVacunador" *matHeaderCellDef> Vacunador </th>
             <td mat-cell class="columnaVacunador" *matCellDef="let turno"> {{turno.vacunador}} </td>
           </ng-container>
           <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <th mat-header-cell class="columnaFecha" *matHeaderCellDef> Fecha </th>
             <td mat-cell class="columnaFecha" *matCellDef="let turno"> {{turno.fecha}} </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
           <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="columnasMostradas.length">
+              <i>No hay turnos registrados en el período seleccionado.</i>
+            </td>
+          </tr>
         </table>
       </div>
 

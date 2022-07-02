@@ -63,3 +63,40 @@ table {
   width: 100%;
 }
 
+.mat-header-cell {
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.mat-cell {
+  text-align: center;
+}
+
+.columnaCuil {
+  width: 6rem;
+}
+
+.columnaNombre {
+  width: 8rem;
+}
+
+.columnaApellido {
+  width: 8rem;
+}
+
+.columnaEmail {
+  width: 10rem;
+}
+
+.columnaFecNac {
+  width: 10rem;
+}
+
+.columnaRiesgo {
+  width: 4rem;
+}
+
+.columnaSede {
+  width: 8rem;
+}
+

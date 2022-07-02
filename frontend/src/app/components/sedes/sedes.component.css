@@ -79,4 +79,24 @@ input {
 
 .mat-header-cell {
   background-color: aliceblue;
+  text-align: center;
+}
+
+.botonBorrar{
+  background-color: rgb(219, 90, 86);
+  margin-left: 1rem;
+  height: 2rem;
+  vertical-align: middle;
+}
+
+.columnaNro {
+  width:4rem;
+}
+
+.columnaNombre {
+  width:8rem;
+}
+
+.columnaAcciones {
+  width:4rem;
 }
