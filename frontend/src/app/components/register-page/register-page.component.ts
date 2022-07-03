@@ -18,6 +18,8 @@ export interface User {
     fecha: Date
     validated: boolean
     vacunas: Object
+    createdAt:Date
+    fechaNac:number
 }
 
 

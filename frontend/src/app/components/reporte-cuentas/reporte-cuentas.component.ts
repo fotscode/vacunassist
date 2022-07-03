@@ -1,35 +1,33 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog } from '@angular/material/dialog'
 import { Router } from '@angular/router'
-import {FormControl} from '@angular/forms'
+import { FormControl } from '@angular/forms'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
+import { User } from '../register-page/register-page.component'
 
 export interface Cuenta {
-  fecCreada:string,
-  nombre:string,
-  apellido:string,
-  email:string,
-  cuil:string,
-  fecNac:string,
-  riesgo:boolean,
-  sede:string,
+  fecCreada: string
+  fecCreadaNum: number
+  nombre: string
+  apellido: string
+  email: string
+  cuil: string
+  fecNac: string
+  riesgo: boolean
+  sede: string
 }
 
 @Component({
   selector: 'app-reporte-cuentas',
   templateUrl: './reporte-cuentas.component.html',
-  styleUrls: ['./reporte-cuentas.component.css']
+  styleUrls: ['./reporte-cuentas.component.css'],
 })
 export class ReporteCuentasComponent implements OnInit {
-  CUENTAS: Cuenta[] = [
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Papu',     apellido:'Gómez',     email:'aaaaa@gmail.com',   cuil:'20-15972648-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:true,   sede: 'Chechnya nº 692',  },
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Carmen',   apellido:'Barbieri',  email:'bbbbb@gmail.com',   cuil:'20-25267164-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:true,   sede: 'Nestor K. nº 1942',},
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Laura',    apellido:'De Giusti', email:'ccccc@gmail.com',   cuil:'20-30218655-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:false,  sede: 'Chechnya nº 692',  },
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Pablo',    apellido:'Thomas',    email:'ddddd@gmail.com',   cuil:'20-10643098-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:true,   sede: 'Chechnya nº 692',  },
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Rodolfo',  apellido:'Bertone',   email:'eeeee@gmail.com',   cuil:'20-24601387-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:false,  sede: 'Liberosky nº 459',        },
-    {fecCreada:this.formatDate(new Date('07/08/2022')),  nombre:'Viviana',  apellido:'Harari',    email:'fffff@gmail.com',   cuil:'20-19083230-5', fecNac:this.formatDate(new Date('07/08/2022')),  riesgo:true,   sede: 'Nestor K. nº 1942',},
-  ]
-  data = this.CUENTAS;
+  private apiURL: string = environment.baseApiUrl + '/users/'
+  CUENTAS: Cuenta[] = []
+  data = this.CUENTAS
   columnasMostradas: string[] = [
     'fecCreada',
     'nombre',
@@ -40,17 +38,19 @@ export class ReporteCuentasComponent implements OnInit {
     'riesgo',
     'sede',
   ]
-  hoy = new FormControl(new Date());
+  fechaDesde = new FormControl(new Date())
+  fechaHasta = new FormControl(new Date())
 
-  constructor(@Inject(MatSnackBar) private snackBar: MatSnackBar,
-              public popup: MatDialog,
-              private router: Router) { }
+  constructor(
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
+    public popup: MatDialog,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  esRiesgo(valor:boolean){
-    if (valor)
-      return 'Sí'
-    else
-      return 'No';
+  esRiesgo(valor: boolean) {
+    if (valor) return 'Sí'
+    else return 'No'
   }
 
   private formatDate(d: Date): string {
@@ -59,8 +59,32 @@ export class ReporteCuentasComponent implements OnInit {
     let day = d.getDate()
     return `${day}/${m}/${y}`
   }
-
-  ngOnInit(): void {
+  filterUsers() {
+    this.data=this.CUENTAS.filter(
+      (u) =>
+        u.fecCreadaNum <= this.fechaHasta.value.getTime() &&
+        u.fecCreadaNum >= this.fechaDesde.value.getTime()
+    )
   }
 
+  ngOnInit(): void {
+    this.http.get<Array<User>>(`${this.apiURL}user/`).subscribe((res) => {
+      this.CUENTAS = []
+      res.forEach((u) => {
+        let temp: Cuenta = {
+          fecCreada: this.formatDate(new Date(u.createdAt)),
+          fecCreadaNum: new Date(u.createdAt).getTime(),
+          nombre: u.firstName,
+          apellido: u.lastName,
+          email: u.email,
+          cuil: u.cuil,
+          fecNac: this.formatDate(new Date(u.fechaNac)),
+          riesgo: u.riesgo,
+          sede: u.sede,
+        }
+        this.CUENTAS.push(temp)
+      })
+      this.data = this.CUENTAS
+    })
+  }
 }
