@@ -83,16 +83,22 @@ export class ListarTurnosComponent implements OnInit {
         this.http
           .put(`${this.apiURL}/usersVaccines/confirm/${row.vac._id}`, obj)
           .subscribe((res) => {
-            console.log(res)
             this.snackBar.open('Visita confirmada', void 0, {
               duration: 3000,
             })
+            this.ngOnInit()
           })
       }
     })
   }
 
-  borrarTurno(turno: any) {}
+  borrarTurno(turno: any) {
+    this.http
+      .put(`${this.apiURL}/usersVaccines/cancel/${turno.vac._id}`, { applied: turno.vac.applied })
+      .subscribe((res) => {
+        this.ngOnInit()
+      })
+  }
 
   borrarTurnoAttempt(turno: any) {
     const dialogConfig = new MatDialogConfig()
@@ -117,6 +123,7 @@ export class ListarTurnosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sedes=[{ nro: 1, name: 'Centro' }]
     this.getVacunas()
     this.getSedes()
   }

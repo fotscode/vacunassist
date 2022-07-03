@@ -33,7 +33,7 @@ export class ProfileEditComponent implements OnInit {
     cuil: '',
     riesgo: false,
     fechaNac: new Date(),
-    sede: this.sedes[1],
+    sede: this.sedes[0],
     vacunas: {},
   }
 

@@ -20,7 +20,7 @@ export class ProfileViewComponent implements OnInit {
   sedes: Sede[] = [
     { nro: 1, name: 'Centro' },
   ]
-  sede: Sede = this.sedes[1]
+  sede: Sede = this.sedes[0]
   dosis = ['Gripe: 1', 'COVID: 2']
 
   private URL = environment.baseApiUrl + '/users'

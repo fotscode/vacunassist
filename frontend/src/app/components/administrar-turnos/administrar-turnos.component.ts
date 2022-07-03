@@ -23,7 +23,7 @@ export interface Solicitud {
   v: Vacuna
 }
 
-let SOLICITUDES:Solicitud[]=[]
+let SOLICITUDES: Solicitud[] = []
 @Component({
   selector: 'app-administrar-turnos',
   templateUrl: './administrar-turnos.component.html',
@@ -31,7 +31,7 @@ let SOLICITUDES:Solicitud[]=[]
 })
 export class AdministrarTurnosComponent implements OnInit {
   private apiURL: string = environment.baseApiUrl
-  SOLICITUDES:Solicitud[]=[]
+  SOLICITUDES: Solicitud[] = []
   data = SOLICITUDES
   columnasMostradas: string[] = [
     'nro',
@@ -51,6 +51,8 @@ export class AdministrarTurnosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.SOLICITUDES=[]
+    this.data=[]
     this.getVacunas()
   }
   private async getVacunas() {
@@ -58,7 +60,10 @@ export class AdministrarTurnosComponent implements OnInit {
       .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
       .subscribe(async (res) => {
         let arr = res.filter(
-          (e) =>  !(e.sede==undefined) && ((e.dateConfirmed==undefined) ||e.dateConfirmed==0) && e.dateIssued!=0
+          (e) =>
+            !(e.sede == undefined) &&
+            (e.dateConfirmed == undefined || e.dateConfirmed == 0) &&
+            e.dateIssued != 0
         )
         arr.forEach(async (e) => {
           let u = await this.getUserInfo(e.userId)
@@ -75,7 +80,6 @@ export class AdministrarTurnosComponent implements OnInit {
           this.SOLICITUDES.push(obj)
         })
         setTimeout(() => {
-          console.log(this.SOLICITUDES)
           this.data = this.SOLICITUDES // TODO mejor hecho pero no lo veo bien
         }, 100)
       })
@@ -91,25 +95,16 @@ export class AdministrarTurnosComponent implements OnInit {
     })
   }
 
-  cancelAppointment(id: string, appl: boolean) {
-    this.http
-      .put(this.apiURL + '/usersVaccines/cancel/' + id, { applied: appl })
-      .subscribe((res) => {
-        this.ngOnInit()
-      })
-  }
-
   aceptarTurno(turno: any) {
     this.router.navigate(['/ConfirmarTurno', turno.v._id])
   }
 
-  rechazarTurno(turno: any) {
+  private rechazarTurno(turno: any) {
     this.http
       .put(this.apiURL + '/usersVaccines/cancel/' + turno.v._id, {
         applied: turno.v.applied,
       })
       .subscribe((res) => {
-        this.ngOnInit()
       })
   }
 
@@ -128,6 +123,7 @@ export class AdministrarTurnosComponent implements OnInit {
         this.snackBar.open('El turno ha sido rechazado', void 0, {
           duration: 3000,
         })
+        this.ngOnInit()
       }
     })
   }
