@@ -58,7 +58,7 @@ export class AdministrarTurnosComponent implements OnInit {
       .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
       .subscribe(async (res) => {
         let arr = res.filter(
-          (e) =>  !(e.sede==undefined) && !(e.dateConfirmed==undefined) && e.dateConfirmed==0 && e.dateIssued!=0
+          (e) =>  !(e.sede==undefined) && ((e.dateConfirmed==undefined) ||e.dateConfirmed==0) && e.dateIssued!=0
         )
         arr.forEach(async (e) => {
           let u = await this.getUserInfo(e.userId)

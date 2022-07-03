@@ -11,19 +11,20 @@ export const datesOnSameDay = (first: Date, second: Date): boolean =>{
       first.getDate() === second.getDate()
     )
   }
-interface Vacuna {
+export interface Vacuna {
   _id: string
   applied: boolean
   createdAt: Date
   dateIssued: number
   dateApplied: number
+  dateConfirmed: number
   doseNumber: number
   modifiable: boolean
   vaccineId: string
   sede:string
 }
 
-interface Approvable {
+export interface Approvable {
   maxDosage: boolean // tiene las dosis maximas
   validated: boolean // esta validado
   maxCount: boolean // cantidad maxima del dia

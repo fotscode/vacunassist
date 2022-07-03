@@ -47,7 +47,7 @@ export class AdminProfileViewComponent implements OnInit {
     cuil: '',
     riesgo: false,
     fechaNac: this.formatDate(new Date()),
-    sede: this.sedes[1],
+    sede: this.sedes[0],
   }
 
   private URL = environment.baseApiUrl + '/users'

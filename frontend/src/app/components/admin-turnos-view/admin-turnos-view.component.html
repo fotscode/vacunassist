@@ -1,6 +1,6 @@
 <div class="turnosContainer" id="htmlData">
   <div class="turnos d-flex justify-content-center" id="htmlData">
-    <table *ngIf="turnos.length>0" class="table table-bordered">
+    <table *ngIf="turnos.length > 0" class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Estado</th>
@@ -12,26 +12,58 @@
       </thead>
       <tbody>
         <tr *ngFor="let turno of turnos">
-          <td scope="row"><b>{{ turno.estado }}</b></td>
+          <td scope="row">
+            <b>{{ turno.estado }}</b>
+          </td>
           <td>{{ turno.vacuna }}</td>
           <td>{{ turno.fecha }}</td>
-          <td>{{turno.sede}}</td>
-          <td><button (click)="cancelAttempt(turno.id,turno.applied)"><b>X</b></button></td>
+          <td>{{ turno.sede }}</td>
+          <td>
+            <button (click)="cancelAttempt(turno.id, turno.applied)">
+              <b>X</b>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <div *ngIf="turnos.length==0" style="background-color:#92e3a9; padding:1rem;border-radius:4rem;width:70%; justify-content:center">No hay turnos para mostrar</div>
+    <div
+      *ngIf="turnos.length == 0"
+      style="
+        background-color: #92e3a9;
+        padding: 1rem;
+        border-radius: 4rem;
+        width: 70%;
+        justify-content: center;
+      "
+    >
+      No hay turnos para mostrar
+    </div>
   </div>
   <div class="cabeceraSolicitar">
     <h2>Solicitarle turno</h2>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button mat-raised-button (click)="solicitarTurno('covid')">Covid</button>
+    <button
+      mat-raised-button
+      (click)="solicitarTurno(this.vacCovid, this.covid)"
+    >
+      Covid
+    </button>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button mat-raised-button (click)="solicitarTurno('gripe')">Gripe</button>
+    <button
+      mat-raised-button
+      (click)="solicitarTurno(this.vacGripe, this.gripe)"
+    >
+      Gripe
+    </button>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button mat-raised-button (click)="solicitarTurno('fAmarilla')">Fiebre Amarilla</button>
+    <button
+      mat-raised-button
+      (click)="solicitarTurno(this.vacFAmarilla, this.fAmarilla)"
+    >
+      Fiebre Amarilla
+    </button>
   </div>
 </div>
