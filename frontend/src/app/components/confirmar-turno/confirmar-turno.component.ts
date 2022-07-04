@@ -37,7 +37,7 @@ export class ConfirmarTurnoComponent implements OnInit {
     riesgo: true,
   }
 
-  sedes: Sede[] = [{ nro: 1, name: 'Centro' }]
+  sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
   sede = this.sedes[0]
 
   constructor(

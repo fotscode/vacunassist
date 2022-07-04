@@ -18,7 +18,7 @@ export class ProfileViewComponent implements OnInit {
   riesgo = false
   fechaNac = this.formatDate(new Date())
   sedes: Sede[] = [
-    { nro: 1, name: 'Centro' },
+    { nro: 1, name: '13 nº 876 e/ 49 y 50' },
   ]
   sede: Sede = this.sedes[0]
   dosis = ['Gripe: 1', 'COVID: 2']

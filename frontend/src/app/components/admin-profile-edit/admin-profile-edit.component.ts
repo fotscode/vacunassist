@@ -20,7 +20,7 @@ export class AdminProfileEditComponent implements OnInit {
   errorMsg: string = ''
   public id: string
   sedes: Sede[] = [
-    { nro: 1, name: 'Centro' },
+    { nro: 1, name: '13 nº 876 e/ 49 y 50' },
   ]
   roles: Rol[] = [
     { id: 1, nombre: 'Paciente' },

@@ -44,7 +44,7 @@ export class ListarTurnosComponent implements OnInit {
     'riesgo',
     'acciones',
   ]
-  sedes: Sede[] = [{ nro: 1, name: 'Centro' }]
+  sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
   sede = this.sedes[1]
 
   constructor(
@@ -123,7 +123,7 @@ export class ListarTurnosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sedes=[{ nro: 1, name: 'Centro' }]
+    this.sedes=[{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
     this.getVacunas()
     this.getSedes()
   }

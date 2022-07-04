@@ -22,7 +22,7 @@ export class ProfileEditComponent implements OnInit {
   @ViewChild('vacunasEdit') myId: any
   errorMsg: string = ''
   sedes: Sede[] = [
-    { nro: 1, name: 'Centro' },
+    { nro: 1, name: '13 nº 876 e/ 49 y 50' },
   ]
 
   nivel = ''

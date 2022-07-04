@@ -21,7 +21,7 @@ export interface Sede {
 })
 export class SedesComponent implements OnInit {
   private URL: string = environment.baseApiUrl + '/sites/'
-  sedes: Sede[] = [{ nro: 1, name: 'Centro' }]
+  sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
 
   data = new MatTableDataSource<Sede>()
   columnasMostradas: string[] = ['nro', 'name', 'accion']
