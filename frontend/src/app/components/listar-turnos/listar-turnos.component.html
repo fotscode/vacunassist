@@ -18,7 +18,7 @@
               <table mat-table [dataSource]="getData(sede.name)" class="turnosAceptados" >
                 <ng-container matColumnDef="nro">
                 <th mat-header-cell class="columnaNro" *matHeaderCellDef> NRO </th>
-                  <td mat-cell class="columnaNro" *matCellDef="let turno"> {{turno.nro}} </td>
+                  <td mat-cell class="columnaNro" *matCellDef="let turno; let i=index"> {{ i+1 }} </td>
                 </ng-container>
                 <ng-container matColumnDef="nombre">
                   <th mat-header-cell class="columnaNombre" *matHeaderCellDef> Nombre </th>

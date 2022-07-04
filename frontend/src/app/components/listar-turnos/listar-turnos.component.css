@@ -1,7 +1,7 @@
 .contenedor {
   margin: auto;
   min-height: fit-content;
-  width: 55%;
+  width: 65%;
   margin-top: 3rem;
   background-color: #6eb882;
   align-self: center;
@@ -53,11 +53,11 @@
 }
 
 .columnaNombre {
-  width: 15%;
+  width: 12%;
 }
 
 .columnaApellido{
-  width: 15%;
+  width: 12%;
 }
 
 .columnaVacuna {
@@ -65,17 +65,17 @@
 }
 
 .columnaSede {
-  width: 10%;
+  width: 20%;
 }
 
 .columnaRiesgo {
-  width: 10%;
+  width: 8%;
   text-align: center;
   height: 5px;
 }
 
 .columnaAcciones {
-  width: 40%;
+  width: 38%;
 }
 
 .botonConfirmar {
