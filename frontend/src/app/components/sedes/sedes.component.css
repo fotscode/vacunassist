@@ -1,7 +1,8 @@
 .contenedor {
+  text-align: center;
   margin: auto;
   min-height: fit-content;
-  width:35%;
+  width:40%;
   margin-top: 3rem;
   background-color: #689f77;
   align-self: center;
@@ -64,7 +65,8 @@
 }
 
 input {
-  margin:0px;
+  width: 16rem;
+  margin: 0px;
 }
 
 .form-control {
@@ -90,11 +92,11 @@ input {
 }
 
 .columnaNro {
-  width:4rem;
+  width:2rem;
 }
 
 .columnaNombre {
-  width:8rem;
+  width:12rem;
 }
 
 .columnaAcciones {

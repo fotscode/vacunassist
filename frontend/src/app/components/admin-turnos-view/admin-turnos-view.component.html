@@ -26,16 +26,8 @@
         </tr>
       </tbody>
     </table>
-    <div
-      *ngIf="turnos.length == 0"
-      style="
-        background-color: #92e3a9;
-        padding: 1rem;
-        border-radius: 4rem;
-        width: 70%;
-        justify-content: center;
-      "
-    >
+    <div *ngIf="turnos.length == 0" style="background-color: #92e3a9;
+        padding: 1rem; border-radius: 4rem; width: 70%; justify-content: center;">
       No hay turnos para mostrar
     </div>
   </div>
@@ -43,26 +35,20 @@
     <h2>Solicitarle turno</h2>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button
-      mat-raised-button
-      (click)="solicitarTurno(this.vacCovid, this.covid)"
-    >
+    <button mat-raised-button
+    (click)="solicitarTurno(this.vacCovid, this.covid)">
       Covid
     </button>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button
-      mat-raised-button
-      (click)="solicitarTurno(this.vacGripe, this.gripe)"
-    >
+    <button mat-raised-button
+      (click)="solicitarTurno(this.vacGripe, this.gripe)">
       Gripe
     </button>
   </div>
   <div class="opciones d-flex justify-content-center">
-    <button
-      mat-raised-button
-      (click)="solicitarTurno(this.vacFAmarilla, this.fAmarilla)"
-    >
+    <button mat-raised-button
+      (click)="solicitarTurno(this.vacFAmarilla, this.fAmarilla)">
       Fiebre Amarilla
     </button>
   </div>
