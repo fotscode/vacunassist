@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && (isAdmin() || isVacunador())" routerLink="/BuscarPersona">Buscar Persona</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && (isAdmin())" routerLink="/BuscarPersona">Buscar Persona</a>
                 </li>
                 <li class="nav-item">
                   <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && (isAdmin() || isVacunador())" routerLink="/ListarTurnos">Turnos</a>

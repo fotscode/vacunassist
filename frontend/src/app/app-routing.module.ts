@@ -43,7 +43,7 @@ const routes: Routes=[
   {path: 'NuevaNoticia', component:NuevaNoticiaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'Noticia', component:NoticiaComponent},
   {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard,ValidatedGuard]},
-  {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,VacunadorGuard]},
+  {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileEdit/:id', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileView/:id', component:AdminProfileViewComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
