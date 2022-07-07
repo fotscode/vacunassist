@@ -29,6 +29,7 @@ import { ConfirmarTurnoComponent } from './components/confirmar-turno/confirmar-
 import { ListarTurnosComponent } from './components/listar-turnos/listar-turnos.component';
 import { ReporteTurnosComponent } from './components/reporte-turnos/reporte-turnos.component';
 import { ReporteCuentasComponent } from './components/reporte-cuentas/reporte-cuentas.component';
+import { VacunadorGuard } from './vacunador.guard';
 
 const routes: Routes=[
   {path: 'Home', component:HomeComponent},
@@ -38,21 +39,21 @@ const routes: Routes=[
   {path: 'EditarPerfil', component:ProfileEditComponent, canActivate:[AuthGuard]},
   {path: 'Recover', component:PasswordRecoveryPageComponent,canActivate:[LoggedInGuard]},
   {path: 'Certificado', component:CertificadoComponent, canActivate:[AuthGuard]},
-  {path: 'Turnos', component:MisturnosComponent},
+  {path: 'Turnos', component:MisturnosComponent,canActivate:[AuthGuard, AdminGuard]},
   {path: 'NuevaNoticia', component:NuevaNoticiaComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'Noticia', component:NoticiaComponent},
   {path: 'ValidarIdentidad', component:ValidarIdentidadComponent, canActivate:[AuthGuard,ValidatedGuard]},
-  {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'BuscarPersona', component:BuscarPersonaComponent, canActivate:[AuthGuard,VacunadorGuard]},
   {path: 'AdminProfileEdit/:id', component:AdminProfileEditComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'AdminProfileView/:id', component:AdminProfileViewComponent, canActivate:[AuthGuard,AdminGuard]},
   {path: 'VacunasEdit', component:VacunasEditComponent, canActivate:[AuthGuard]},
   {path: 'Sedes', component:SedesComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: 'SolicitarTurno', component:SolicitarTurnoComponent, canActivate:[AuthGuard]},
-  {path: 'AdministrarTurnos', component:AdministrarTurnosComponent, canActivate:[AuthGuard]},
-  {path: 'ConfirmarTurno/:id', component:ConfirmarTurnoComponent, canActivate:[AuthGuard]},
+  {path: 'AdministrarTurnos', component:AdministrarTurnosComponent, canActivate:[AuthGuard, AdminGuard]},
+  {path: 'ConfirmarTurno/:id', component:ConfirmarTurnoComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: 'ListarTurnos', component:ListarTurnosComponent, canActivate:[AuthGuard]},
-  {path: 'ReporteTurnos', component:ReporteTurnosComponent, canActivate:[AuthGuard]},
-  {path: 'ReporteCuentas', component:ReporteCuentasComponent, canActivate:[AuthGuard]},
+  {path: 'ReporteTurnos', component:ReporteTurnosComponent, canActivate:[AuthGuard, VacunadorGuard]},
+  {path: 'ReporteCuentas', component:ReporteCuentasComponent, canActivate:[AuthGuard, AdminGuard]},
   {path: '', redirectTo:'/Home', pathMatch:'full'},
   {path: '**', pathMatch:'full', component:ErrorPageComponent}
 ]

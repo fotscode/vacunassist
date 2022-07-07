@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms'
 
+import { VacunadorGuard } from './vacunador.guard';
 import { AuthGuard } from './auth.guard'
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PasswordRecoveryPageComponent } from './components/password-recovery-page/password-recovery-page.component';
