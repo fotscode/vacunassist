@@ -19,7 +19,7 @@
                   <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/NuevaNoticia">Agregar Noticia</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/BuscarPersona">Buscar Persona</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && (isAdmin() || isVacunador())" routerLink="/BuscarPersona">Buscar Persona</a>
                 </li>
                 <li class="nav-item">
                   <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/Sedes">Sedes</a>
@@ -28,14 +28,14 @@
                   <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/AdministrarTurnos">Solicitudes</a>
                 </li>
                 <li class="nav-item">
-                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && isAdmin()" routerLink="/ListarTurnos">Turnos</a>
+                  <a style="font-size:16px" class="nav-link" *ngIf="isLogged() && (isAdmin() || isVacunador())" routerLink="/ListarTurnos">Turnos</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a style="font-size:16px"  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Reportes</a>
+                  <a style="font-size:16px"  class="nav-link dropdown-toggle" *ngIf="isLogged() && (isAdmin() || isVacunador())" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Reportes</a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" routerLink="/ReporteTurnos">Turnos</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" routerLink="/ReporteCuentas">Cuentas</a>
+                      <div class="dropdown-divider" *ngIf="isAdmin()"></div>
+                      <a class="dropdown-item"  *ngIf="isAdmin()" routerLink="/ReporteCuentas">Cuentas</a>
                   </div>
                 </li>
             </ul>

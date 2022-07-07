@@ -47,6 +47,10 @@ export class NavigationHeaderComponent implements OnInit {
     return this.authService.getRol() == 3
   }
 
+  isVacunador(){
+    return this.authService.getRol() == 2
+  }
+
   logOut() {
     this.authService.logout()
     this.snackBar.open('Se ha cerrado la sesion', void 0, { duration: 3000 })
