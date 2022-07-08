@@ -7,16 +7,16 @@
       <div class="tablaTurnos">
         <div class="visualizador">
           <mat-form-field class="fechaDesde" appearance="fill">
-            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="true"/>
+            <input matInput [matDatepicker]="picker1" name="fecha" [formControl]="hoy" required="true"/>
             <mat-hint>DESDE</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker startView="month"></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 startView="month"></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="fechaHasta" appearance="fill">
-            <input matInput [matDatepicker]="picker" name="fecha" [formControl]="hoy" required="true"/>
+            <input matInput [matDatepicker]="picker2" name="fecha" [formControl]="hoy" required="true"/>
             <mat-hint>HASTA</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker startView="month"></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 startView="month"></mat-datepicker>
           </mat-form-field>
         </div>
         <table mat-table [dataSource]="data" class="turnosFiltrados">
@@ -57,7 +57,6 @@
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
           <tr mat-row *matRowDef="let row; columns: columnasMostradas;"></tr>
-
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" [attr.colspan]="columnasMostradas.length">
               <i>No hay turnos registrados en el período seleccionado.</i>

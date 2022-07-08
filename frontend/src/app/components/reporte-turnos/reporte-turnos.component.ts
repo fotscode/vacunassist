@@ -1,35 +1,33 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog } from '@angular/material/dialog'
 import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
+import { firstLetterUpper, Vacuna } from '../misturnos/misturnos.component'
+import { User } from '../register-page/register-page.component'
 
-export interface User {
-  cuil:string,
-  nombre:string,
-  apellido:string,
-  vacuna:string,
-  sede:string,
-  riesgo:boolean,
-  vacunador:string,
-  fecha:string
+export interface TurnoUsuario {
+  cuil: string
+  nombre: string
+  apellido: string
+  vacuna: string
+  sede: string
+  riesgo: boolean
+  vacunador: string
+  fecha: string
 }
 
 @Component({
   selector: 'app-reporte-turnos',
   templateUrl: './reporte-turnos.component.html',
-  styleUrls: ['./reporte-turnos.component.css']
+  styleUrls: ['./reporte-turnos.component.css'],
 })
 export class ReporteTurnosComponent implements OnInit {
-  USERS: User[] = [
-    {cuil:'20-15972648-5', nombre:'Papu',     apellido:'Gómez',     vacuna:'Covid', sede: 'Liberosky nº 459'   ,  riesgo:true,  vacunador:"Tévez",      fecha: this.formatDate(new Date('12/01/2022'))},
-    {cuil:'20-25267164-5', nombre:'Carmen',   apellido:'Barbieri',  vacuna:'Gripe', sede: 'Chechnya nº 692'    ,  riesgo:true,  vacunador:"Gago",       fecha: this.formatDate(new Date('05/18/2022'))},
-    {cuil:'20-30218655-5', nombre:'Laura',    apellido:'De Giusti', vacuna:'Covid', sede: 'Nestor K. nº 1942'  ,  riesgo:false, vacunador:"Sabatella",  fecha: this.formatDate(new Date('08/27/2022'))},
-    {cuil:'20-10643098-5', nombre:'Pablo',    apellido:'Thomas',    vacuna:'Covid', sede: 'Nestor K. nº 1942'  ,  riesgo:true,  vacunador:"Sabatella",  fecha: this.formatDate(new Date('09/02/2022'))},
-    {cuil:'20-24601387-5', nombre:'Rodolfo',  apellido:'Bertone',   vacuna:'Gripe', sede: 'Liberosky nº 459'   ,  riesgo:false, vacunador:"Tévez",      fecha: this.formatDate(new Date('08/07/2022'))},
-    {cuil:'20-19083230-5', nombre:'Viviana',  apellido:'Harari',    vacuna:'Covid', sede: 'Chechnya nº 692'    ,  riesgo:true,  vacunador:"Gago",       fecha: this.formatDate(new Date('11/07/2022'))},
-  ]
-  data = this.USERS;
+  private apiURL: string = environment.baseApiUrl
+  USERS: TurnoUsuario[] = []
+  data = this.USERS
   columnasMostradas: string[] = [
     'cuil',
     'nombre',
@@ -40,17 +38,18 @@ export class ReporteTurnosComponent implements OnInit {
     'vacunador',
     'fecha',
   ]
-  hoy = new FormControl(new Date());
+  hoy = new FormControl(new Date())
 
-  constructor(@Inject(MatSnackBar) private snackBar: MatSnackBar,
-              public popup: MatDialog,
-              private router: Router) { }
+  constructor(
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
+    public popup: MatDialog,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
-  esRiesgo(valor:boolean){
-    if (valor)
-      return 'Sí'
-    else
-      return 'No';
+  esRiesgo(valor: boolean) {
+    if (valor) return 'Sí'
+    else return 'No'
   }
 
   private formatDate(d: Date): string {
@@ -61,6 +60,41 @@ export class ReporteTurnosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getVacunas()
+  }
+  private async getVacunas() {
+    this.http
+      .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
+      .subscribe(async (res) => {
+        let arr = res.filter((e) => e.dateConfirmed!=undefined && e.dateConfirmed != 0)
+        this.USERS=[]
+        arr.forEach(async (e) => {
+          let u = await this.getUserInfo(e.userId)
+          let obj: TurnoUsuario = {
+            cuil:u.cuil,
+            nombre:u.firstName,
+            apellido:u.lastName,
+            vacuna:firstLetterUpper(e.vaccineId),
+            sede:e.sede,
+            riesgo:u.riesgo,
+            vacunador:'xd',
+            fecha:this.formatDate(new Date(e.dateConfirmed))
+          }
+          this.USERS.push(obj)
+        })
+        setTimeout(() => {
+          this.data=this.USERS
+        }, 100)
+      })
   }
 
+  private async getUserInfo(id: string): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<User>(this.apiURL + '/users/user/' + id)
+        .subscribe((res) => {
+          if (res) resolve(res)
+        })
+    })
+  }
 }
