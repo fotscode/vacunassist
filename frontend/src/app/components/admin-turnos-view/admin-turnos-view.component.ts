@@ -218,11 +218,11 @@ export class AdminTurnosViewComponent implements OnInit {
     return !a.validated
       ? 'No se encuentra validado'
       : !a.pending
-      ? 'Ya tenés un turno pendiente para esta vacuna'
+      ? 'El paciente ya tiene un turno pendiente para esta vacuna'
       : !a.maxCount
       ? 'No hay mas dosis diarias de vacunas'
       : !a.maxDosage
-      ? 'Ya tenés la cantidad de dosis máxima'
+      ? 'El paciente ya tiene la cantidad de dosis máxima'
       : 'Los menores de edad no pueden solicitar turnos'
   }
 
