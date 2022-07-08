@@ -120,7 +120,7 @@ export class AdminProfileEditComponent implements OnInit {
             this.router.navigate(['/AdminProfileView', this.getIdPerson()])
           },
           (err) => {
-            console.log(err)
+            this.errorMsg=err.error.msg
           }
         )
     } else

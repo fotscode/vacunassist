@@ -158,52 +158,65 @@ exports.showUser = (req, res, next) => {
 exports.updateUser = (req, res, next) => {
   User.findOne({ _id: req.params.user_id })
     .then((user) => {
-      user.firstName = req.body.firstName.trim()
-      user.lastName = req.body.lastName.trim()
-      user.email = req.body.email.trim()
-      user.riesgo = req.body.riesgo
-      user.role=req.body.role
-      user.cuil=req.body.cuil
-      user.sede = req.body.sede.name.trim()
-      user.fechaNac=new Date(req.body.fechaNac).getTime()
-      User.findOneAndUpdate(
-        { _id: req.params.user_id },
-        user,
-        { upsert: true },
-        (err, doc) => {
-          if (err) return res.send(409, { error: err, msg: 'user not found' })
-          UserVaccines.find({ userId: req.params.user_id })
-            .then((vaccines) => {
-              if (vaccines) {
-                vaccines.forEach((vac) => {
-                  let dataToUpdate = Object.entries(req.body.vacunas).filter(
-                    ([k, v]) => k === vac.vaccineId
-                  )
-                  if (dataToUpdate) {
-                    dataToUpdate = dataToUpdate[0][1]
-                  }
-                  vac.doseNumber = dataToUpdate.dosis
-                  vac.dateApplied = new Date(dataToUpdate.fecha).getTime()
-                  UserVaccines.findOneAndUpdate(
-                    { _id: vac._id },
-                    vac,
-                    { upsert: true },
-                    (err, doc) => {
-                      if (err) console.log(err)
-                    }
-                  )
+      User.findOne({ cuil: req.body.cuil }).then((u) => {
+        if (u&&u.cuil!=user.cuil) {
+          return res.send(409, { msg: 'CUIL ya registrado'  })
+        } else {
+          user.firstName = req.body.firstName.trim()
+          user.lastName = req.body.lastName.trim()
+          user.email = req.body.email.trim()
+          user.riesgo = req.body.riesgo
+          user.role = req.body.role
+          user.cuil = req.body.cuil
+          user.sede = req.body.sede.name.trim()
+          user.fechaNac = new Date(req.body.fechaNac).getTime()
+          User.findOneAndUpdate(
+            { _id: req.params.user_id },
+            user,
+            { upsert: true },
+            (err, doc) => {
+              if (err)
+                return res.send(409, { error: err, msg: 'user not found' })
+              UserVaccines.find({ userId: req.params.user_id })
+                .then((vaccines) => {
+                  if (vaccines) {
+                    vaccines.forEach((vac) => {
+                      let dataToUpdate = Object.entries(
+                        req.body.vacunas
+                      ).filter(([k, v]) => k === vac.vaccineId)
+                      if (dataToUpdate) {
+                        dataToUpdate = dataToUpdate[0][1]
+                      }
+                      vac.doseNumber = dataToUpdate.dosis
+                      vac.dateApplied = new Date(dataToUpdate.fecha).getTime()
+                      UserVaccines.findOneAndUpdate(
+                        { _id: vac._id },
+                        vac,
+                        { upsert: true },
+                        (err, doc) => {
+                          if (err) console.log(err)
+                        }
+                      )
+                    })
+                    return res
+                      .status(200)
+                      .json({ success: true, msg: 'user updated' })
+                  } else
+                    return res.send(409, {
+                      error: err,
+                      msg: 'vaccines not found2',
+                    })
                 })
-                return res
-                  .status(200)
-                  .json({ success: true, msg: 'user updated' })
-              } else
-                return res.send(409, { error: err, msg: 'vaccines not found2' })
-            })
-            .catch((err) => {
-              return res.send(409, { error: err, msg: 'vaccines not found' })
-            })
+                .catch((err) => {
+                  return res.send(409, {
+                    error: err,
+                    msg: 'vaccines not found',
+                  })
+                })
+            }
+          )
         }
-      )
+      })
     })
     .catch((err) => {
       return res.send(409, { error: err, msg: 'user not found' })
