@@ -159,7 +159,7 @@ exports.updateUser = (req, res, next) => {
   User.findOne({ _id: req.params.user_id })
     .then((user) => {
       User.findOne({ cuil: req.body.cuil }).then((u) => {
-        if (u) {
+        if (u&&u.cuil!=user.cuil) {
           return res.send(409, { msg: 'CUIL ya registrado'  })
         } else {
           user.firstName = req.body.firstName.trim()
