@@ -45,7 +45,7 @@ export class ListarTurnosComponent implements OnInit {
     'acciones',
   ]
   sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
-  sede = this.sedes[1]
+  sede = this.sedes[0]
 
   constructor(
     @Inject(MatSnackBar) private snackBar: MatSnackBar,
@@ -79,6 +79,7 @@ export class ListarTurnosComponent implements OnInit {
           dateConfirmed:0,
           applied:true,
           dateIssued:0,
+          sede:''
         }
         this.http
           .put(`${this.apiURL}/usersVaccines/confirm/${row.vac._id}`, obj)
@@ -132,7 +133,6 @@ export class ListarTurnosComponent implements OnInit {
       .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
       .subscribe(async (res) => {
         USERS = []
-        console.log(res)
         let arr = res.filter((e) => e.dateConfirmed != 0)
         arr.forEach(async (e) => {
           let u = await this.getUserInfo(e.userId)

@@ -21,6 +21,7 @@ export interface Vacuna {
   doseNumber: number
   modifiable: boolean
   vaccineId: string
+  userId:string
   sede:string
 }
 

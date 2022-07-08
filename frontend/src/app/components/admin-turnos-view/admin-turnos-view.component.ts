@@ -12,6 +12,7 @@ import {
   Vacuna,
 } from '../solicitar-turno/solicitar-turno.component'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { User } from '../register-page/register-page.component'
 
 export interface Persona {
   _id: string
@@ -43,6 +44,7 @@ export class AdminTurnosViewComponent implements OnInit {
   usuario: Persona | undefined
   errorMsg = ''
 
+  private apiURL: string = environment.baseApiUrl
   private URL = environment.baseApiUrl + '/usersVaccines'
 
   covid: Approvable = {
@@ -127,7 +129,6 @@ export class AdminTurnosViewComponent implements OnInit {
     this.http
       .get<Array<Vacuna>>(this.URL + '/user/' + this.getIdPerson())
       .subscribe((res) => {
-        console.log(res)
         this.vacCovid = res.find((e: Vacuna) => e.vaccineId == 'covid')
         this.setApprovable(this.vacCovid, this.covid, 2)
         this.vacGripe = res.find((e: Vacuna) => e.vaccineId == 'gripe')
@@ -194,13 +195,14 @@ export class AdminTurnosViewComponent implements OnInit {
       v.dateIssued = new Date().getTime()
       v.modifiable = false
       a.pending = false
-      await this.getSede().then((res) => (v.sede = res))
+      await this.getSede(v.userId).then((res) => (v.sede = res))
+      console.log(v.sede)
       this.http
         .put(this.URL + '/' + v._id, v)
         .toPromise()
         .then((res) => {
-          let name=v.vaccineId
-          if(name=="fiebreA") name="fiebre amarilla"
+          let name = v.vaccineId
+          if (name == 'fiebreA') name = 'fiebre amarilla'
           this.snackBar.open(`Turno de ${name} solicitado`, void 0, {
             duration: 3000,
           })
@@ -224,14 +226,13 @@ export class AdminTurnosViewComponent implements OnInit {
       : 'Los menores de edad no pueden solicitar turnos'
   }
 
-  private async getSede(): Promise<string> {
+  private async getSede(id:string): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.authService.getUser().subscribe(
-        (res) => {
-          resolve(res.sede)
-        },
-        (err) => reject(err)
-      )
+      this.http
+        .get<User>(this.apiURL + '/users/user/' + id)
+        .subscribe((res) => {
+          if (res) resolve(res.sede)
+        })
     })
   }
 }
