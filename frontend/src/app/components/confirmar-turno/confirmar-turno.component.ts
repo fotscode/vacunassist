@@ -89,6 +89,7 @@ export class ConfirmarTurnoComponent implements OnInit {
         this.user.dosis = res.doseNumber
         this.user.riesgo = u.riesgo
         this.user.vac=res
+        this.user.fecha=new FormControl(this.setDate())
         this.getSedes(res.sede)
       })
   }
@@ -110,8 +111,6 @@ export class ConfirmarTurnoComponent implements OnInit {
       this.http
         .get<User>(this.apiURL + '/users/user/' + id)
         .subscribe((res) => {
-          this.user.fecha=new FormControl(this.setDate());
-          console.log(this.setDate())
           if (res)
           resolve(res)
         })
@@ -122,9 +121,17 @@ export class ConfirmarTurnoComponent implements OnInit {
  
 
   private setDate(){
-    if(! this.user?.riesgo){
-      return new Date(this.startDate.getFullYear(),this.startDate.getMonth(),this.startDate.getDate()+7);
-      
+    switch (this.user.vacuna){
+      case "Covid":
+        if(!this.user?.riesgo){
+          return new Date(this.startDate.getFullYear(),this.startDate.getMonth(),this.startDate.getDate()+7);
+        }
+      break;
+      case "Gripe":
+        if(!this.user?.riesgo){
+          return new Date(this.startDate.getFullYear(),this.startDate.getMonth()+6,this.startDate.getDate());
+        }
+        break;
     }
     return new Date();
   }
