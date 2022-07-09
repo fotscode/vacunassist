@@ -15,7 +15,6 @@ export interface TurnoUsuario {
   vacuna: string
   sede: string
   riesgo: boolean
-  vacunador: string
   fecha: string
 }
 
@@ -35,7 +34,6 @@ export class ReporteTurnosComponent implements OnInit {
     'riesgo',
     'vacuna',
     'sede',
-    'vacunador',
     'fecha',
   ]
   hoy = new FormControl(new Date())
@@ -77,7 +75,6 @@ export class ReporteTurnosComponent implements OnInit {
             vacuna:firstLetterUpper(e.vaccineId),
             sede:e.sede,
             riesgo:u.riesgo,
-            vacunador:'xd',
             fecha:this.formatDate(new Date(e.dateConfirmed))
           }
           this.USERS.push(obj)

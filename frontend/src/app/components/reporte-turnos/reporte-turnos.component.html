@@ -47,10 +47,6 @@
               <div *ngIf="!turno.riesgo"><i>No</i></div>
             </td>
           </ng-container>
-          <ng-container matColumnDef="vacunador">
-            <th mat-header-cell class="columnaVacunador" *matHeaderCellDef> Vacunador </th>
-            <td mat-cell class="columnaVacunador" *matCellDef="let turno"> {{turno.vacunador}} </td>
-          </ng-container>
           <ng-container matColumnDef="fecha">
             <th mat-header-cell class="columnaFecha" *matHeaderCellDef> Fecha </th>
             <td mat-cell class="columnaFecha" *matCellDef="let turno"> {{turno.fecha}} </td>

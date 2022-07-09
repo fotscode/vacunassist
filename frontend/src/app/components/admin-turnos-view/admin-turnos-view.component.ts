@@ -237,7 +237,7 @@ export class AdminTurnosViewComponent implements OnInit {
   }
 
   notificarTurno() {
-    this.snackBar.open(`Recordatorio de turno enviado al usuario via e-mail`, void 0, {
+    this.snackBar.open(`Recordatorio de turno enviado al usuario via email`, void 0, {
       duration: 3000,
     })
   }
