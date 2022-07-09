@@ -9,6 +9,7 @@ tbody{
 .table-bordered, thead {
   border-style: solid !important;
   border-color: #689f77 !important;
+  max-width: 100%;
 }
 
 .td, th {
@@ -18,8 +19,12 @@ padding-top: 5px;
 padding-bottom: 5px;
 }
 
+.sede {
+  width: 4rem;
+}
+
 .turnos {
-width: 100%;
+max-width: 100%;
 margin: auto;
 text-align: center;
 }
@@ -70,4 +75,9 @@ border-radius: 1rem;
   margin: auto;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.notificacion {
+  background-color: #263238;
+  color: #689f77;
 }

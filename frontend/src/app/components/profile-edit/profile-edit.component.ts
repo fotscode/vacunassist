@@ -115,7 +115,7 @@ export class ProfileEditComponent implements OnInit {
             )
           },
           (err) => {
-            this.errorMsg=err.error.msg
+            console.log(err)
           }
         )
     } else

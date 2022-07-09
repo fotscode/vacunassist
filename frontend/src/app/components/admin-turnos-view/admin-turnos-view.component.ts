@@ -100,7 +100,7 @@ export class AdminTurnosViewComponent implements OnInit {
   }
 
   private getEstado(dConfirmed: number, applied: boolean): string {
-    return !dConfirmed ? 'Pendiente' : dConfirmed!=0 ? 'Confirmado' : 'Aplicado'
+    return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
   }
 
   cancelAttempt(id: string, appl: boolean) {
@@ -120,6 +120,7 @@ export class AdminTurnosViewComponent implements OnInit {
     this.http
       .put(this.URL + '/cancel/' + id, { applied: appl })
       .subscribe((res) => {
+        this.turnos = []
         this.ngOnInit()
       })
   }
@@ -128,7 +129,6 @@ export class AdminTurnosViewComponent implements OnInit {
     this.http
       .get<Array<Vacuna>>(this.URL + '/user/' + this.getIdPerson())
       .subscribe((res) => {
-        this.turnos = []
         this.vacCovid = res.find((e: Vacuna) => e.vaccineId == 'covid')
         this.setApprovable(this.vacCovid, this.covid, 2)
         this.vacGripe = res.find((e: Vacuna) => e.vaccineId == 'gripe')
@@ -156,7 +156,7 @@ export class AdminTurnosViewComponent implements OnInit {
   private setApprovable(v: Vacuna | undefined, a: Approvable, doseMax: number) {
     if (v) {
       a.maxDosage = v.doseNumber < doseMax
-      this.http.get<User>(`${this.apiURL}/users/user/${this.getIdPerson()}`).subscribe((res) => {
+      this.authService.getUser().subscribe((res) => {
         a.validated = res.validated
         if (typeof a.ageAllowed !== 'undefined') {
           a.ageAllowed =
@@ -206,7 +206,6 @@ export class AdminTurnosViewComponent implements OnInit {
           this.snackBar.open(`Turno de ${name} solicitado`, void 0, {
             duration: 3000,
           })
-          this.ngOnInit()
         })
         .catch((err) => {
           console.log(err)
@@ -219,11 +218,11 @@ export class AdminTurnosViewComponent implements OnInit {
     return !a.validated
       ? 'No se encuentra validado'
       : !a.pending
-      ? 'El paciente ya tiene un turno pendiente para esta vacuna'
+      ? 'Ya tenés un turno pendiente para esta vacuna'
       : !a.maxCount
       ? 'No hay mas dosis diarias de vacunas'
       : !a.maxDosage
-      ? 'El paciente ya tiene la cantidad de dosis máxima'
+      ? 'Ya tenés la cantidad de dosis máxima'
       : 'Los menores de edad no pueden solicitar turnos'
   }
 
@@ -235,5 +234,9 @@ export class AdminTurnosViewComponent implements OnInit {
           if (res) resolve(res.sede)
         })
     })
+  }
+
+  notificarTurno() {
+
   }
 }

@@ -17,7 +17,7 @@
           </td>
           <td>{{ turno.vacuna }}</td>
           <td>{{ turno.fecha }}</td>
-          <td>{{ turno.sede }}</td>
+          <td class="sede">{{ turno.sede }}</td>
           <td>
             <button (click)="cancelAttempt(turno.id, turno.applied)">
               <b>X</b>
@@ -50,6 +50,12 @@
     <button mat-raised-button
       (click)="solicitarTurno(this.vacFAmarilla, this.fAmarilla)">
       Fiebre Amarilla
+    </button>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button class="notificacion"
+      (click)="notificarTurno()">
+      Recordar turno
     </button>
   </div>
 </div>

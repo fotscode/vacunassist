@@ -65,6 +65,7 @@
           <input
             matInput
             [matDatepicker]="picker2"
+            [disabled]="!vacunas.gripe.modifiable"
             [(ngModel)]="vacunas.gripe.fecha"
             name="ultimaGripe"
             required
@@ -84,6 +85,7 @@
       <mat-grid-tile [colspan]="3">
         <mat-radio-group
           class="columnaDerecha"
+          [disabled]="!vacunas.fiebreA.modifiable"
           [(ngModel)]="vacunas.fiebreA.dosis"
           aria-label="dosisFiebreA"
         >
@@ -97,6 +99,7 @@
           <input
             matInput
             [matDatepicker]="picker3"
+            [disabled]="!vacunas.fiebreA.modifiable"
             [(ngModel)]="vacunas.fiebreA.fecha"
             name="ultimaFiebre"
             required

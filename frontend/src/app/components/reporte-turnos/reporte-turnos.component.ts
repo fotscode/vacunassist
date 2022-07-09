@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { firstLetterUpper, Vacuna } from '../misturnos/misturnos.component'
 import { User } from '../register-page/register-page.component'
-import { datesOnSameDay } from '../solicitar-turno/solicitar-turno.component'
 
 export interface TurnoUsuario {
   cuil: string
@@ -17,7 +16,6 @@ export interface TurnoUsuario {
   sede: string
   riesgo: boolean
   vacunador: string
-  fechaNum: number
   fecha: string
 }
 
@@ -40,8 +38,7 @@ export class ReporteTurnosComponent implements OnInit {
     'vacunador',
     'fecha',
   ]
-  fechaDesde = new FormControl(new Date())
-  fechaHasta = new FormControl(new Date())
+  hoy = new FormControl(new Date())
 
   constructor(
     @Inject(MatSnackBar) private snackBar: MatSnackBar,
@@ -69,38 +66,26 @@ export class ReporteTurnosComponent implements OnInit {
     this.http
       .get<Array<Vacuna>>(this.apiURL + '/usersVaccines/')
       .subscribe(async (res) => {
-        let arr = res.filter(
-          (e) => e.dateConfirmed != undefined && e.dateConfirmed != 0
-        )
-        this.USERS = []
+        let arr = res.filter((e) => e.dateConfirmed!=undefined && e.dateConfirmed != 0)
+        this.USERS=[]
         arr.forEach(async (e) => {
           let u = await this.getUserInfo(e.userId)
           let obj: TurnoUsuario = {
-            cuil: u.cuil,
-            nombre: u.firstName,
-            apellido: u.lastName,
-            vacuna: firstLetterUpper(e.vaccineId),
-            sede: e.sede,
-            riesgo: u.riesgo,
-            vacunador: 'xd',
-            fecha: this.formatDate(new Date(e.dateConfirmed)),
-            fechaNum: e.dateConfirmed,
+            cuil:u.cuil,
+            nombre:u.firstName,
+            apellido:u.lastName,
+            vacuna:firstLetterUpper(e.vaccineId),
+            sede:e.sede,
+            riesgo:u.riesgo,
+            vacunador:'xd',
+            fecha:this.formatDate(new Date(e.dateConfirmed))
           }
           this.USERS.push(obj)
         })
         setTimeout(() => {
-          this.data = this.USERS
+          this.data=this.USERS
         }, 100)
       })
-  }
-  filterAppointments() {
-    this.data = this.USERS.filter(
-      (u) =>
-        (u.fechaNum <= this.fechaHasta.value.getTime() ||
-          datesOnSameDay(new Date(u.fechaNum), this.fechaHasta.value)) &&
-        (u.fechaNum >= this.fechaDesde.value.getTime() ||
-          datesOnSameDay(new Date(u.fechaNum), this.fechaDesde.value))
-    )
   }
 
   private async getUserInfo(id: string): Promise<User> {
