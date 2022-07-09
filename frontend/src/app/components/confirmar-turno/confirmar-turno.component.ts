@@ -24,6 +24,7 @@ export interface Paciente {
   templateUrl: './confirmar-turno.component.html',
   styleUrls: ['./confirmar-turno.component.css'],
 })
+
 export class ConfirmarTurnoComponent implements OnInit {
   private apiURL: string = environment.baseApiUrl
   hoy = new FormControl(new Date())
@@ -33,9 +34,14 @@ export class ConfirmarTurnoComponent implements OnInit {
     apellido: 'Grillo',
     vacuna: 'Covid',
     dosis: 1,
-    fecha: new FormControl(new Date()),
     riesgo: true,
+    fecha: new FormControl(new Date()),
+    
   }
+
+  startDate=new Date();
+  minDate= new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate());
+
 
   sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
   sede = this.sedes[0]
@@ -46,6 +52,8 @@ export class ConfirmarTurnoComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient
   ) {}
+
+  
 
   ngOnInit(): void {
     this.getVacuna()
@@ -85,6 +93,7 @@ export class ConfirmarTurnoComponent implements OnInit {
       })
   }
 
+
   private getSedes(sede: string) {
     this.http
       .get<Array<Sede>>(environment.baseApiUrl + '/sites/')
@@ -101,9 +110,23 @@ export class ConfirmarTurnoComponent implements OnInit {
       this.http
         .get<User>(this.apiURL + '/users/user/' + id)
         .subscribe((res) => {
-          if (res) resolve(res)
+          this.user.fecha=new FormControl(this.setDate());
+          console.log(this.setDate())
+          if (res)
+          resolve(res)
         })
     })
+  }
+
+
+ 
+
+  private setDate(){
+    if(! this.user?.riesgo){
+      return new Date(this.startDate.getFullYear(),this.startDate.getMonth(),this.startDate.getDate()+7);
+      
+    }
+    return new Date();
   }
 
   public getIdVaccine() {
