@@ -16,7 +16,8 @@ export interface Paciente {
   dosis: number
   fecha: FormControl
   riesgo: boolean
-  vac?:Vacuna
+  vac?: Vacuna
+  edad: number
 }
 
 @Component({
@@ -24,10 +25,9 @@ export interface Paciente {
   templateUrl: './confirmar-turno.component.html',
   styleUrls: ['./confirmar-turno.component.css'],
 })
-
 export class ConfirmarTurnoComponent implements OnInit {
   private apiURL: string = environment.baseApiUrl
-  hoy = new FormControl(new Date())
+  hoy = new Date()
   user: Paciente = {
     cuil: '20-28673854-5',
     nombre: 'Pepe',
@@ -36,12 +36,15 @@ export class ConfirmarTurnoComponent implements OnInit {
     dosis: 1,
     riesgo: true,
     fecha: new FormControl(new Date()),
-    
+    edad: 20,
   }
 
-  startDate=new Date();
-  minDate= new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate());
-
+  startDate = new Date()
+  minDate = new Date(
+    this.startDate.getFullYear(),
+    this.startDate.getMonth(),
+    this.startDate.getDate()
+  )
 
   sedes: Sede[] = [{ nro: 1, name: '13 nº 876 e/ 49 y 50' }]
   sede = this.sedes[0]
@@ -53,17 +56,18 @@ export class ConfirmarTurnoComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  
-
   ngOnInit(): void {
     this.getVacuna()
   }
   confirmarTurno() {
-    this.user.vac!.dateConfirmed=new Date(this.user.fecha.value).getTime()
-    this.user.vac!.sede=this.sede.name
+    this.user.vac!.dateConfirmed = new Date(this.user.fecha.value).getTime()
+    this.user.vac!.sede = this.sede.name
     console.log(this.user.vac)
     this.http
-      .put(`${this.apiURL}/usersVaccines/confirm/${this.getIdVaccine()}`, this.user.vac)
+      .put(
+        `${this.apiURL}/usersVaccines/confirm/${this.getIdVaccine()}`,
+        this.user.vac
+      )
       .subscribe((res) => {
         console.log(res)
         this.snackBar.open('Turno confirmado', void 0, {
@@ -74,7 +78,7 @@ export class ConfirmarTurnoComponent implements OnInit {
   }
 
   setSede(s: Sede) {
-    this.sede = s; // pq taba comentado?
+    this.sede = s 
   }
 
   private async getVacuna() {
@@ -88,12 +92,15 @@ export class ConfirmarTurnoComponent implements OnInit {
         this.user.vacuna = firstLetterUpper(res.vaccineId)
         this.user.dosis = res.doseNumber
         this.user.riesgo = u.riesgo
-        this.user.vac=res
-        this.user.fecha=new FormControl(this.setDate())
+        this.user.vac = res
+        this.user.edad = Math.floor(
+          (new Date().getTime() - new Date(u.fechaNac).getTime()) /
+            (1000 * 60 * 60 * 24 * 365)
+        )
+        this.user.fecha = new FormControl(this.setDate())
         this.getSedes(res.sede)
       })
   }
-
 
   private getSedes(sede: string) {
     this.http
@@ -111,29 +118,39 @@ export class ConfirmarTurnoComponent implements OnInit {
       this.http
         .get<User>(this.apiURL + '/users/user/' + id)
         .subscribe((res) => {
-          if (res)
-          resolve(res)
+          if (res) resolve(res)
         })
     })
   }
 
-
- 
-
-  private setDate(){
-    switch (this.user.vacuna){
-      case "Covid":
-        if(!this.user?.riesgo){
-          return new Date(this.startDate.getFullYear(),this.startDate.getMonth(),this.startDate.getDate()+7);
+  private setDate() {
+    switch (this.user.vacuna) {
+      case 'Covid':
+        if (!this.user?.riesgo) {
+          return new Date(
+            this.startDate.getFullYear(),
+            this.startDate.getMonth(),
+            this.startDate.getDate() + 7
+          )
+        } else {
+          return new Date(
+            this.startDate.getFullYear(),
+            this.startDate.getMonth() + 6,
+            this.startDate.getDate()
+          )
         }
-      break;
-      case "Gripe":
-        if(!this.user?.riesgo){
-          return new Date(this.startDate.getFullYear(),this.startDate.getMonth()+6,this.startDate.getDate());
+      case 'Gripe':
+        let meses = 6
+        if (this.user.edad > 60) {
+          meses = 3
         }
-        break;
+        return new Date(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth() + meses,
+          this.startDate.getDate()
+        )
     }
-    return new Date();
+    return new Date()
   }
 
   public getIdVaccine() {
