@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { firstLetterUpper, Vacuna } from '../misturnos/misturnos.component'
 import { User } from '../register-page/register-page.component'
+import { datesOnSameDay } from '../solicitar-turno/solicitar-turno.component'
 
 export interface TurnoUsuario {
   cuil: string
@@ -16,6 +17,7 @@ export interface TurnoUsuario {
   sede: string
   riesgo: boolean
   fecha: string
+  fechaNum: number
 }
 
 @Component({
@@ -36,7 +38,9 @@ export class ReporteTurnosComponent implements OnInit {
     'sede',
     'fecha',
   ]
-  hoy = new FormControl(new Date())
+
+  fechaDesde = new FormControl(new Date());
+  fechaHasta = new FormControl(new Date());
 
   constructor(
     @Inject(MatSnackBar) private snackBar: MatSnackBar,
@@ -75,7 +79,8 @@ export class ReporteTurnosComponent implements OnInit {
             vacuna:firstLetterUpper(e.vaccineId),
             sede:e.sede,
             riesgo:u.riesgo,
-            fecha:this.formatDate(new Date(e.dateConfirmed))
+            fecha:this.formatDate(new Date(e.dateConfirmed)),
+            fechaNum: e.dateConfirmed,
           }
           this.USERS.push(obj)
         })
@@ -94,4 +99,16 @@ export class ReporteTurnosComponent implements OnInit {
         })
     })
   }
+
+  filterAppointments() {
+    this.data = this.USERS.filter(
+      (u) =>
+        (u.fechaNum <= this.fechaHasta.value.getTime() ||
+          datesOnSameDay(new Date(u.fechaNum), this.fechaHasta.value)) &&
+        (u.fechaNum >= this.fechaDesde.value.getTime() ||
+          datesOnSameDay(new Date(u.fechaNum), this.fechaDesde.value))
+    )
+  }
+
+
 }

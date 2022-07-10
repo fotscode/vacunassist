@@ -100,7 +100,7 @@ export class AdminTurnosViewComponent implements OnInit {
   }
 
   private getEstado(dConfirmed: number, applied: boolean): string {
-    return !dConfirmed ? 'Pendiente' : !applied ? 'Confirmado' : 'Aplicado'
+    return !dConfirmed ? 'Pendiente' : dConfirmed != 0 ? 'Confirmado' : 'Aplicado'
   }
 
   cancelAttempt(id: string, appl: boolean) {
@@ -129,6 +129,7 @@ export class AdminTurnosViewComponent implements OnInit {
     this.http
       .get<Array<Vacuna>>(this.URL + '/user/' + this.getIdPerson())
       .subscribe((res) => {
+        this.turnos = []
         this.vacCovid = res.find((e: Vacuna) => e.vaccineId == 'covid')
         this.setApprovable(this.vacCovid, this.covid, 2)
         this.vacGripe = res.find((e: Vacuna) => e.vaccineId == 'gripe')
@@ -156,7 +157,7 @@ export class AdminTurnosViewComponent implements OnInit {
   private setApprovable(v: Vacuna | undefined, a: Approvable, doseMax: number) {
     if (v) {
       a.maxDosage = v.doseNumber < doseMax
-      this.authService.getUser().subscribe((res) => {
+      this.http.get<User>(`${this.apiURL}/users/user/${this.getIdPerson()}`).subscribe((res) => {
         a.validated = res.validated
         if (typeof a.ageAllowed !== 'undefined') {
           a.ageAllowed =
@@ -206,6 +207,7 @@ export class AdminTurnosViewComponent implements OnInit {
           this.snackBar.open(`Turno de ${name} solicitado`, void 0, {
             duration: 3000,
           })
+          this.ngOnInit()
         })
         .catch((err) => {
           console.log(err)

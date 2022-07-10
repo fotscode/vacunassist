@@ -1,4 +1,6 @@
 const UserVaccines = require('../models/UserVaccines')
+const User = require('../models/User')
+const nodemailer = require('nodemailer')
 
 exports.getUsersVaccines = (req, res, next) => {
   UserVaccines.find({ userId: req.params.user_id })
@@ -94,8 +96,25 @@ exports.confirmAppointment = (req, res, next) => {
     upsert: true,
   })
     .then((vaccine) => {
-      if (vaccine) res.status(200).json({ success: true, msg: vaccine })
-      else
+      if (vaccine) {
+        User.findById({ _id: vaccine.userId }).then((u) => {
+          if (req.body.dateConfirmed != 0)
+            sendEmail(
+              u.email,
+              vaccine.vaccineId,
+              req.body.dateConfirmed,
+              'Confirmado'
+            )
+          else
+            sendEmail(
+              u.email,
+              vaccine.vaccineId,
+              req.body.dateApplied,
+              'Aplicado'
+            )
+          res.status(200).json({ success: true, msg: vaccine })
+        })
+      } else
         return res
           .status(401)
           .json({ success: false, msg: 'no se encontro la vacuna' })
@@ -104,4 +123,35 @@ exports.confirmAppointment = (req, res, next) => {
       console.log(err)
       return res.status(500).json({ success: false, msg: 'error inesperado' })
     })
+}
+const sendEmail = (email, vacuna, fecha, estado) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_ACCOUNT,
+      pass: process.env.EMAIL_PWD,
+    },
+  })
+  const mailOptions = {
+    from: process.env.EMAIL_ACCOUNT,
+    to: email,
+    subject: 'Vacunassist - Turno',
+    text: `Vacuna:${vacuna}, Fecha:${formatDate(
+      new Date(fecha)
+    )}, Estado:${estado}`,
+  }
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Email enviado ' + info.response)
+    }
+  })
+}
+
+const formatDate = (d) => {
+  let y = d.getFullYear()
+  let m = d.getMonth() + 1
+  let day = d.getDate()
+  return `${day}/${m}/${y}`
 }
