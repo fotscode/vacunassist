@@ -218,14 +218,14 @@ export class AdminTurnosViewComponent implements OnInit {
   }
   private getErrMsg(a: Approvable): string {
     return !a.validated
-      ? 'No se encuentra validado'
+      ? 'La identidad del paciente no se encuentra validada'
       : !a.pending
-      ? 'Ya tenés un turno pendiente para esta vacuna'
+      ? 'El paciente ya tiene un turno pendiente para esta vacuna'
       : !a.maxCount
       ? 'No hay mas dosis diarias de vacunas'
       : !a.maxDosage
-      ? 'Ya tenés la cantidad de dosis máxima'
-      : 'Los menores de edad no pueden solicitar turnos'
+      ? 'El paciente ya tiene la cantidad máxima de dosis'
+      : 'No se le puede asignar un turno a un menor de edad'
   }
 
   private async getSede(id:string): Promise<string> {
