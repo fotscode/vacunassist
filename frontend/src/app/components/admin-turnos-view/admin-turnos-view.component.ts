@@ -255,7 +255,7 @@ export class AdminTurnosViewComponent implements OnInit {
       .subscribe((vaccines) => {
         vaccines.forEach((vaccine) => {
           let { _id, ...obj } = vaccine
-          if (vaccine.dateConfirmed != 0) {
+          if (vaccine.dateConfirmed!=undefined && vaccine.dateConfirmed != 0) {
             this.http
               .put(`${this.apiURL}/usersVaccines/confirm/${_id}`, obj)
               .subscribe((res) => {
