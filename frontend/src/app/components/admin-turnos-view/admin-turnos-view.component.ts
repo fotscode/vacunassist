@@ -100,7 +100,11 @@ export class AdminTurnosViewComponent implements OnInit {
   }
 
   private getEstado(dConfirmed: number, applied: boolean): string {
-    return !dConfirmed ? 'Pendiente' : dConfirmed != 0 ? 'Confirmado' : 'Aplicado'
+    return !dConfirmed
+      ? 'Pendiente'
+      : dConfirmed != 0
+      ? 'Confirmado'
+      : 'Aplicado'
   }
 
   cancelAttempt(id: string, appl: boolean) {
@@ -157,14 +161,21 @@ export class AdminTurnosViewComponent implements OnInit {
   private setApprovable(v: Vacuna | undefined, a: Approvable, doseMax: number) {
     if (v) {
       a.maxDosage = v.doseNumber < doseMax
-      this.http.get<User>(`${this.apiURL}/users/user/${this.getIdPerson()}`).subscribe((res) => {
-        a.validated = res.validated
-        if (typeof a.ageAllowed !== 'undefined') {
-          a.ageAllowed =
-            (new Date().getTime() - res.fechaNac) / 1000 / 60 / 60 / 24 / 365 >=
-            18
-        }
-      })
+      this.http
+        .get<User>(`${this.apiURL}/users/user/${this.getIdPerson()}`)
+        .subscribe((res) => {
+          a.validated = res.validated
+          if (typeof a.ageAllowed !== 'undefined') {
+            a.ageAllowed =
+              (new Date().getTime() - res.fechaNac) /
+                1000 /
+                60 /
+                60 /
+                24 /
+                365 >=
+              18
+          }
+        })
       this.isBelowMaxCount().then((r) => (a.maxCount = r))
       a.pending = !v.dateIssued || v.dateIssued == 0
     } else this.errorMsg = 'No se encontraron vacunas'
@@ -228,7 +239,7 @@ export class AdminTurnosViewComponent implements OnInit {
       : 'Los menores de edad no pueden solicitar turnos'
   }
 
-  private async getSede(id:string): Promise<string> {
+  private async getSede(id: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.http
         .get<User>(this.apiURL + '/users/user/' + id)
@@ -239,8 +250,25 @@ export class AdminTurnosViewComponent implements OnInit {
   }
 
   notificarTurno() {
-    this.snackBar.open(`Recordatorio de turno enviado al usuario via email`, void 0, {
-      duration: 3000,
-    })
+    this.http
+      .get<Array<Vacuna>>(`${this.URL}/user/${this.getIdPerson()}`)
+      .subscribe((vaccines) => {
+        vaccines.forEach((vaccine) => {
+          let { _id, ...obj } = vaccine
+          if (vaccine.dateConfirmed != 0) {
+            this.http
+              .put(`${this.apiURL}/usersVaccines/confirm/${_id}`, obj)
+              .subscribe((res) => {
+              })
+          }
+        })
+        this.snackBar.open(
+          `Recordatorio de turno enviado al usuario via email`,
+          void 0,
+          {
+            duration: 3000,
+          }
+        )
+      })
   }
 }
