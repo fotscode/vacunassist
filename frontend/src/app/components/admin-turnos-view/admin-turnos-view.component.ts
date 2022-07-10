@@ -252,23 +252,30 @@ export class AdminTurnosViewComponent implements OnInit {
   notificarTurno() {
     this.http
       .get<Array<Vacuna>>(`${this.URL}/user/${this.getIdPerson()}`)
-      .subscribe((vaccines) => {
-        vaccines.forEach((vaccine) => {
-          let { _id, ...obj } = vaccine
-          if (vaccine.dateConfirmed!=undefined && vaccine.dateConfirmed != 0) {
+      .subscribe((response) => {
+        let vaccines = response.filter(
+          (vaccine) =>
+            vaccine.dateConfirmed != undefined && vaccine.dateConfirmed != 0
+        )
+        if (vaccines.length > 0) {
+          vaccines.forEach((vaccine) => {
+            let { _id, ...obj } = vaccine
             this.http
               .put(`${this.apiURL}/usersVaccines/confirm/${_id}`, obj)
-              .subscribe((res) => {
-              })
-          }
-        })
-        this.snackBar.open(
-          `Recordatorio de turno enviado al usuario via email`,
-          void 0,
-          {
+              .subscribe((res) => {})
+          })
+          this.snackBar.open(
+            `Recordatorio de turno enviado al usuario via email`,
+            void 0,
+            {
+              duration: 3000,
+            }
+          )
+        } else {
+          this.snackBar.open(`No hay turnos confirmados`, void 0, {
             duration: 3000,
-          }
-        )
+          })
+        }
       })
   }
 }
