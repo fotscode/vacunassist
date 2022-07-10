@@ -15,8 +15,8 @@
           <td scope="row">
             <b>{{ turno.estado }}</b>
           </td>
-          <td>{{ turno.vacuna }}</td>
-          <td>{{ turno.fecha }}</td>
+          <td class="vacuna">{{ turno.vacuna }}</td>
+          <td class="fecha">{{ turno.fecha }}</td>
           <td class="sede">{{ turno.sede }}</td>
           <td>
             <button (click)="cancelAttempt(turno.id, turno.applied)">
