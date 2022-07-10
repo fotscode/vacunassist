@@ -1,12 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core'
+import {Component, Inject, OnInit, ViewChild} from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
@@ -106,13 +99,8 @@ export class ProfileEditComponent implements OnInit {
         .subscribe(
           (res) => {
             this.router.navigate(['/Perfil'])
-            this.snackBar.open(
-              'Se ha actualizado su perfil con éxito',
-              void 0,
-              {
-                duration: 3000,
-              }
-            )
+            this.snackBar.open('Se ha actualizado su perfil con éxito',
+              void 0, {duration: 3000,})
           },
           (err) => {
             this.errorMsg=err.error.msg

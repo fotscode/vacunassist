@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core'
+import { Component, OnInit, ViewChild, Inject } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { environment } from 'src/environments/environment'
 import { Sede } from '../sedes/sedes.component'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 export interface Rol {
   id: number
@@ -45,6 +46,7 @@ export class AdminProfileEditComponent implements OnInit {
   private URL = environment.baseApiUrl + '/users'
   constructor(
     private http: HttpClient,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
@@ -118,6 +120,8 @@ export class AdminProfileEditComponent implements OnInit {
         .subscribe(
           (res) => {
             this.router.navigate(['/AdminProfileView', this.getIdPerson()])
+            this.snackBar.open('El perfil se ha actualizado con éxito',
+            void 0, {duration: 3000,})
           },
           (err) => {
             this.errorMsg=err.error.msg
